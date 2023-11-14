@@ -1,14 +1,21 @@
-import 'App.css';
-import 'styles/base/reset.css'
 import React, {useEffect, useState,Component} from 'react';
 import Router from 'Router';
+import Header from 'components/site/header/Header';
+import Footer from 'components/site/footer/Footer';
 
-
+//css
+import 'App.css';
+import 'styles/site/base/reset.css'
+import 'styles/site/header/header.css'
+import 'styles/site/footer/footer.css'
 
 const App = () => {
 	return (
+		
 		<div className='App'>
-			<Router/>
+			<Header/>
+			<Router />
+			<Footer/>
 		</div>
 	);
 };
