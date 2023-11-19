@@ -1,10 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 //compo
 import TestDataList from 'components/test/TestDataList';
 import TestDataNew from 'components/test/TestDataNew';
 //style
-import "styles/test/test.css"
+import "styles/test/testDataList.css"
+import "styles/test/testDataNew.css"
 
 const TestPage = () => {
 	return (

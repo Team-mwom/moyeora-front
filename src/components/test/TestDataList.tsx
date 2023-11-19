@@ -1,5 +1,4 @@
-import React, { useEffect, useState, Component } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 interface Data{
@@ -15,7 +14,7 @@ const TestDataList = () => {
 	const [data, setData] =  useState<Data[] | null>(null);
 
   	useEffect(() => {
-    axios.get('/test')
+    axios.get('selectAllList')
     .then((response) => setData(response.data as Data[]))
       .catch((error) => console.log(error));
    
