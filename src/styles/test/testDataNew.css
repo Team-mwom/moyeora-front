@@ -1,0 +1,8 @@
+.data_add_form{
+   width: 100%;
+   text-align: center;
+}
+.data_add_form input{
+    margin: 0 10px 0 5px;
+    max-width: 100px;
+}

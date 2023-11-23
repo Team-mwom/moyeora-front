@@ -1,5 +1,5 @@
-import React, { useEffect, useState, Component } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 
 interface Data{
@@ -12,36 +12,37 @@ interface Data{
 
 
 const TestDataList = () => {
-	const [data, setData] =  useState<Data[] | null>(null);
+  const [data, setData] = useState<Data[] | null>(null);
 
-  	useEffect(() => {
-    axios.get('/test')
-    .then((response) => setData(response.data as Data[]))
+  const [searchParams, setSearchParams] = useSearchParams();
+  let mybatis = 'false';
+  if (searchParams.get('mybatis')!=null)
+    mybatis = (String)(searchParams.get('mybatis'));
+
+  useEffect(() => {
+    axios.get('selectTestAllList?mybatis='+mybatis)
+      .then((response) => setData(response.data as Data[]))
       .catch((error) => console.log(error));
    
   }, []);
 
 	return (
 	
-			<div>
-           
-            {
-              data && data.map(rowData => (
-                <div className="sibal">
-                  <div>idx : {rowData.idx}</div>
-                  <div>age : {rowData.age}</div>
-                  <div>name : {rowData.name}</div>
-                  <div>family : {rowData.family}</div>
-                  <div>weight : {rowData.weight}</div>
-                </div>
-                
-                
-              )
-              )
-            }
-            
-              
+    <div>
+      <div className="sibal">{mybatis=='true'?'MyBatis':'JPA'}</div>  
+      {
+        data && data.map(rowData => (
+          <div className="sibal">
+            <div>idx : {rowData.idx}</div>
+            <div>age : {rowData.age}</div>
+            <div>name : {rowData.name}</div>
+            <div>family : {rowData.family}</div>
+            <div>weight : {rowData.weight}</div>
           </div>
+          )
+          )
+      }
+      </div>
 		
 		
 	);
