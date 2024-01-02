@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
+
 import { useSearchParams } from 'react-router-dom';
+
 import axios from 'axios';
 
 interface Data{
@@ -19,9 +21,9 @@ const TestDataList = () => {
   if (searchParams.get('mybatis')!=null)
     mybatis = (String)(searchParams.get('mybatis'));
 
-  useEffect(() => {
-    axios.get('selectTestAllList?mybatis='+mybatis)
-      .then((response) => setData(response.data as Data[]))
+  	useEffect(() => {
+    axios.get('selectAllList')
+    .then((response) => setData(response.data as Data[]))
       .catch((error) => console.log(error));
    
   }, []);
