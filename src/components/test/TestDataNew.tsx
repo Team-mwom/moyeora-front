@@ -27,13 +27,8 @@ export default class TestDataNew extends React.Component<any,any> {
 	}
 
 	handleSubmit(event:any) {//form onSubmit 추가 버튼 클릭시
-		// alert(
-		// 	this.state.age+
-		// 	this.state.name+
-		// 	this.state.family+
-		// 	this.state.weight
-		// ); 
-		axios.post('/insertInfo',this.state)
+
+		axios.post('/insertTestInfo',this.state)
     	.then((response) => console.log(123))
       	.catch((error) => console.log(error));
 		event.preventDefault();
