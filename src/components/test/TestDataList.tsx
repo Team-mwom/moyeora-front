@@ -22,7 +22,7 @@ const TestDataList = () => {
     mybatis = (String)(searchParams.get('mybatis'));
 
   	useEffect(() => {
-    axios.get('selectAllList')
+    axios.get('/api/selectTestAllList')
     .then((response) => setData(response.data as Data[]))
       .catch((error) => console.log(error));
    

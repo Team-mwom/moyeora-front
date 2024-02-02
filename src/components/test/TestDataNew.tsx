@@ -28,7 +28,7 @@ export default class TestDataNew extends React.Component<any,any> {
 
 	handleSubmit(event:any) {//form onSubmit 추가 버튼 클릭시
 
-		axios.post('/insertTestInfo',this.state)
+		axios.post('/api/insertTestInfo',this.state)
     	.then((response) => console.log(123))
       	.catch((error) => console.log(error));
 		event.preventDefault();

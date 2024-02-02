@@ -1,5 +1,4 @@
-import React, {useEffect, useState,Component} from 'react';
-import axios from 'axios';
+import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Main from 'pages/main/MainPage';
 import Test from 'pages/test/TestPage';
