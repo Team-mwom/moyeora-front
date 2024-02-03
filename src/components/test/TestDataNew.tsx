@@ -28,8 +28,15 @@ export default class TestDataNew extends React.Component<any,any> {
 
 	handleSubmit(event:any) {//form onSubmit 추가 버튼 클릭시
 
-		axios.post('/api/insertTestInfo',this.state)
-    	.then((response) => console.log(123))
+		axios.post('/api/insertTestInfo', this.state)
+			.then((response) => {
+				document.querySelector(".data_list")!.insertAdjacentHTML("beforeend",
+					'<div class="sibal"><div>idx : ' + response.data.idx +
+					'</div><div>age :' + response.data.age + '</div><div>name :' + response.data.name +
+					'</div><div>family : ' + response.data.family +
+					'</div><div>weight : ' + response.data.weight + '</div></div>');
+			}
+			)
       	.catch((error) => console.log(error));
 		event.preventDefault();
 			

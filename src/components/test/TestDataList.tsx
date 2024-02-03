@@ -30,7 +30,7 @@ const TestDataList = () => {
 
 	return (
 	
-    <div>
+    <div className='data_list'>
       <div className="sibal">{mybatis=='true'?'MyBatis':'JPA'}</div>  
       {
         data && data.map(rowData => (
