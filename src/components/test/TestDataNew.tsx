@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
+import TestDataList from './TestDataList';
 
 
 
@@ -26,15 +27,19 @@ export default class TestDataNew extends React.Component<any,any> {
 		});
 	}
 
+
+
 	handleSubmit(event:any) {//form onSubmit 추가 버튼 클릭시
 
 		axios.post('/api/insertTestInfo', this.state)
 			.then((response) => {
-				document.querySelector(".data_list")!.insertAdjacentHTML("beforeend",
-					'<div class="sibal"><div>idx : ' + response.data.idx +
-					'</div><div>age :' + response.data.age + '</div><div>name :' + response.data.name +
-					'</div><div>family : ' + response.data.family +
-					'</div><div>weight : ' + response.data.weight + '</div></div>');
+				// let btn = "<input className='change_btn' type='button' onClick={changeClick} value='수정' /><input className='cancel_btn' type='button' onClick={cancelClick} value='취소'/><input className='save_btn' type='button'  value='저장'/><input className='del_btn' type='button'  onClick={delClick} value='삭제'/>"
+				// document.querySelector(".data_list")!.insertAdjacentHTML("beforeend",
+				// 	'<form class="data_div">idx :<span> ' + response.data.idx +
+				// 	'age :</span><span>' + response.data.age + '</span><span>name :' + response.data.name +
+				// 	'family :</span><span> ' + response.data.family +
+				// 	'weight :</span><span> ' + response.data.weight + '</span>'+btn+'</form>');
+				
 			}
 			)
       	.catch((error) => console.log(error));
@@ -44,7 +49,7 @@ export default class TestDataNew extends React.Component<any,any> {
 
 	render(){
 		return (
-			<div className='sibal'>
+			<div className='data_div'>
 					<form className='data_add_form' onSubmit={this.handleSubmit} onChange={this.handleChange}>
 						age:<input type='text' name = 'age'/>
 						name:<input type='text' name = 'name'/>
