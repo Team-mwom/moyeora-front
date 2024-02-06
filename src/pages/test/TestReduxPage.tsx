@@ -32,8 +32,8 @@ const TestPage = () => {
     return state.testData
   });
 
- 	 
-      axios.get('/api/selectTestAllList')
+  function a() {
+          axios.get('/api/selectTestAllList')
       .then((response) => {
      
        dispach(setTestDataSlice(response));
@@ -41,12 +41,14 @@ const TestPage = () => {
       }).catch((error) => console.log(error));
         //  dispach(setTestDataSlice(1));
         
+   }
+   
         
 
 
 	return (
     <div>
-      
+      <input type="button" onClick={a} value="abc"></input>
       {
      data && data.map((rowData : any) => (
       <form className="data_div data_form">

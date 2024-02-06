@@ -32,6 +32,8 @@ export const testDataSlice = createSlice({
             //state[1]=data.payload.data[1];
 
             const datas: Data[] = data.payload.data;
+            
+            
             for (let i = 0; i < datas.length; i++){
                 state[i] = data.payload.data[i];
             }

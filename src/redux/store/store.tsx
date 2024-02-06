@@ -5,14 +5,21 @@ import testDataSlice from '../slices/testDataSlice';
 import loggerMiddleware from 'lib/loggerMiddleware';
 export const store = configureStore({
   reducer: {
-    testData:testDataSlice
+    testData: testDataSlice,
+    
+
+
+
+
+
+    
   },
   
   
-// middleware: (getDefaultMiddleware) =>
-//     getDefaultMiddleware({
-//       serializableCheck: false,
-//     }).concat(loggerMiddleware)
+middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }).concat(loggerMiddleware)
 
 
 
