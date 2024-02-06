@@ -22,27 +22,31 @@ interface Data{
 
 const TestPage = () => {
   const dispach = useDispatch();
-	 
-  console.log(useSelector((state: RootState) => {
-     return state
-  }));
+
+    
+
+  // console.log(useSelector((state: RootState) => {
+  //    return state
+  // }));
   const data= useSelector((state: RootState) => {
     return state.testData
   });
 
-  function a(){
-axios.get('/api/selectTestAllList')
-		 .then((response) => {
-       dispach(setTestDataSlice(response));
-			 
-		 })
-      .catch((error) => console.log(error));
+ 	 
+      axios.get('/api/selectTestAllList')
+      .then((response) => {
      
-  }
+       dispach(setTestDataSlice(response));
+        
+      }).catch((error) => console.log(error));
+        //  dispach(setTestDataSlice(1));
+        
+        
+
 
 	return (
     <div>
-      <input type="button" onClick={a} value='123'></input>
+      
       {
      data && data.map((rowData : any) => (
       <form className="data_div data_form">
