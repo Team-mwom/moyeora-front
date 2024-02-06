@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import cityDataByCategoryReducer from '../slices/cityDataByCategorySlice';
-import testDataSlice from 'redux/slices/testDataSlice';
+import testDataSlice from '../slices/testDataSlice';
 
 export const store = configureStore({
   reducer: {
-    cityDataByCategory: cityDataByCategoryReducer,
     testData:testDataSlice
   },
 });
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;

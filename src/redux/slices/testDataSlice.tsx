@@ -1,4 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit'
+import type { PayloadAction } from '@reduxjs/toolkit'
 
 
 interface Data{
@@ -10,29 +11,26 @@ interface Data{
 }
 
 
-type InitialState = {
-    datas: Data;
-}
-
-
-
-const initialState: InitialState = {
-    datas: {
-        idx: 0,
+export const testDataSlice = createSlice({
+    name: 'testData',
+    initialState:
+    [{
+        idx: 1,
         name: "",
         family: "",
         age: 0,
         weight:0,
-    }
-}
-
-export const testDataSlice = createSlice({
-    name: 'cityDataByCategory',
-    initialState,
+            
+        },],
     reducers: {
-    setTestDataSlice: (state, action) => action.payload,
+        setTestDataSlice: (state, data) => {
+         
+            state = data.payload.data;
+            // console.log(state);
+         }
+    }
   },
-});
+);
 
 export const { setTestDataSlice } = testDataSlice.actions;
 export default testDataSlice.reducer;
