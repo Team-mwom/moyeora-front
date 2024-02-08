@@ -7,12 +7,6 @@ export const store = configureStore({
   reducer: {
     testData: testDataSlice,
     
-
-
-
-
-
-    
   },
   
   
