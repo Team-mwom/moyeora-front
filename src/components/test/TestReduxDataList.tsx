@@ -79,7 +79,7 @@ const TestReduxDataList = () => {
     <div className='data_list'>
       {
         data && data.map((rowData:any,row:number) => (
-          <form className="data_div data_form">
+          <form className="data_div data_form" key={row}>
             <input name='data_row' type='hidden' value={row} /><input name ='data_idx' type='hidden' defaultValue={rowData.idx}/><input name='data_age' type='hidden' value={rowData.age} />
             <input name='data_name' type='hidden' value={rowData.name} /><input name='data_family' type='hidden' value={rowData.family} /><input name='data_weight' type='hidden' value={rowData.weight}/>
             age : <span className='data data_origin_age'> {rowData.age}</span> <input name = 'new_age' className='data_change_input' type='text' defaultValue={rowData.age}/>

@@ -14,7 +14,7 @@ interface Data{
 
 export const testDataSlice = createSlice({
     name: 'testData',
-    initialState: [{}],
+    initialState: [{row:0,idx:0,name:"",family:"",age:0,weight:0}],
     reducers: {
       setTestDataList: (state, action) => {//배열에 저장
         const datas: Data[] = action.payload.data;
@@ -27,7 +27,7 @@ export const testDataSlice = createSlice({
         state.push(data);
             
       },
-      deleteDataInfo: (state, action) => {//row 번호로 배열 하나 삭제
+      deleteDataInfo: (state, action) => {//row번호로 배열 하나 삭제
         const row : number = action.payload;
         state.splice(row,1);
       },
