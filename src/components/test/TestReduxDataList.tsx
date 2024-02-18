@@ -31,21 +31,38 @@ const TestReduxDataList = () => {
   const changeClick = useCallback((e: React.MouseEvent<HTMLElement>) => {
       const target: any = e.target;
       const form =  target.form;
-      form.querySelector('.data_origin_age').style.display = 'none';   form.querySelector('.data_origin_name').style.display = 'none';
-      form.querySelector('.data_origin_family').style.display = 'none';   form.querySelector('.data_origin_weight').style.display = 'none';
-      form.querySelector('.change_btn').style.display = 'none';   form.querySelector('.cancel_btn').style.display = 'inline-block';   form.querySelector('.save_btn').style.display = 'inline-block';
-      form.new_age.style.display = "inline-block";   form.new_name.style.display = "inline-block";   form.new_family.style.display = "inline-block";   form.new_weight.style.display = "inline-block";
-      form.new_age.value = form.data_age.value; form.new_name.value = form.data_name.value; form.new_family.value = form.data_family.value; form.new_weight.value = form.data_weight.value;
+      form.querySelector('.data_origin_age').style.display = 'none';   
+      form.querySelector('.data_origin_name').style.display = 'none';
+      form.querySelector('.data_origin_family').style.display = 'none';   
+      form.querySelector('.data_origin_weight').style.display = 'none';
+      form.querySelector('.change_btn').style.display = 'none';   
+      form.querySelector('.cancel_btn').style.display = 'inline-block';   
+      form.querySelector('.save_btn').style.display = 'inline-block';
+      form.new_age.style.display = "inline-block";   
+      form.new_name.style.display = "inline-block";   
+      form.new_family.style.display = "inline-block";   
+      form.new_weight.style.display = "inline-block";
+      form.new_age.value = form.data_age.value; 
+      form.new_name.value = form.data_name.value; 
+      form.new_family.value = form.data_family.value; 
+      form.new_weight.value = form.data_weight.value;
   }, []);
 
  
   const cancelClick = useCallback((e: React.MouseEvent<HTMLElement>) => {
     const target: any = e.target;
     const form =  target.form;
-    form.querySelector('.data_origin_age').style.display = 'inline-block';   form.querySelector('.data_origin_name').style.display = 'inline-block';
-    form.querySelector('.data_origin_family').style.display = 'inline-block';   form.querySelector('.data_origin_weight').style.display = 'inline-block';
-    form.querySelector('.change_btn').style.display = 'inline-block';   form.querySelector('.cancel_btn').style.display = 'none';   form.querySelector('.save_btn').style.display = 'none';
-    form.new_age.style.display = "none";   form.new_name.style.display = "none";   form.new_family.style.display = "none";   form.new_weight.style.display = "none";
+    form.querySelector('.data_origin_age').style.display = 'inline-block';   
+    form.querySelector('.data_origin_name').style.display = 'inline-block';
+    form.querySelector('.data_origin_family').style.display = 'inline-block';   
+    form.querySelector('.data_origin_weight').style.display = 'inline-block';
+    form.querySelector('.change_btn').style.display = 'inline-block';   
+    form.querySelector('.cancel_btn').style.display = 'none';   
+    form.querySelector('.save_btn').style.display = 'none';
+    form.new_age.style.display = "none";   
+    form.new_name.style.display = "none";  
+    form.new_family.style.display = "none";   
+    form.new_weight.style.display = "none";
   }, []);
 
 
