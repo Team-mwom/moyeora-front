@@ -1,7 +1,10 @@
-.sibal {
+.data_div {
     width: 80%;
     margin: 10px auto;
     border: 1px solid rgb(0, 0, 0);
     font-size: 18px;
     padding: 10px;
+}
+.data_change_input,.cancel_btn,.save_btn{
+    display: none;
 }

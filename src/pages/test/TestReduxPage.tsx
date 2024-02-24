@@ -1,7 +1,7 @@
 import React from 'react';
 //compo
-import TestDataList from 'components/test/TestDataList';
-import TestDataNew from 'components/test/TestDataNew';
+import TestReduxDataList from 'components/test/TestReduxDataList';
+import TestReduxDataNew from 'components/test/TestReduxDataNew';
 //style
 import "styles/test/testDataList.css"
 import "styles/test/testDataNew.css"
@@ -9,8 +9,8 @@ import "styles/test/testDataNew.css"
 const TestPage = () => {
 	return (
     <div>
-      <TestDataNew/>
-		  <TestDataList/>
+      <TestReduxDataNew/>
+		  <TestReduxDataList/>
 	</div>
 	);
 };
