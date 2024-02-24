@@ -9,8 +9,10 @@ import "styles/test/testDataNew.css"
 const TestPage = () => {
 	return (
     <div>
+
       	<TestReduxDataNew/>
 		<TestReduxDataList/>
+
 	</div>
 	);
 };

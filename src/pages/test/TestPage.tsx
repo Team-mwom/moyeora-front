@@ -9,8 +9,8 @@ import "styles/test/testDataNew.css"
 const TestPage = () => {
 	return (
     <div>
-      	<TestDataNew/>
-		<TestDataList/>
+      <TestDataNew/>
+		  <TestDataList/>
 	</div>
 	);
 };
