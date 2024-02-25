@@ -3,8 +3,8 @@ import axios from 'axios';
 
 //redux
 import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "../../redux/store/store";
-import { setTestDataList,deleteDataInfo,updateDataInfo } from "../../redux/slices/testDataSlice";
+import { RootState } from "../../../store/store";
+import { setTestDataList,deleteDataInfo,updateDataInfo } from "../../../store/slices/testDataSlice";
 
 //style
 import "styles/test/testDataList.css"
