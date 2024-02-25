@@ -2,7 +2,7 @@ import React, { useCallback, useState,useRef} from 'react';
 import axios from 'axios';
 //redux
 import {   useDispatch   } from "react-redux";
-import { setTestDataInfo } from "../../redux/slices/testDataSlice";
+import { setTestDataInfo } from "../../../store/slices/testDataSlice";
 
 
 
