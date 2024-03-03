@@ -1,7 +1,7 @@
 import React from 'react';
 import Router from 'Router';
-import Header from 'components/main/Header';
-import Footer from 'components/main/Footer';
+import Header from 'components/common/Header';
+import Footer from 'components/common/Footer';
 
 //css
 import 'styles/common/App.css';
