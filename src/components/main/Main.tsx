@@ -1,6 +1,8 @@
 import React from 'react';
 
-const Hello = () => {
+import "styles/main/main.css"
+
+const Main = () => {
 	return (
 		<div className='Hello_container'>
 			<div>
@@ -11,4 +13,4 @@ const Hello = () => {
 	);
 };
 
-export default Hello;
+export default Main;
