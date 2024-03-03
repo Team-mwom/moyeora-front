@@ -6,20 +6,6 @@
     text-align: center;
 }
 
-.search_container{
-    margin: 20px 0 100px 0;
-    text-align: center;
+.test {
+    
 }
-.search_container input {
-    border-radius: 30px;
-    font-size: 25px;
-    height: 50px;
-    width: 70%;
-    border: 0;
-    outline: 3px solid #e96c7c;
-}
-
-.search_container input::placeholder {
-    padding-left: 30px;
-    color: #aaa;
-  }

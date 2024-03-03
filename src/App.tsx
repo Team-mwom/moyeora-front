@@ -1,13 +1,11 @@
 import React from 'react';
 import Router from 'Router';
-import Header from 'components/site/header/Header';
-import Footer from 'components/site/footer/Footer';
+import Header from 'components/common/Header';
+import Footer from 'components/common/Footer';
 
 //css
-import 'App.css';
-import 'styles/site/base/reset.css'
-import 'styles/site/header/header.css'
-import 'styles/site/footer/footer.css'
+import 'styles/common/App.css';
+import 'styles/common/reset.css'
 
 const App = () => {
 	return (
