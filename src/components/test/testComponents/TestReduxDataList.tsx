@@ -20,7 +20,7 @@ const TestReduxDataList = () => {
 
   useEffect(
     () => {
-      axios.get('/api/selectTestAllList')
+      axios.get('/api/all/selectTestAllList')
       .then((response) => {
         dispach(setTestDataList(response));
       }).catch((error) => console.log(error));
@@ -69,7 +69,7 @@ const TestReduxDataList = () => {
   const delClick = useCallback((e: React.MouseEvent<HTMLElement>) => {
     const target: any = e.target;
     const form =  target.form;
-    axios.get('/api/deleteTestInfo?idx='+form.data_idx.value)
+    axios.get('/api/all/deleteTestInfo?idx='+form.data_idx.value)
     .then((response) => { dispach(deleteDataInfo(form.data_row.value)); cancelClick(e);})
     .catch((error) => console.log(error));
   }, []);
@@ -86,7 +86,7 @@ const TestReduxDataList = () => {
       weight: form.new_weight.value,
       row:form.data_row.value,
     } 
-    axios.post('/api/updateTestInfo', saveData)
+    axios.post('/api/all/updateTestInfo', saveData)
       .then((response) => {
         dispach(updateDataInfo(saveData)); cancelClick(e);
       })

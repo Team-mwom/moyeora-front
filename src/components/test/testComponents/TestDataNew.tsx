@@ -31,7 +31,7 @@ export default class TestDataNew extends React.Component<any,any> {
 
 	handleSubmit(event:any) {//form onSubmit 추가 버튼 클릭시
 
-		axios.post('/api/insertTestInfo', this.state)
+		axios.post('/api/all/insertTestInfo', this.state)
 			.then((response) => {
 				// let btn = "<input className='change_btn' type='button' onClick={changeClick} value='수정' /><input className='cancel_btn' type='button' onClick={cancelClick} value='취소'/><input className='save_btn' type='button'  value='저장'/><input className='del_btn' type='button'  onClick={delClick} value='삭제'/>"
 				// document.querySelector(".data_list")!.insertAdjacentHTML("beforeend",

@@ -27,7 +27,7 @@ const TestReduxDataNew = () => {
 
 	const insertData = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		axios.post('/api/insertTestInfo', data)
+		axios.post('/api/all/insertTestInfo', data)
 			.then((response) => {
 				dispach(setTestDataInfo(response.data));
 			}
