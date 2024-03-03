@@ -1,7 +1,5 @@
 import React from 'react';
 
-import "styles/main/search/search.css"
-
 const Search = () => {
 	return (
 		<div className='search_container'>
