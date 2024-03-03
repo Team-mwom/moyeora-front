@@ -1,5 +1,7 @@
 import React from 'react';
 
+import "styles/main/main.css"
+
 const Hello = () => {
 	return (
 		<div className='Hello_container'>
