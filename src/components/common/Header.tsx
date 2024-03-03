@@ -8,9 +8,16 @@ function home() {
 
 const Header = () => {
 	return (
-		<div className='header' onClick={home}>
-			header
+		<div className='header_full'>
+			<div className='header_container' onClick={home}>
+				header
+			</div>
+			
+			<div className='header_banner'>
+				Banner
+			</div>
 		</div>
+
 	);
 };
 
