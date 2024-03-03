@@ -22,7 +22,7 @@ const TestDataList = () => {
     mybatis = (String)(searchParams.get('mybatis'));
 
   	useEffect(() => {
-    axios.get('/api/selectTestAllList')
+    axios.get('/api/all/selectTestAllList')
     .then((response) => setData(response.data as Data[]))
       .catch((error) => console.log(error));
    
@@ -41,7 +41,7 @@ const TestDataList = () => {
     e.target.form.new_age.style.display = "none";    e.target.form.new_name.style.display = "none";    e.target.form.new_family.style.display = "none";    e.target.form.new_weight.style.display = "none";
   }
   function delClick(e:any) {
-    axios.get('/api/deleteTestInfo?idx='+e.target.form.data_idx.value)
+    axios.get('/api/all/deleteTestInfo?idx='+e.target.form.data_idx.value)
     .then((response) => e.target.form.style.display='none')
       .catch((error) => console.log(error));
   }
