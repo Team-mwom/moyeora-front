@@ -1,15 +1,19 @@
 import React from 'react';
 
-import Hello from 'components/main/Main';
+import Main from 'components/main/Main';
 import Search from 'components/common/Search';
+
+import "styles/main/mainPage.css";
 
 const MainPage = () => {
 	
 	return (
 
-		<div className="main_container">
-			<Search/>
-			<Hello/>		
+		<div className='mainPage_full'>
+			<div className='mainPage_container'>
+				<Search/>
+				<Main/>		
+			</div>
 		</div>
 
 	);

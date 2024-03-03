@@ -1,10 +1,29 @@
-.header{
-    border: 1px solid black;
-    padding: 30px 0;
-    font-size: 50px;
-    text-align: center;
-    cursor: pointer;
+.header_full {
+  outline : 3px solid black;
 }
-.header:hover{
-    background-color: aqua;
+
+.header_container {
+  width: 60%;
+  height: 100px;
+  padding: 0.5%;
+  margin: auto;
+  font-size: 50px;
+  text-align: center;
+  cursor: pointer;
+
+  outline: 3px solid red;
+}
+
+.header_container:hover {
+  background-color: aqua;
+}
+
+.header_banner {
+  width: 100%;
+  height: 500px;
+  margin: auto;
+  text-align: center;
+  font-size: 50px;
+
+  outline: 3px solid red;
 }
