@@ -14,7 +14,7 @@
   font-size: 20px;
   color: red;
   margin: 0.5%;
-  padding : 0.5%;
+  padding : 1%;
   font-weight: bold;
   
   outline: 3px solid blue;
@@ -51,9 +51,14 @@
 .bbusyeoraToday_moreRead {
   text-align: center;
   box-sizing: border-box;
-  font-size: 50%;
-  margin: 0 45%;
+  font-size: 40%;
+  margin: 1% 45%;
   cursor: pointer;
 
   outline: 3px solid red;
+}
+
+.bbusyeoraToday_moreRead:hover {
+  background-color: aqua;
+  font-weight: bold;
 }

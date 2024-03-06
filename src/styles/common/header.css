@@ -3,19 +3,43 @@
 }
 
 .header_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  vertical-align: middle;
   width: 60%;
   height: 100px;
   padding: 0.5%;
   margin: auto;
   font-size: 50px;
   text-align: center;
-  cursor: pointer;
 
   outline: 3px solid red;
 }
 
-.header_container:hover {
-  background-color: aqua;
+.logo_moyeora {
+  cursor: pointer;
+  outline: 3px solid blue;
+}
+
+.logo_container {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  outline: 3px solid blue;
+}
+
+.logo_inner {
+  margin: .25rem;
+  padding: 1rem 1rem;
+  display: flex;
+  align-items: center;
+  outline: 3px solid red;
+}
+
+.logo_inner .logo {
+  cursor: pointer;
 }
 
 .header_banner {
