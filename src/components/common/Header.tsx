@@ -1,6 +1,6 @@
 import React from 'react';
 
-import 'styles/common/header.css'
+import 'styles/common/components/header.css'
 
 function home() {
 	window.location.href = '/';
