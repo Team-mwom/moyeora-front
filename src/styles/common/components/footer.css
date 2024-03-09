@@ -1,0 +1,14 @@
+.footer_full {
+  outline: 3px solid black;
+}
+
+.footer_container {
+  width: 60%;
+  height: 250px;
+  padding: 0.5%;
+  margin: auto;
+  font-size: 50px;
+  text-align: center;
+
+  outline: 3px solid red;
+}

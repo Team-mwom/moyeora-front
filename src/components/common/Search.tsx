@@ -5,6 +5,9 @@ import {useCallback, useState, ChangeEvent} from 'react';
 import { useDispatch } from "react-redux";
 
 
+import "styles/common/components/search.css"
+
+
 const Search = () => {
 	const [word, setWord] = useState('');//수정을 위한 정보를 data에 저장한다.
 	//const dispach = useDispatch();
