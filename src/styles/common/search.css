@@ -1,9 +1,9 @@
-.search_container{
+.search_container .search_input form {
   margin: 20px 0 100px 0;
   text-align: center;
 }
-
-.search_container input {
+.search_container .search_input form input {
+  padding-left: 50px;
   border-radius: 30px;
   font-size: 25px;
   height: 50px;
@@ -12,7 +12,17 @@
   outline: 3px solid #e96c7c;
 }
 
-.search_container input::placeholder {
-  padding-left: 30px;
+.search_container .search_input button {
+  margin-left: 20px;
+  padding : 20px 15px 15px 15px;
+  cursor: pointer;
+  outline: 3px solid #e96c7c;
+  border: 0;
+  border-radius: 80px;
+  background-color: white;
+
+}
+
+.search_container .search_input input::placeholder {
   color: #aaa;
 }
