@@ -19,7 +19,7 @@ const TestLoginInfoPage = () => {
           alert('로그인 성공');
         } else {
           alert('로그인후 이용하세요');
-          navigate("/test/jwt/signIn");
+          navigate("/test/kakao/main");
         }
       })
   }
@@ -28,7 +28,7 @@ const TestLoginInfoPage = () => {
     const signOut = useCallback(
     (e:React.MouseEvent<HTMLElement>) => {
         localStorage.clear();
-        navigate("/test/jwt/signIn");
+        navigate("/test/kakao/main");
     }
   ,[]);
 	return (
