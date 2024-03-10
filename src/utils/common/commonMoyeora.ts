@@ -18,7 +18,7 @@
  * @param void
  * @returns String : commomMoyeora Test !!!
  */
-export function com_utils_test() {
+export const com_utils_test = () => {
   console.log('commomMoyeora Test !!!');
 
   return 'commomMoyeora Test !!!';
