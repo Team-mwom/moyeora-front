@@ -1,13 +1,23 @@
 import React from 'react';
 
-import "styles/main/main.css"
+import MoyeoraToday from 'components/moyeora/MoyeoraToday';
+import BbusyeoraToday from 'components/bbusyeora/BbusyeoraToday';
+
+import 'styles/main/main.css'
+
+function testPage() {
+	window.location.href = '/test';
+}
 
 const Main = () => {
 	return (
-		<div className='Hello_container'>
+		<div className='main_full'>
+			<div className='main_test' onClick={testPage}>
+				Test Page URL : http://localhost:3000/test
+			</div>
 			<div>
-				안녕하세요. 메인 페이지 입니다.
-				테스트 페이지는 http://localhost:3000/test 로 변경되었습니다.
+				<MoyeoraToday />
+				<BbusyeoraToday />
 			</div>
 		</div>
 	);
