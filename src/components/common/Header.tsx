@@ -11,7 +11,6 @@ const Header = () => {
 		<div className='header_full'>
 			<div className='header_container'>
 					<img className="logo_moyeora" alt="logo_moyeora" src="images/logo_moyeora.png" onClick={home}/>
-					
 					<div className='logo_container'>
 						<div className='logo_inner'>
 							<img className="logo" alt="logo_alarm" src="images/logo_alarm.png" />
