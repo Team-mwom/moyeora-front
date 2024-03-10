@@ -5,8 +5,6 @@ import Header from 'components/common/Header';
 import Footer from 'components/common/Footer';
 import Search from 'components/common/Search';
 
-import "styles/common/common.css";
-
 const MainPage = () => {
 	
 	return (
