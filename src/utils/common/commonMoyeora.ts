@@ -26,12 +26,12 @@ export function com_utils_test() {
 
 /**
  * @explan String 빈 값 유효성 체크를 위한 function
- * @ex { com_utils_getEmptyCheck(value) }
+ * @ex { com_utils_getStringEmptyCheck(value) }
  * @author Yongmini
  * @param value : String
  * @returns true or false
  */
-export function com_utils_getEmptyCheck(value : String) {
+export const com_utils_getStringEmptyCheck = (value : String) => {
   if(value === "" || value === null || value === undefined) return true;
   else return false;
 }
@@ -43,7 +43,7 @@ export function com_utils_getEmptyCheck(value : String) {
  * @param categories : String
  * @returns time : String
  */
-export function com_utils_getNowTime(categories : String) {
+export const com_utils_getNowTime = (categories : String) => {
   let today = new Date();
   let time;
 
