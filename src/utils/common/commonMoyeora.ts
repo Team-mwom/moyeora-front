@@ -16,23 +16,24 @@
  * @ex { com_utils_test() }
  * @author Yongmini
  * @param void
- * @returns String
+ * @returns String : commomMoyeora Test !!!
  */
 export function com_utils_test() {
-  console.log("commomMoyeora Test !!!");
+  console.log('commomMoyeora Test !!!');
 
-  return "commomMoyeora Test !!!";
+  return 'commomMoyeora Test !!!';
 }
 
 /**
- * @explan 빈 값 유효성 체크를 위한 function
- * @ex { com_utils_getEmptyCheck() }
+ * @explan String 빈 값 유효성 체크를 위한 function
+ * @ex { com_utils_getEmptyCheck(value) }
  * @author Yongmini
- * @param any
- * @returns any
+ * @param value : String
+ * @returns true or false
  */
-export function com_utils_getEmptyCheck() {
-
+export function com_utils_getEmptyCheck(value : String) {
+  if(value === "" || value === null || value === undefined) return true;
+  else return false;
 }
 
 /**
