@@ -19,6 +19,7 @@
 
 .logo_moyeora {
   cursor: pointer;
+  height: 80px;
   outline: 3px solid blue;
 }
 
