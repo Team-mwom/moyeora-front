@@ -26,12 +26,12 @@ export const com_utils_test = () => {
 
 /**
  * @explan String 빈 값 유효성 체크를 위한 function
- * @ex { com_utils_getStringEmptyCheck(value) }
+ * @ex { com_utils_getEmptyCheck(value) }
  * @author Yongmini
  * @param value : String
  * @returns true or false
  */
-export const com_utils_getStringEmptyCheck = (value : String) => {
+export const com_utils_getEmptyCheck = (value : String) => {
   if(value === "" || value === null || value === undefined) return true;
   else return false;
 }
