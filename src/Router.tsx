@@ -9,15 +9,18 @@ import TestJWTRouter from 'router/testRouters/TestJWTRouter';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "styles/common/common.css";
+import SignRouter from 'router/mainRouters/SignRouter';
 
 function Router() {
   return (
     <BrowserRouter>
       <MainRouter />
       <BbusyeoraRouter/>
-      <MoyeoraRouter/>
+      <MoyeoraRouter />
+      <SignRouter/>
       <TestCRUDRouter />
-      <TestJWTRouter/>
+
+      
 		</BrowserRouter>
   )
 }
