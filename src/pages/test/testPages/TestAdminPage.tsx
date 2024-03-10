@@ -12,7 +12,7 @@ const TestAdminPage = () => {
           alert('로그인 성공');
         } else {
           alert('관리자로 로그인 해주세요');
-          navigate("/test/jwt/signIn");
+          navigate("/test/kakao/main");
         }
       })
   }
@@ -24,7 +24,7 @@ const TestAdminPage = () => {
     const signOut = useCallback(
     (e:React.MouseEvent<HTMLElement>) => {
         localStorage.clear();
-        navigate("/test/jwt/signIn");
+        navigate("/test/kakao/main");
     }
   ,[]);
 	return (

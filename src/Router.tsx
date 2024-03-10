@@ -1,15 +1,14 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
+
 import BbusyeoraRouter from 'router/mainRouters/BbusyeoraRouter';
-
-//페이지
-
 import MainRouter from 'router/mainRouters/MainRouter';
 import MoyeoraRouter from 'router/mainRouters/MoyeoraRouter';
 import TestCRUDRouter from 'router/testRouters/TestCRUDRouter'
 import TestJWTRouter from 'router/testRouters/TestJWTRouter';
-
-// 레이아웃
+import SignRouter from 'router/mainRouters/SignRouter';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import "styles/common/common.css";
 
 
 function Router() {
@@ -19,7 +18,8 @@ function Router() {
       <BbusyeoraRouter/>
       <MoyeoraRouter/>
       <TestCRUDRouter />
-      <TestJWTRouter/>
+      <TestJWTRouter />
+      <SignRouter/>
 		</BrowserRouter>
   )
 }
