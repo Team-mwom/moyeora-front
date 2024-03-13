@@ -2,7 +2,7 @@ import React from 'react';
 
 import 'styles/common/components/header.css'
 
-function home() {
+const home = () => {
 	window.location.href = '/';
 }
 
@@ -22,10 +22,6 @@ const Header = () => {
 							<img className="logo" alt="logo_account_info" src="images/logo_account_info.png" />
 						</div>
 					</div>
-			</div>
-			
-			<div className='header_banner'>
-				Banner
 			</div>
 		</div>
 

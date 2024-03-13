@@ -1,0 +1,36 @@
+.signUp_title {
+  font-size: 20px;
+  color: red;
+  margin: 0.5%;
+  padding : 1%;
+  font-weight: bold;
+  
+  outline: 3px solid blue;
+}
+
+.signUp_info_container {
+  display: block;
+  text-align: center;
+  margin: 0.5%;
+
+  outline: 3px solid black;
+}
+
+.signUp_info {
+  display: inline-block;
+  vertical-align: middle;
+  width: 50%;
+
+  outline: 3px solid red;
+}
+
+.signUp_button_container {
+  font-size: 20px;
+  color: red;
+  margin: 0.5%;
+  padding : 1%;
+  font-weight: bold;
+  text-align: center;
+  
+  outline: 3px solid blue;
+}
