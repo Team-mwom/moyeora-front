@@ -7,9 +7,27 @@
   margin: auto;
   text-align: center;
   padding: 0.5%;
-  
-  font-size: 50px;
+
+  /* font-size: 50px; */
   outline: 3px solid red;
+}
+
+/* Test CSS */
+.link_test {
+  width: 60%;
+  height: 25px;
+  margin: 0.5% 20%;
+  align-items: center;
+  vertical-align: middle;
+  text-align: center;
+  font-size : 24px;
+  cursor: pointer;
+  outline: 3px solid black;
+}
+
+.link_test:hover {
+  background-color: aqua;
+  font-weight: bold;
 }
 
 /* Reset CSS (DON'T TOUCH!!!) */

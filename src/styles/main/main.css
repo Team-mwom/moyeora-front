@@ -1,15 +1,3 @@
 .main_full {
   outline: 3px solid black;
 }
-
-.main_test {
-  padding: 3%;
-  font-size : 25px;
-  cursor: pointer;
-  outline: 3px solid black;
-}
-
-.main_test:hover {
-  background-color: aqua;
-  font-weight: bold;
-}
