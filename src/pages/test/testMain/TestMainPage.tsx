@@ -1,21 +1,18 @@
 import React from 'react';
 
-//compo
 import LinkTest from 'components/test/testMain/LinkTest';
-//style
+import Header from 'components/common/Header';
+import Footer from 'components/common/Footer';
+
 import "styles/main/main.css"
 
-
-
-
-
 const TestMainPage = () => {
-	
 
 	return (
-		<div className="main_container">
+		<div className="common_full">
+			<Header/>
 			<LinkTest />
-			
+			<Footer/>
 		</div>
 	);
 };
