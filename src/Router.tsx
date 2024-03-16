@@ -9,6 +9,7 @@ import TestJWTRouter from 'router/testRouters/TestJWTRouter';
 import SignRouter from 'router/mainRouters/SignRouter';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "styles/common/common.css";
+import SignRouter from 'router/mainRouters/SignRouter';
 
 
 function Router() {
@@ -16,10 +17,13 @@ function Router() {
     <BrowserRouter>
       <MainRouter />
       <BbusyeoraRouter/>
-      <MoyeoraRouter/>
+      <MoyeoraRouter />
+      <SignRouter/>
       <TestCRUDRouter />
+
       <TestJWTRouter />
       <SignRouter/>
+
 		</BrowserRouter>
   )
 }
