@@ -1,24 +1,14 @@
 import React from 'react';
 
+import { com_link_home, com_link_signIn } from 'utils/common/commonLink.ts';
+
 import 'styles/common/components/header.css'
-
-
-const home=()=> {
-	window.location.href = '/';
-}
-
-const CLIENT_ID = process.env.REACT_APP_REST_API_KEY;
-const REDIRECT_URI = process.env.REACT_APP_REDIRECT_URL;
-const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code`;
-const signIn = () => {
-	window.location.href=KAKAO_AUTH_URL
-}
 
 const Header = () => {
 	return (
 		<div className='header_full'>
 			<div className='header_container'>
-					<img className="logo_moyeora" alt="logo_moyeora" src="images/logo_moyeora.png" onClick={home}/>
+				<img className="logo_moyeora" alt="logo_moyeora" src="images/logo_moyeora.png" onClick={com_link_home}/>
 					
 					<div className='logo_container'>
 						<div className='logo_inner'>
@@ -28,13 +18,12 @@ const Header = () => {
 							<img className="logo" alt="logo_message" src="images/logo_message.png" />
 						</div>
 						<div className='logo_inner'>
-							<img className="logo" alt="logo_account_info" src="images/logo_account_info.png" onClick={signIn}/>
+							<div className='signIn' onClick={com_link_signIn}>
+								로그인 / 회원가입
+							</div>
+							{/* <img className="logo" alt="logo_account_info" src="images/logo_account_info.png" onClick={signIn}/> */}
 						</div>
 					</div>
-			</div>
-			
-			<div className='header_banner'>
-				Banner
 			</div>
 		</div>
 
