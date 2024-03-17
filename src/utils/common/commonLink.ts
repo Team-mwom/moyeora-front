@@ -28,6 +28,16 @@ export const com_link_signUp = () => {
 	window.location.href = '/signUp';
 }
 
+/**
+ * @explan 마이페이지 Link
+ * @link /myProfile
+ * @ex { com_link_myProfile }
+ * @author Yongmini
+ */
+export const com_link_myProfile = () => {
+	window.location.href = '/myProfile';
+}
+
 // 카카오 API 관련 =================================================================
 
 const CLIENT_ID = process.env.REACT_APP_REST_API_KEY;
