@@ -8,6 +8,8 @@ import 'styles/sign/signUp.css'
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
+import axios from 'axios';
+import { useLocation, useNavigate } from 'react-router-dom';
 // import Accordion from 'react-bootstrap/Accordion';
 // import FormCheckInput from 'react-bootstrap/esm/FormCheckInput';
 
@@ -19,18 +21,46 @@ interface Data {
 }
 
 const SignUpPage = () => {
+	 const navigate = useNavigate();
 	
-	
-	const [data,setData]= useState<Data>({
-		name:"",nickName:"",email:"",kakao:""
-	}); 
+	const data: Data = { name: '', nickName: '', email: '', kakao: useLocation().state }
 
 
 	const signup = useCallback(() => { 
-		console.log(data);
+		axios.post('/api/all/signup', data).then((res) => { 
+			
+
+			axios({// 카카오 아이디를 통해 디비검색하고 
+				method: "GET",
+				url: `/api/all/signIn?kakaoId=${data.kakao}`,
+				headers: {
+					"Content-Type": "application/json;charset=utf-8",
+					"Access-Control-Allow-Origin": "*",
+				},
+			}).then((response) => {//있으면 토큰을 발급받아서 저장함
+				localStorage.setItem("accessToken", response.data.accessToken);
+				localStorage.setItem("refreshToken", response.data.refreshToken);
+				navigate('/test/jwt/signInInfo');
+			}).catch((err) => { })
+				
+				
+		}).catch((err) => { alert('심각한 애러')})
+
+		
 	},[]);
 		
+	const onChangeName =useCallback((e: any) => { 
+		data.name = e.target.value;
+	}, []);
+	const onChangeNickName =useCallback((e: any) => { 
+		data.nickName = e.target.value;
+	},[]);
 		
+	const onChangeEmail =useCallback((e: any) => { 
+		data.email = e.target.value;
+	},[]);
+		
+  
 		
 
 
@@ -44,10 +74,11 @@ const SignUpPage = () => {
 				<div className='signUp_info_container'>
 					<div className='signUp_info'>
 						<InputGroup size="sm" className="mb-3">
-							<InputGroup.Text id="inputGroup-sizing-sm">이름</InputGroup.Text>
+							<InputGroup.Text id="inputGroup-sizing-sm" >이름</InputGroup.Text>
 							<Form.Control
 								aria-label="Small"
 								aria-describedby="inputGroup-sizing-sm"
+								onChange={onChangeName}
 								/>
 						</InputGroup>
 						<InputGroup size="sm" className="mb-3">
@@ -55,6 +86,7 @@ const SignUpPage = () => {
 							<Form.Control
 								aria-label="Small"
 								aria-describedby="inputGroup-sizing-sm"
+								onChange={onChangeNickName}
 								/>
 						</InputGroup>
 						<InputGroup size="sm" className="mb-3">
@@ -62,6 +94,7 @@ const SignUpPage = () => {
 							<Form.Control
 								aria-label="Small"
 								aria-describedby="inputGroup-sizing-sm"
+								onChange={onChangeEmail}
 								/>
 						</InputGroup>
 
