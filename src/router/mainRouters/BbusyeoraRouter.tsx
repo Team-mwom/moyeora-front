@@ -1,7 +1,7 @@
 import React from 'react';
 import {Routes } from 'react-router-dom';
 
-function BbusyeoraRouter() {
+const BbusyeoraRouter = () => {
   return (
     <Routes>
     </Routes>

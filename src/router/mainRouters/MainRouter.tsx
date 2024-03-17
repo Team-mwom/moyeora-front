@@ -4,7 +4,7 @@ import {Routes, Route } from 'react-router-dom';
 import TestMain from 'pages/main/MainPage';
 import SearchMain from 'pages/main/SearchMain';
 
-function MainRouter() {
+const MainRouter = () => {
   return (
 		<Routes>
 			<Route path="/" element={<TestMain/>} />
