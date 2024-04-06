@@ -1,5 +1,4 @@
 import React, { useCallback, useState } from 'react';
-
 import Header from 'components/common/Header';
 import Footer from 'components/common/Footer';
 
@@ -10,6 +9,8 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
+import { authAxios } from 'utils/auth/authAxios';
 // import Accordion from 'react-bootstrap/Accordion';
 // import FormCheckInput from 'react-bootstrap/esm/FormCheckInput';
 
@@ -22,25 +23,41 @@ interface Data {
 
 const SignUpPage = () => {
 	 const navigate = useNavigate();
-	
+	   const [cookies, setCookie, removeCookie] = useCookies(); 
 	const data: Data = { name: '', nickName: '', email: '', kakao: useLocation().state }
 
 
 	const signup = useCallback(() => { 
-		axios.post('/api/all/signup', data).then((res) => { 
+		axios.post('/api/all/signup', data).then((res) => { //회원가입 정보를 서버로 보내서 디비에 저장한다.
 			
 
-			axios({// 카카오 아이디를 통해 디비검색하고 
+			axios({// 디비 저장에 성공했다면 카카오 아이디로 로그인을 실시 한다.
 				method: "GET",
 				url: `/api/all/signIn?kakaoId=${data.kakao}`,
 				headers: {
 					"Content-Type": "application/json;charset=utf-8",
 					"Access-Control-Allow-Origin": "*",
 				},
-			}).then((response) => {//있으면 토큰을 발급받아서 저장함
+			}).then((response) => {//로그인이 완료되면 토큰을 발급받아서 클라이언트단에 저장함
+				
 				localStorage.setItem("accessToken", response.data.accessToken);
-				localStorage.setItem("refreshToken", response.data.refreshToken);
-				navigate('/test/jwt/signInInfo');
+				  const expires = new Date();
+          expires.setMonth(expires.getMonth() + 1);
+          setCookie('refreshToken', response.data.refreshToken, { path: '/', expires });
+          
+				authAxios.post('/api/user/getMyInfo').then((res) => {//사용자 정보를 로컬스토리지에 저장
+            const resData = {
+              name: res.data.name,
+              nickName: res.data.nickName,
+              email:res.data.email
+          }
+          
+         
+          localStorage.setItem("userInfo",JSON.stringify(resData));
+          alert("로그인 성공")
+          navigate('/test/jwt/signInInfo');
+          
+          })
 			}).catch((err) => { })
 				
 				
