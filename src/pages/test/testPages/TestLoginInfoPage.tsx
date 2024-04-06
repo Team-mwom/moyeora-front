@@ -1,7 +1,11 @@
 import axios from 'axios';
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { IsUser } from './IsUser';
+
+import { authAxios } from 'utils/auth/authAxios';
+import { authException } from 'utils/auth/authException';
+import { useCookies } from 'react-cookie';
+
 
 
 
@@ -11,23 +15,29 @@ import { IsUser } from './IsUser';
 const TestLoginInfoPage = () => {
 
   const navigate = useNavigate();
+ 
+  const userInfo = JSON.parse(localStorage.getItem("userInfo") as string) || [];
+  
 
-  useEffect(() => {//로그인 상태를 확인할때 사용
-      IsUser().then((data) => {
-        console.log(data);
-        if (data) {
-          alert('로그인 성공');
-        } else {
-          alert('로그인후 이용하세요');
-          navigate("/test/kakao/main");
-        }
-      })
+  const [cookies, setCookie, removeCookie] = useCookies();
+
+
+  useEffect(() => {
+    authAxios.post('/api/user/isUser').then((res) => {
+      if (authException(res, [cookies, setCookie, removeCookie])) {
+
+    
+   
+      }
+    }).catch((err) => { alert('로그인 후 이용해주세요') })
+     
   }
-, []);
+    , []);
 
     const signOut = useCallback(
     (e:React.MouseEvent<HTMLElement>) => {
         localStorage.clear();
+        removeCookie('refreshToken', {path:'/'});
         navigate("/test/kakao/main");
     }
   ,[]);
@@ -37,7 +47,11 @@ const TestLoginInfoPage = () => {
       <h3>accessToken</h3>
       <h3>{localStorage.getItem("accessToken")}</h3>
       <h3>refreshToken</h3>
-      <h3>{localStorage.getItem("refreshToken")}</h3>
+      <h3>{cookies.refreshToken}</h3>
+      <h3>{ userInfo.name}</h3>
+      <h3>{ userInfo.nickName}</h3>
+      <h3>{ userInfo.email}</h3>
+    
 
       <input type='button' onClick={signOut} value={'로그아웃'} />
       <a href='/test/jwt/adminpage'><br></br>관리자 페이지로 이동</a>

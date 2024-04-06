@@ -20,6 +20,7 @@ const TestReduxDataList = () => {
 
   useEffect(
     () => {
+      //sandAccessToken('/api/all/selectTestAllList').then((response) => { dispach(setTestDataList(response)); }).catch((error) => console.log(error));
       axios.get('/api/all/selectTestAllList')
       .then((response) => {
         dispach(setTestDataList(response));
