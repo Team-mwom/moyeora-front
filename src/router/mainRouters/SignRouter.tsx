@@ -1,4 +1,5 @@
 
+import { SignInPage } from 'pages/sign/SignInPage';
 import SignUpPage from 'pages/sign/SignUpPage';
 import React from 'react';
 import {Routes, Route } from 'react-router-dom';
@@ -9,6 +10,7 @@ const SignRouter = () => {
   <Routes>
 
     <Route path="/signUp" element={<SignUpPage/>} />
+    <Route path="/signIn" element={<SignInPage/>} />
 
   </Routes>
 

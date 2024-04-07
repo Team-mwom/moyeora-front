@@ -55,7 +55,7 @@ const SignUpPage = () => {
          
           localStorage.setItem("userInfo",JSON.stringify(resData));
           alert("로그인 성공")
-          navigate('/test/jwt/signInInfo');
+          navigate('/');
           
           })
 			}).catch((err) => { })
