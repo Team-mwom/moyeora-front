@@ -5,16 +5,20 @@ import { com_link_home, com_link_signIn } from 'utils/common/commonLink.ts';
 import 'styles/common/components/header.css'
 import { useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
+import axios from 'axios';
 
 const Header = () => {
 	const userInfo = JSON.parse(localStorage.getItem("userInfo") as string);
 	const navigate = useNavigate();
-  const [cookies, setCookie, removeCookie] = useCookies();
+  const [, , removeCookie] = useCookies();
 	const signOut = useCallback(
-    (e:React.MouseEvent<HTMLElement>) => {
-        localStorage.clear();
+		(e: React.MouseEvent<HTMLElement>) => {
+			axios.get("/api/all/signOut").then(() => { 
+				localStorage.clear();
         removeCookie('refreshToken', {path:'/'});
         navigate("/");
+			})
+      
     }
 		, []);
 
