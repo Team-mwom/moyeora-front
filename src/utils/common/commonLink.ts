@@ -51,7 +51,7 @@ const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${CLIE
  * @author Yongmini
  */
 export const com_link_signIn = () => {
-	return KAKAO_AUTH_URL
+	window.location.href = KAKAO_AUTH_URL
 }
 
 // 외부 URL =======================================================================
