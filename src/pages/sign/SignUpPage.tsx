@@ -11,8 +11,7 @@ import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import { authAxios } from 'utils/auth/authAxios';
-// import Accordion from 'react-bootstrap/Accordion';
-// import FormCheckInput from 'react-bootstrap/esm/FormCheckInput';
+
 
 interface Data {
 	name: String,
@@ -21,13 +20,33 @@ interface Data {
 	kakao:String
 }
 
-const SignUpPage = () => {
-	 const navigate = useNavigate();
-	   const [cookies, setCookie, removeCookie] = useCookies(); 
-	const data: Data = { name: '', nickName: '', email: '', kakao: useLocation().state }
+interface CheckData{
+	name: boolean,
+	nickName: boolean,
+	email:boolean
+}
 
+const SignUpPage = () => {
+	const navigate = useNavigate();
+	const [cookies, setCookie, removeCookie] = useCookies(); 
+	const data: Data = { name: '', nickName: '', email: '', kakao: useLocation().state }
+	const checkData: CheckData = {name:false,nickName:false,email:false}
+	const regex = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}');
+
+	const check = useCallback(() => { 
+		if (!checkData.name) {
+			alert("이름을 정확하게 입력해주세요.");
+		} else if (!checkData.nickName) {
+			alert("닉네임 중복확인이 필요합니다.")
+		} else if (!checkData.email) {
+			alert("이메일을 정확하게 입력해주세요.");
+		} else {
+			signup();
+		}
+	}, []);
 
 	const signup = useCallback(() => { 
+	
 		axios.post('/api/all/signup', data).then((res) => { //회원가입 정보를 서버로 보내서 디비에 저장한다.
 			
 
@@ -66,18 +85,39 @@ const SignUpPage = () => {
 		
 	},[]);
 		
-	const onChangeName =useCallback((e: any) => { 
+	const onChangeName = useCallback((e: any) => {
 		data.name = e.target.value;
+		if (e.target.value!='') {
+			checkData.name = true;
+		} else {
+			checkData.name = false;
+		}
 	}, []);
 	const onChangeNickName =useCallback((e: any) => { 
 		data.nickName = e.target.value;
+		checkData.nickName = false;
 	},[]);
 		
 	const onChangeEmail =useCallback((e: any) => { 
 		data.email = e.target.value;
+		checkData.email = regex.test(e.target.value); 
 	},[]);
 		
-  
+	const checkNickName = useCallback((e: any) => { 
+		axios.get('/api/all/signUp/checkNickName?nickName='+data.nickName).then((res)=>{
+			if (res.data) {
+				checkData.nickName = true;
+				alert("사용 가능 한 닉네임 입니다.");
+				
+			} else {
+				checkData.nickName = false;
+				alert("사용 불가능 한 닉네임 입니다.");
+				
+			}
+		})
+
+
+	},[]);
 		
 
 
@@ -99,12 +139,13 @@ const SignUpPage = () => {
 								/>
 						</InputGroup>
 						<InputGroup size="sm" className="mb-3">
-							<InputGroup.Text id="inputGroup-sizing-sm">닉네임</InputGroup.Text>
+							<InputGroup.Text id="inputGroup-sizing-sm">닉네임</InputGroup.Text>	
 							<Form.Control
 								aria-label="Small"
 								aria-describedby="inputGroup-sizing-sm"
 								onChange={onChangeNickName}
-								/>
+							/>
+							<Button variant="dark" onClick={checkNickName}>중복확인</Button>
 						</InputGroup>
 						<InputGroup size="sm" className="mb-3">
 							<InputGroup.Text id="inputGroup-sizing-sm">이메일</InputGroup.Text>
@@ -115,26 +156,11 @@ const SignUpPage = () => {
 								/>
 						</InputGroup>
 
-						{/* <Accordion defaultActiveKey="0" className="mb-3">
-						<Accordion.Item eventKey="0">
-							<Accordion.Header>서비스 이용약관</Accordion.Header>
-							<Accordion.Body>
-								내용
-							</Accordion.Body>
-							</Accordion.Item>
-							<Accordion.Item eventKey="1">
-							<Accordion.Header>개인정보처리방침</Accordion.Header>
-							<Accordion.Body>
-								내용
-							</Accordion.Body>
-						</Accordion.Item>
-						</Accordion>
 						
-					<FormCheckInput  className="mb-3"/> 가입에 동의합니다. */}
 					</div>
 				</div>
 				<div className='signUp_button_container'>
-					<Button variant="dark" onClick={signup}>회원가입</Button>
+					<Button variant="dark" onClick={check}>회원가입</Button>
 				
 				</div>
 			</div>
