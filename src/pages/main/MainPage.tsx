@@ -6,6 +6,8 @@ import Banner from 'components/common/Banner';
 import Footer from 'components/common/Footer';
 import Search from 'components/common/Search';
 
+import 'styles/main/main.css'
+
 const MainPage = () => {
 	
 	return (
@@ -13,7 +15,7 @@ const MainPage = () => {
 		<div className='common_full'>
 			<Header/>
 			<Banner/>
-			<div className='common_container'>
+			<div className='main_full'>
 				<Search/>
 				<Main/>
 			</div>
