@@ -1,14 +1,14 @@
-.activeMoyeora_full {
+.myProfileBbusyeora_full {
   padding: 0.5%;
   outline: 3px solid black;
 }
 
-.activeMoyeora_container {
+.myProfileBbusyeora_container {
   padding: 0.5%;
   outline: 3px solid grey;
 }
 
-.activeMoyeora_title {
+.myProfileBbusyeora_title {
   font-size: 20px;
   font-weight: bold;
   color: black;
@@ -16,14 +16,14 @@
   outline: 3px solid blue;
 }
 
-.activeMoyeora_inner {
+.myProfileBbusyeora_inner {
   display: block;
   font-size: 0;
 
   outline: 3px solid blue;
 }
 
-.activeMoyeora {
+.myProfileBbusyeora {
   padding: 0.5%;
   margin: 3%;
   display: inline-block;
