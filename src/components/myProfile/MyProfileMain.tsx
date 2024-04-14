@@ -11,7 +11,6 @@ const MyProfileMain = () => {
 	return (
 		<div className='myProfile_full'>
 			<MyProfileEdit />
-			<br />
 			<MyProfileTag />
 			<MyProfileMenu />
 		</div>
