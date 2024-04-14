@@ -12,15 +12,15 @@ import ActiveMoyeora from 'components/myProfile/myProfileMenu/myProfileMoyeora/A
 import LikeMoyeora from 'components/myProfile/myProfileMenu/myProfileMoyeora/LikeMoyeora';
 import MyMoyeora from 'components/myProfile/myProfileMenu/myProfileMoyeora/MyMoyeora';
 import StandByMoyeora from 'components/myProfile/myProfileMenu/myProfileMoyeora/StandByMoyeora';
+import Calendar from 'components/myProfile/myProfileMenu/myProfileMoyeora/Calendar';
 
 // 뿌셔라 Component
-import ActiveBbusyeora from 'components/myProfile/myProfileMenu/myPorfileBbusyeora/ActiveBbusyeora';
-import EndBbusyeora from 'components/myProfile/myProfileMenu/myPorfileBbusyeora/EndBbusyeora';
-import LikeBbusyeora from 'components/myProfile/myProfileMenu/myPorfileBbusyeora/LikeBbusyeora';
-import MyBbusyeora from 'components/myProfile/myProfileMenu/myPorfileBbusyeora/MyBbusyeora';
+import ActiveBbusyeora from 'components/myProfile/myProfileMenu/myProfileBbusyeora/ActiveBbusyeora';
+import EndBbusyeora from 'components/myProfile/myProfileMenu/myProfileBbusyeora/EndBbusyeora';
+import LikeBbusyeora from 'components/myProfile/myProfileMenu/myProfileBbusyeora/LikeBbusyeora';
+import MyBbusyeora from 'components/myProfile/myProfileMenu/myProfileBbusyeora/MyBbusyeora';
 
 // 방명록 Component
-import Calendar from 'components/myProfile/myProfileMenu/myProfileInfo/Calendar';
 import VisitorBook from 'components/myProfile/myProfileMenu/myProfileInfo/VisitorBook';
 
 
@@ -96,27 +96,22 @@ const MyProfileMenu = () => {
 				</ButtonGroup>
 			</div>
 
-			<br />
-			MyProfileMenu 하위컴포넌트들
-			<br />
-			<br />
-			모여라 메뉴
+			<h1>MyProfileMenu 하위컴포넌트들</h1>
+			<h2>모여라 메뉴</h2>
 			<ActiveMoyeora />
 			<LikeMoyeora />
 			<MyMoyeora />
 			<StandByMoyeora />
-			<br />
-			뿌셔라 메뉴
+			<Calendar />
+
+			<h2>뿌셔라 메뉴</h2>
 			<ActiveBbusyeora />
-			<EndBbusyeora />
 			<LikeBbusyeora />
 			<MyBbusyeora />
-			<br />
-			방명록 메뉴
-			<Calendar />
-			<VisitorBook />
-			<br />
+			<EndBbusyeora />
 
+			<h2>방명록 메뉴</h2>
+			<VisitorBook />
 		</div>
 	);
 };
