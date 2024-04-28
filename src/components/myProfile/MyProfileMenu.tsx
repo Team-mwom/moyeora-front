@@ -66,12 +66,6 @@ const MyProfileMenu = () => {
 			</Button>
 			<Button 
 				variant="outline-dark" 
-				onClick={(e) => setBbusyeoraChecked(true)}
-			>
-				뿌셔라
-			</Button>
-			<Button 
-				variant="outline-dark" 
 				onClick={(e) => setProfileChecked(true)}
 			>
 				방명록
@@ -102,13 +96,13 @@ const MyProfileMenu = () => {
 			<LikeMoyeora />
 			<MyMoyeora />
 			<StandByMoyeora />
-			<Calendar />
+			{/* <Calendar /> */}
 
-			<h2>뿌셔라 메뉴</h2>
+			{/* <h2>뿌셔라 메뉴</h2>
 			<ActiveBbusyeora />
 			<LikeBbusyeora />
 			<MyBbusyeora />
-			<EndBbusyeora />
+			<EndBbusyeora /> */}
 
 			<h2>방명록 메뉴</h2>
 			<VisitorBook />
