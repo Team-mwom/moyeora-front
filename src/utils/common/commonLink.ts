@@ -9,6 +9,12 @@
  */
 
 /**
+ * 
+ * 폐기
+ * 
+ */
+
+/**
  * @explan 메인 화면 Link
  * @link /
  * @ex { com_link_home }

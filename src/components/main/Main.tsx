@@ -8,7 +8,7 @@ const Main = () => {
 		<div className=''>
 			<div>
 				<MoyeoraToday />
-				<BbusyeoraToday />
+				{/* <BbusyeoraToday /> */}
 			</div>
 		</div>
 	);
