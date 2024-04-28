@@ -1,0 +1,59 @@
+.visitorBook_full {
+  padding: 0.5%;
+  outline: 3px solid black;
+}
+
+.visitorBook_container {
+  padding: 0.5%;
+  outline: 3px solid grey;
+}
+
+.visitorBook_list {
+  padding : 1%;
+  outline: 3px solid blue;
+}
+
+.visitorBook_inner {
+  padding : 1%;
+  outline: 3px solid red;
+}
+
+.visitorBook_hr {
+  margin: 20px auto;
+  width: 90%;
+  border-top: 1px solid grey;
+}
+
+.visitorBook_list_button {
+  margin: 0 auto;
+  margin-top: 1%;
+  text-align: center;
+  padding : 0.5%;
+  outline: 3px solid red;
+}
+
+.visitorBook_comment {
+  padding : 1%;
+  outline: 3px solid blue;
+}
+
+.visitorBook_comment_title {
+  font-size: 20px;
+  font-weight: bold;
+  color: black;
+  padding : 1%;
+  outline: 3px solid red;
+}
+
+.visitorBook_comment_write {
+  padding: 0.5%;
+  outline: 3px solid red;
+}
+
+.visitorBook_comment_button {
+  margin: 0 auto;
+  margin-top: 1%;
+  text-align: center;
+  padding : 0.5%;
+  outline: 3px solid red;
+}
