@@ -4,8 +4,7 @@
   margin: 0.5%;
   padding : 1%;
   font-weight: bold;
-  
-  outline: 3px solid blue;
+ 
 }
 
 .signUp_info_container {
@@ -13,7 +12,7 @@
   text-align: center;
   margin: 0.5%;
 
-  outline: 3px solid black;
+
 }
 
 .signUp_info {
@@ -21,7 +20,7 @@
   vertical-align: middle;
   width: 50%;
 
-  outline: 3px solid red;
+
 }
 
 .signUp_button_container {
@@ -31,6 +30,5 @@
   padding : 1%;
   font-weight: bold;
   text-align: center;
-  
-  outline: 3px solid blue;
+
 }

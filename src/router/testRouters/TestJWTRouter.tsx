@@ -7,6 +7,7 @@ import TestAdminPage from 'pages/test/testPages/TestAdminPage';
 import TestKaKao from 'pages/test/testPages/TestKaKao';
 
 
+
 // 레이아웃
 
 
@@ -17,7 +18,8 @@ function TestJWTRouter() {
     <Route path="/test/jwt/signInInfo" element={<TestLoginInfoPage />} />
     <Route path="/test/jwt/adminPage" element={<TestAdminPage />} />
     <Route path='/test/kakao/main' element={<TestKaKao />} />
-   
+  
+    
   </Routes>
 
   )

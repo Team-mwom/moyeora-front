@@ -3,10 +3,12 @@ import React, { useCallback } from 'react';
 import 'styles/common/components/header.css'
 import { useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
+import axios from 'axios';
 
 const Header = () => {
 	const userInfo = JSON.parse(localStorage.getItem("userInfo") as string);
 	const navigate = useNavigate();
+
   const [cookies, setCookie, removeCookie] = useCookies();
 
 	const CLIENT_ID = process.env.REACT_APP_REST_API_KEY;
@@ -24,10 +26,13 @@ const Header = () => {
 	, []);
 
 	const signOut = useCallback(
-    (e:React.MouseEvent<HTMLElement>) => {
-        localStorage.clear();
+		(e: React.MouseEvent<HTMLElement>) => {
+			axios.get("/api/all/signOut").then(() => { 
+				localStorage.clear();
         removeCookie('refreshToken', {path:'/'});
         navigate("/");
+			})
+      
     }
 		, []);
 
