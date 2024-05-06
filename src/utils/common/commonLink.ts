@@ -1,4 +1,13 @@
 /**
+ * 
+ * 해당 파일은 폐기 되었습니다.
+ * -> 테스트 페이지를 제외한 각 페이지당 useNavigate 사용으로 변경
+ * -> LineText.tsx 파일 폐기 후 삭제 예정인 파일 입니다.
+ * @author Yongmini
+ * 
+ */
+
+/**
  * Front-end Link Common Area
  * 
  * 주석 규칙
@@ -7,16 +16,6 @@
  * @ex 사용예시
  * @author 작성자
  */
-
-/**
- * @explan 메인 화면 Link
- * @link /
- * @ex { com_link_home }
- * @author Yongmini
- */
-export const com_link_home = () => {
-  window.location.href = '/';
-}
 
 /**
  * @explan 회원가입 Link
@@ -36,22 +35,6 @@ export const com_link_signUp = () => {
  */
 export const com_link_myProfile = () => {
 	window.location.href = '/myProfile';
-}
-
-// 카카오 API 관련 =================================================================
-
-const CLIENT_ID = process.env.REACT_APP_REST_API_KEY;
-const REDIRECT_URI = process.env.REACT_APP_REDIRECT_URL;
-const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code`;
-
-/**
- * @explan 로그인 Link
- * @link KAKAO_AUTH_URL
- * @ex { com_link_signIn }
- * @author Yongmini
- */
-export const com_link_signIn = () => {
-	window.location.href = KAKAO_AUTH_URL
 }
 
 // 외부 URL =======================================================================
