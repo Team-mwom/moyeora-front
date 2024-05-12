@@ -44,22 +44,22 @@ const SignUpPage = () => {
 
 	const navigate = useNavigate();
 	const [cookies, setCookie, removeCookie] = useCookies(); 
-	const data: Data =
+	const data: Data =//서버로 보낼 memberEntity
 	{
 		name: '', nickName: '', email: '', kakao: useLocation().state, memberInfoEntity: {
 			addressNum:"",addressLocation:"",addressDetail:"",phoneFirst:"",phoneMiddle:"",phoneLast:"",gender:"남",age:0
 		} }
-	const checkData: CheckData =
+	const checkData: CheckData =//입력값 채크
 		{ name: false, nickName: false, email: false ,authNumber:false}
-	const regex = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}');
+	const regex = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}');//메일 정규 표현식
 	let authNumber = "";
 	//팝업관련
-	const [enroll_company, setEnroll_company] = useState({
+	const [enroll_company, setEnroll_company] = useState({//주소데이터
 	  code:'',
     addr: '',
 	});
-	const [popup, setPopup] = useState(false);
-	const handleComplete = (data:any) => {
+	const [popup, setPopup] = useState(false);//주소찾기 팝업
+	const handleComplete = (data:any) => { 
 			setPopup(!popup);
 	}
 
@@ -152,17 +152,14 @@ const SignUpPage = () => {
 		const form = e.target.form;
 		const number = form.authNumber.value;
 		
-		
-		
 		if (number != '' && number == authNumber) {
 			alert("휴대폰 인증 성공");
-			const phoneInputs: any[] = Array.from(form.querySelectorAll(".phone"));//인증 성공이라면 입력정보 변경 못하도록 다 막는다.
-			for (var i = 0; i < phoneInputs.length; i++){
+			const phoneInputs: any[] = Array.from(form.querySelectorAll(".phone"));
+			for (var i = 0; i < phoneInputs.length; i++){//인증 성공이라면 입력정보 변경 못하도록 다 막는다.
 				phoneInputs[i].disabled = true;
 			}
 			checkData.authNumber = true;
 			
-
 		} else {
 			alert("정확한 인증번호를 입력하세요")
 		}
