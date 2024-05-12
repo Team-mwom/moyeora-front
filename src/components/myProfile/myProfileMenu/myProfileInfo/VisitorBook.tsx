@@ -5,12 +5,24 @@ import 'styles/myProfile/myProfileInfo/visitorBook.css'
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import { useSelector } from 'react-redux';
+import { RootState } from 'store/store';
+import { ProfileConfig } from 'store/slices/profileConfigSlice';
 
 const VisitorBook = () => {
-	
+		const profileConfig:ProfileConfig= useSelector((state: RootState) => {
+    return state.profileConfig
+  });
 	return (
+		
 		<div className='visitorBook_full'>
+	
 			<div className='visitorBook_container'>
+				<h4>
+					{"프로필주인:" + profileConfig.nickName}
+					<br></br>
+					{"내프로필:"+profileConfig.owner}
+				</h4>
 				<div className='visitorBook_list'>
 					{/* for문 돌리기 */}
 					<div className='visitorBook_inner'>

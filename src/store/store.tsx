@@ -3,10 +3,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import testDataSlice from './slices/testDataSlice';
 import loggerMiddleware from 'services/loggerMiddleware';
+import profileConfigSlice from './slices/profileConfigSlice';
 
 export const store = configureStore({
   reducer: {
     testData: testDataSlice,
+    profileConfig:profileConfigSlice,
   },
   
   

@@ -1,11 +1,8 @@
 import React from 'react';
-import {Routes } from 'react-router-dom';
 
-const MoyeoraRouter = () => {
-  return (
-    <Routes>
-    </Routes>
-  )
-}
 
+
+const MoyeoraRouter = [
+  0//ex{path: '/', element:< Main />},
+];
 export default MoyeoraRouter
