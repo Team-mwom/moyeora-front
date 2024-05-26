@@ -1,0 +1,131 @@
+.createMoyeora_full {
+  padding: 1%;
+
+  outline: 3px solid black;
+}
+
+.createMoyeora_full_container {
+  padding: 0.5%;
+
+  outline: 3px solid grey;
+}
+
+.createMoyeora_title {
+  margin: 0.5%;
+  padding : 1%;
+
+  outline: 3px solid blue;
+}
+
+.createMoyeora_bigCategory {
+  margin: 0.5%;
+  padding : 1%;
+
+  outline: 3px solid blue;
+}
+
+.createMoyeora_smallCategory {
+  margin: 0.5%;
+  padding : 1%;
+
+  outline: 3px solid blue;
+}
+
+.createMoyeora_tag {
+  margin: 0.5%;
+  padding : 1%;
+
+  outline: 3px solid blue;
+}
+
+.createMoyeora_mainImage {
+  margin: 0.5%;
+  padding : 1%;
+  text-align: center;
+  
+  outline: 3px solid blue;
+}
+
+.createMoyeora_bossIntroduce {
+  margin: 0.5%;
+  padding : 1%;
+
+  outline: 3px solid blue;
+}
+
+.createMoyeora_moyeoraIntroduce {
+  margin: 0.5%;
+  padding : 1%;
+
+  outline: 3px solid blue;
+}
+
+.createMoyeora_notification {
+  margin: 0.5%;
+  padding : 1%;
+
+  outline: 3px solid blue;
+}
+
+.createMoyeora_notification > .gender {
+  display: inline-block;
+
+  /* outline: 3px solid red; */
+}
+
+.createMoyeora_notification > .type {
+  display: inline-block;
+  
+  /* outline: 3px solid red; */
+}
+
+/* .createMoyeora_notification > .gender_diff_type {
+  outline: 3px solid red;
+} */
+
+.createMoyeora_notification > .gender_diff_type > .gender_diff {
+  display: inline-block;
+  width: 50%;
+  
+  /* outline: 3px solid red; */
+}
+
+/* .createMoyeora_notification > .age_type {
+  outline: 3px solid red;
+}
+
+.createMoyeora_notification > .end_moyeora {
+  outline: 3px solid red;
+} */
+
+.createMoyeora_question {
+  margin: 0.5%;
+  padding : 1%;
+  text-align: center;
+
+  outline: 3px solid blue;
+}
+
+.createMoyeora_save {
+  margin: 0.5%;
+  padding : 1%;
+  text-align: center;
+
+  outline: 3px solid blue;
+}
+
+.createMoyeora_full_container > .title {
+  font-size: 20px;
+  margin: 0.5%;
+  padding : 1%;
+  font-weight: bold;
+  text-align: left;
+
+  outline: 3px solid blue;
+}
+
+.title_introduce {
+  font-size: 10px;
+  margin: 0.5%;
+  text-align: left;
+}
