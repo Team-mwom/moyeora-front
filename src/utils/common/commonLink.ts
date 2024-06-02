@@ -17,26 +17,6 @@
  * @author 작성자
  */
 
-/**
- * @explan 회원가입 Link
- * @link /signUp
- * @ex { com_link_signUp }
- * @author Yongmini
- */
-export const com_link_signUp = () => {
-	window.location.href = '/signUp';
-}
-
-/**
- * @explan 마이페이지 Link
- * @link /myProfile
- * @ex { com_link_myProfile }
- * @author Yongmini
- */
-export const com_link_myProfile = () => {
-	window.location.href = '/myProfile';
-}
-
 // 외부 URL =======================================================================
 
 /**
