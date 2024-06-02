@@ -1,17 +1,37 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-import { com_link_bootstrap, com_link_myProfile, com_link_signUp, com_link_test_redux
+import { com_link_bootstrap, com_link_signUp, com_link_test_redux
 	, com_link_test_kakao, com_link_test_jpa, com_link_test_mybatis } 
 	from 'utils/common/commonLink.ts';
 
 const LinkTest = () => {
+
+	const navigate = useNavigate();
+
+  const linkMyProfile = useCallback(
+		(e:React.MouseEvent<HTMLElement>) => {
+			navigate("/myProfile");
+	}
+	, []);
+
+	const moyeroDetail = useCallback(
+		(e:React.MouseEvent<HTMLElement>) => {
+			navigate("/moyeroDetail");
+	}
+	, []);
+
+
 	return (
 		<div className=''>
 			<div className='link_test' onClick={com_link_bootstrap}>
 				React Bootstrap URL : https://react-bootstrap.netlify.app/
 			</div>
-			<div className='link_test' onClick={com_link_myProfile}>
+			<div className='link_test' onClick={moyeroDetail}>
+				모여라 상세 페이지 / moyeoraDetail Page URL : http://localhost:3000/moyeroDetail
+			</div>
+			<div className='link_test' onClick={linkMyProfile}>
 				마이페이지 / myProfile Page URL : http://localhost:3000/myProfile
 			</div>
 			<div className='link_test' onClick={com_link_signUp}>
