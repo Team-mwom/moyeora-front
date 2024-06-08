@@ -4,11 +4,11 @@ import { Pagination } from 'react-bootstrap';
 
 
 interface Review {
-	memberReviewSeq: number;
-	memberSeq: number;
-	writer: number;
+
+	nickName: String;
 	star: number;
 	content: String;
+	date: String;
 }
 
 const TestSlicePage = () => {
@@ -22,7 +22,7 @@ const TestSlicePage = () => {
   useEffect(() => {//더보기 누르기 전
     axios.get('/api/all/memberReviewList?page=0&size='+fristSize)
 			.then((response) => {
-				setReview(response.data.content as Review[])
+				setReview(response.data as Review[])
 			})
       .catch((error) => console.log(error));
    
@@ -34,9 +34,9 @@ const TestSlicePage = () => {
 		axios.get('/api/all/memberReviewList?page=0&size='+pagingSize)
 			.then((response) => {
 				setReview(
-					response.data.content as Review[]
+					response.data as Review[]
 				)
-				handlePage(1, response.data.totalPages);
+				handlePage(1, response.data[0].totalPage);
 			})
       .catch((error) => console.log(error));
    
@@ -45,10 +45,11 @@ const TestSlicePage = () => {
 	const clickPageNum = (number:number) => {//페이지 숫자 클릭시
 		axios.get('/api/all/memberReviewList?page='+(number-1)+'&size='+pagingSize)
 			.then((response) => {
+				console.log(response.data)
 				setReview(
-					response.data.content as Review[]
+					response.data as Review[]
 				)
-				handlePage(number, response.data.totalPages);
+				handlePage(number, response.data[0].totalPage);
 			})
       .catch((error) => console.log(error));
 	}
@@ -68,20 +69,19 @@ const TestSlicePage = () => {
 	return (
 		<form>
 			{ <table>
-				<th>memberReviewSeq</th>
-				<th>memberSeq</th>
-				<th>writer</th>
-				<th>star</th>
-				<th>content</th>
+				<th>닉네임</th>
+				<th>별점</th>
+				<th>내용</th>
+				<th>날짜</th>
 			{
 				
 				review && review.map(rowData => (
 				<tr>
-					<td>{rowData.memberReviewSeq}</td>	
-					<td>{rowData.memberSeq}</td>	
-					<td>{rowData.writer}</td>	
+					<td>{rowData.nickName}</td>	
 					<td>{rowData.star}</td>	
 					<td>{rowData.content}</td>	
+					<td>{rowData.date}</td>	
+				
 				</tr>
 				)
 					)
