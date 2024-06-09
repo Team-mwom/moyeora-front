@@ -8,19 +8,22 @@
   outline: 3px solid grey;
 }
 
-.visitorBook_list {
-  padding : 1%;
-  outline: 3px solid blue;
-}
+
 
 .visitorBook_inner {
-  padding : 1%;
-  outline: 3px solid red;
+  padding : 2%;
+  border-bottom: 1px solid grey;
+}
+.visitorBook_nickName{
+  margin-right: 20px;
 }
 
+.visitorBook_date{
+  float: right;
+}
 .visitorBook_hr {
   margin: 20px auto;
-  width: 90%;
+  width: 100%;
   border-top: 1px solid grey;
 }
 
@@ -29,13 +32,9 @@
   margin-top: 1%;
   text-align: center;
   padding : 0.5%;
-  outline: 3px solid red;
+ 
 }
 
-.visitorBook_comment {
-  padding : 1%;
-  outline: 3px solid blue;
-}
 
 .visitorBook_comment_title {
   font-size: 20px;
