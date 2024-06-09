@@ -2,6 +2,7 @@ import React from 'react';
 
 import { IoMdTime } from "react-icons/io";
 import { BsPeopleFill } from "react-icons/bs";
+import { MdOutlinePlace } from "react-icons/md";
 
 import 'styles/moyeora/commonMoyeora.css'
 
@@ -18,7 +19,7 @@ const moyeoraCommon = () => {
           <div className='moyeoraCommon'>
             <table className='moyeoraCommon_table'>
               <tr className='moyeoraCommon_table_tr'>
-                <td className='moyeoraCommon_table_td_pircture' rowSpan={4}>
+                <td className='moyeoraCommon_table_td_pircture' rowSpan={5}>
                   사진
                 </td>
                 <td className='moyeoraCommon_table_category'>
@@ -28,19 +29,25 @@ const moyeoraCommon = () => {
               </tr>
               <tr>
                 <td className='moyeoraCommon_table_title'>
-                  제목
+                  <span>제목</span>
                 </td>
               </tr>
               <tr>
                 <td className='moyeoraCommon_table_count'>
                   <BsPeopleFill className="moyeoraCommon_table_icon"/>
-                  인원 수
+                  <span>인원 수</span>
                 </td>
               </tr>
               <tr>
                 <td className='moyeoraCommon_table_date'>
                   <IoMdTime className="moyeoraCommon_table_icon"/>
-                  시간
+                  <span>시간</span>
+                </td>
+              </tr>
+              <tr>
+                <td className='moyeoraCommon_table_place'>
+                  <MdOutlinePlace className="moyeoraCommon_table_icon"/>
+                  <span>장소</span>
                 </td>
               </tr>
             </table>
