@@ -1,16 +1,15 @@
 import React from 'react';
-import {Routes, Route } from 'react-router-dom';
-
-import TestMain from 'pages/main/MainPage';
+import Main from 'pages/main/MainPage';
 import SearchMain from 'pages/main/SearchMain';
 
-const MainRouter = () => {
-  return (
-		<Routes>
-			<Route path="/" element={<TestMain/>} />
-			<Route path="/search/:word" element={<SearchMain/>} />
-		</Routes>
-  )
-}
+
+
+const MainRouter = [
+	{path: '/', element:< Main />},
+	{path:'/search/:word',element:<SearchMain/>},
+];
+	
+	
+
 
 export default MainRouter
