@@ -1,0 +1,34 @@
+.mainCreateMoyeora_full {
+  padding: 1%;
+
+  outline: 3px solid black;
+}
+
+.mainCreateMoyeora_full_container {
+  padding: 0.5%;
+
+  outline: 3px solid grey;
+}
+
+.mainCreateMoyeora_info {
+  font-size: 40px;
+  margin: 0.5%;
+  /* margin-top: 5%; */
+  padding : 1%;
+  font-weight: bold;
+  text-align: center;
+
+  outline: 3px solid blue;
+}
+
+.mainCreateMoyeora_create_moyeora {
+  margin: 0.5%;
+  padding : 1%;
+  text-align: center;
+
+  outline: 3px solid blue;
+}
+
+.mainCreateMoyeora_create_moyeora > button {
+  margin-top: 3%;
+}

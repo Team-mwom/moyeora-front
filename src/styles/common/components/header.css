@@ -42,3 +42,12 @@
 .logo_inner .logo {
   cursor: pointer;
 }
+
+.logo_inner .signIn {
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.logo_inner .signIn:hover {
+  font-weight: bold;
+}

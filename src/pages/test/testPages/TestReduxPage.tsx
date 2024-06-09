@@ -10,8 +10,8 @@ const TestPage = () => {
 	return (
     <div>
 
-      	<TestReduxDataNew/>
-		<TestReduxDataList/>
+      <TestReduxDataNew/>
+		  <TestReduxDataList/>
 
 	</div>
 	);

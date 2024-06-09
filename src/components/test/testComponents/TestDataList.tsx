@@ -21,7 +21,8 @@ const TestDataList = () => {
   if (searchParams.get('mybatis')!=null)
     mybatis = (String)(searchParams.get('mybatis'));
 
-  	useEffect(() => {
+  useEffect(() => {
+  
     axios.get('/api/all/selectTestAllList')
     .then((response) => setData(response.data as Data[]))
       .catch((error) => console.log(error));

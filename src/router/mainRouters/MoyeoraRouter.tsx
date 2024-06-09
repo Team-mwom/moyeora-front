@@ -1,9 +1,14 @@
 import React from 'react';
-import {Routes } from 'react-router-dom';
+import {Routes, Route} from 'react-router-dom';
 
-function MoyeoraRouter() {
+import CreateMoyeora from 'pages/moyeora/CreateMoyeoraPage';
+import MoyeroDetail from 'pages/moyeora/MoyeoraDetailPage';
+
+const MoyeoraRouter = () => {
   return (
     <Routes>
+      <Route path="/createMoyeora" element={<CreateMoyeora/>} />
+      <Route path="/moyeroDetail" element={<MoyeroDetail/>} />
     </Routes>
   )
 }
