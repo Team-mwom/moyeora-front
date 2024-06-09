@@ -7,7 +7,6 @@ import MoyeroDetail from 'pages/moyeora/MoyeoraDetailPage';
 
 
 const MoyeoraRouter = [
-  0//ex{path: '/', element:< Main />},
   {path: '/createMoyeora', element:< CreateMoyeora />},
   {path: '/moyeroDetail', element:< MoyeroDetail />},
 ];

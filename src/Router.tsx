@@ -7,6 +7,7 @@ import PageNotFound from 'pages/main/PageNotFound';
 import ProfileRouter from 'router/mainRouters/ProfileRouter';
 import SignRouter from 'router/mainRouters/SignRouter';
 import TestRouter from 'router/testRouters/TestRouter';
+import MoyeoraRouter from 'router/mainRouters/MoyeoraRouter';
 
 export default function Router() {
   return (
@@ -17,6 +18,7 @@ export default function Router() {
         {getRoutes(ProfileRouter)}
         {getRoutes(SignRouter)}
         {getRoutes(TestRouter)}
+        {getRoutes(MoyeoraRouter)}
 
 
 
