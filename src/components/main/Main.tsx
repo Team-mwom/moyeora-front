@@ -1,6 +1,7 @@
 import React from 'react';
 
 import MoyeoraToday from 'components/moyeora/MoyeoraToday';
+import MainCreateMoyeora from 'components/main/MainCreateMoyeora';
 import BbusyeoraToday from 'components/bbusyeora/BbusyeoraToday';
 
 const Main = () => {
@@ -8,7 +9,9 @@ const Main = () => {
 		<div className=''>
 			<div>
 				<MoyeoraToday />
+				<MainCreateMoyeora />
 				{/* <BbusyeoraToday /> */}
+				
 			</div>
 		</div>
 	);

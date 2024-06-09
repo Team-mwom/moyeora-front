@@ -6,7 +6,7 @@ import { MdOutlinePlace } from "react-icons/md";
 
 import 'styles/moyeora/commonMoyeora.css'
 
-const moyeoraCommon = () => {
+const MoyeoraResultList = () => {
 	return (
 		<div className='moyeoraCommon_full'>
       <div className='moyeoraCommon_full_container'>
@@ -79,4 +79,4 @@ const moyeoraCommon = () => {
 	);
 };
 
-export default moyeoraCommon;
+export default MoyeoraResultList;
