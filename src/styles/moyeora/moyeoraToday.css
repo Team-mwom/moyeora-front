@@ -29,7 +29,6 @@
 }
 
 .moyeoraToday {
-  padding: 0.5%;
   margin: 2%;
   display: inline-block;
   vertical-align: middle;
@@ -39,6 +38,68 @@
   height: 150px;
 
   outline: 3px solid red;
+}
+
+.moyeoraToday_table {
+  width: 100%;
+  height: 100%;
+  border: 1px solid black;
+}
+
+.moyeoraToday_table_tr {
+  border: 1px solid black;
+}
+
+.moyeoraToday_table_td_pircture {
+  width: 40%;
+  border: 1px solid black;
+}
+
+.moyeoratoday_table_category {
+  vertical-align: middle;
+  padding-left:2px;
+  height: 25%;
+  border: 1px solid black;
+}
+
+.moyeoratoday_table_category > .category{
+  height: 80%;
+  display: inline-block;
+  border-radius: 10px;
+  margin-right: 3px;
+  border: 1px solid black;
+}
+
+.category span {
+  vertical-align: -webkit-baseline-middle;
+}
+
+.moyeoratoday_table_title {
+  vertical-align: middle;
+  padding-left:2px;
+  height: 25%;
+  font-size: 20px;
+  font-weight: bold;
+  border: 1px solid black;
+}
+
+.moyeoratoday_table_count {
+  vertical-align: middle;
+  padding-left:2px;
+  height: 25%;
+  border: 1px solid black;
+}
+
+.moyeoratoday_table_date {
+  vertical-align: middle;
+  padding-left:2px;
+  height: 25%;
+  border: 1px solid black;
+}
+
+.moyeoratoday_table_icon {
+  padding-left:2px;
+  font-size:20px;
 }
 
 .moyeoraToday_moreRead_container {
