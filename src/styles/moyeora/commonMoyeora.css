@@ -71,13 +71,13 @@
 }
 
 .category span {
-  vertical-align: -webkit-baseline-middle;
+  vertical-align: middle;
 }
 
 .moyeoraCommon_table_title {
   vertical-align: middle;
   padding-left:2px;
-  height: 25%;
+  height: 30px;
   font-size: 20px;
   font-weight: bold;
   border: 1px solid black;
@@ -86,20 +86,27 @@
 .moyeoraCommon_table_count {
   vertical-align: middle;
   padding-left:2px;
-  height: 25%;
+  height: 30px;
   border: 1px solid black;
 }
 
 .moyeoraCommon_table_date {
   vertical-align: middle;
   padding-left:2px;
-  height: 25%;
+  height: 30px;
+  border: 1px solid black;
+}
+
+.moyeoraCommon_table_place {
+  vertical-align: middle;
+  padding-left:2px;
+  height: 30px;
   border: 1px solid black;
 }
 
 .moyeoraCommon_table_icon {
   padding-left:2px;
-  font-size:20px;
+  font-size:25px;
 }
 
 .moyeoraCommon_moreRead_container {
