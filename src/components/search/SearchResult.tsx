@@ -25,7 +25,7 @@ const SearchResult = () => {
         // }, []);
 
         useEffect(() => {
-            axios.get('/api/main/searchMain/' + params.word)
+            axios.get('/api/all/main/selectSearchMain/' + params.word)
                 .then((response) => {
                 // dispach(setTestDataList(response));
                 }).catch((error) => {
