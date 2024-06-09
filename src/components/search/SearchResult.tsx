@@ -3,9 +3,12 @@ import { useEffect, useState} from 'react';
 import { useParams } from "react-router";
 import axios from 'axios';
 
+import Banner from 'components/common/Banner';
+import Footer from 'components/common/Footer';
+import MoyeoraResultList from 'components/moyeora/MoyeoraResultList';
+
 // redux
 import { useSelector, useDispatch } from "react-redux";
-
 
 const SearchResult = () => {
     
@@ -34,7 +37,15 @@ const SearchResult = () => {
             });
     return(
         <>
-            
+
+        <div className='common_full'>
+			<Banner/>
+			<div className='main_full'>
+                <MoyeoraResultList />
+            </div>
+			<Footer/>
+		</div>
+
         </>
     );
 };
