@@ -1,16 +1,16 @@
-.moyeoraToday_full {
+.moyeoraCommon_full {
   padding: 1%;
 
   outline: 3px solid black;
 }
 
-.moyeoraToday_full_container {
+.moyeoraCommon_full_container {
   padding: 0.5%;
 
   outline: 3px solid grey;
 }
 
-.moyeoraToday_title {
+.moyeoraCommon_title {
   font-size: 20px;
   color: red;
   margin: 0.5%;
@@ -20,7 +20,7 @@
   outline: 3px solid blue;
 }
 
-.moyeoraToday_inner {
+.moyeoraCommon_inner {
   display: block;
   margin: 0.5%;
   font-size: 0;
@@ -28,7 +28,7 @@
   outline: 3px solid blue;
 }
 
-.moyeoraToday {
+.moyeoraCommon {
   margin: 2%;
   display: inline-block;
   vertical-align: middle;
@@ -40,29 +40,29 @@
   outline: 3px solid red;
 }
 
-.moyeoraToday_table {
+.moyeoraCommon_table {
   width: 100%;
   height: 100%;
   border: 1px solid black;
 }
 
-.moyeoraToday_table_tr {
+.moyeoraCommon_table_tr {
   border: 1px solid black;
 }
 
-.moyeoraToday_table_td_pircture {
+.moyeoraCommon_table_td_pircture {
   width: 40%;
   border: 1px solid black;
 }
 
-.moyeoratoday_table_category {
+.moyeoraCommon_table_category {
   vertical-align: middle;
   padding-left:2px;
   height: 25%;
   border: 1px solid black;
 }
 
-.moyeoratoday_table_category > .category{
+.moyeoraCommon_table_category > .category{
   height: 80%;
   display: inline-block;
   border-radius: 10px;
@@ -74,7 +74,7 @@
   vertical-align: -webkit-baseline-middle;
 }
 
-.moyeoratoday_table_title {
+.moyeoraCommon_table_title {
   vertical-align: middle;
   padding-left:2px;
   height: 25%;
@@ -83,33 +83,33 @@
   border: 1px solid black;
 }
 
-.moyeoratoday_table_count {
+.moyeoraCommon_table_count {
   vertical-align: middle;
   padding-left:2px;
   height: 25%;
   border: 1px solid black;
 }
 
-.moyeoratoday_table_date {
+.moyeoraCommon_table_date {
   vertical-align: middle;
   padding-left:2px;
   height: 25%;
   border: 1px solid black;
 }
 
-.moyeoratoday_table_icon {
+.moyeoraCommon_table_icon {
   padding-left:2px;
   font-size:20px;
 }
 
-.moyeoraToday_moreRead_container {
+.moyeoraCommon_moreRead_container {
   display: block;
   margin: 0.5%;
   padding: 0.5%;
   outline: 3px solid blue;
 }
 
-.moyeoraToday_moreRead {
+.moyeoraCommon_moreRead {
   text-align: center;
   box-sizing: border-box;
   margin: 1% 45%;
@@ -118,7 +118,7 @@
   outline: 3px solid red;
 }
 
-.moyeoraToday_moreRead:hover {
+.moyeoraCommon_moreRead:hover {
   background-color: aqua;
   font-weight: bold;
 }
