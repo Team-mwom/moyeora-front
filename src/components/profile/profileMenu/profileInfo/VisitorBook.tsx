@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 
-import 'styles/myProfile/myProfileInfo/visitorBook.css'
+import 'styles/profile/profileInfo/visitorBook.css'
 
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';

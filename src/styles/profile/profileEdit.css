@@ -1,8 +1,8 @@
-.myProfileEdit_full {
+.profileEdit_full {
   outline: 3px solid black;
 }
 
-.myProfileEdit_container {
+.profileEdit_container {
   display: block;
 
   outline: 3px solid grey;

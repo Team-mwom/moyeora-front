@@ -1,13 +1,13 @@
-.myProfileTag_full {
+.profileTag_full {
   margin-bottom: 20px;
 }
 
-.myProfileTag_container {
+.profileTag_container {
   text-align: center;
   margin: auto 0;
 }
 
-.myProfileTag_hr {
+.profileTag_hr {
   margin: 20px auto;
   width: 80%;
   border-top: 1px solid grey;
