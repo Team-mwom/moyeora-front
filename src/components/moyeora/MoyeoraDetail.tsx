@@ -120,10 +120,10 @@ const MoyeoraDetail = () => {
             </div>
           </div>
 
-          <div className='moyeoraCommon_moreRead_container'>
-            <div className='moyeoraCommon_moreRead'>
+          <div className='introduce_member_button'>
+            <Button variant="outline-dark" size="lg">
               더보기 +
-            </div>
+            </Button>
           </div>
 
         </div>
@@ -257,6 +257,11 @@ const MoyeoraDetail = () => {
             <div className='recommend'>
 
             </div>
+          </div>
+          <div className='recommend_button'>
+            <Button variant="outline-dark" size="lg">
+              더보기 +
+            </Button>
           </div>
         </div>
 
