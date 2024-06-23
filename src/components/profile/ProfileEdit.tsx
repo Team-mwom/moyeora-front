@@ -2,13 +2,13 @@ import React from 'react';
 
 import Button from 'react-bootstrap/Button';
 
-import 'styles/myProfile/myProfileEdit.css'
+import 'styles/profile/profileEdit.css'
 
-const MyProfileEdit = () => {
+const ProfileEdit = () => {
 	
 	return (
-		<div className='myProfileEdit_full'>
-			<div className='myProfileEdit_container'>
+		<div className='profileEdit_full'>
+			<div className='profileEdit_container'>
 				<div className='profile_pic_container'>
 					<div className='profile_pic'>
 						사진
@@ -34,4 +34,4 @@ const MyProfileEdit = () => {
 	);
 };
 
-export default MyProfileEdit;
+export default ProfileEdit;

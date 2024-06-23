@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 import Header from 'components/common/Header';
 import Footer from 'components/common/Footer';
-import MyProfileMain from 'components/myProfile/MyProfileMain';
+import ProfileMain from 'components/profile/ProfileMain';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { ProfileConfig, setProfileConfig } from 'store/slices/profileConfigSlice';
@@ -11,7 +11,7 @@ import axios from 'axios';
 
 
 
-const MyProfilePage = () => {
+const ProfilePage = () => {
 	const param = useParams();
 	const dispach = useDispatch();
 	const userInfo = JSON.parse(localStorage.getItem("userInfo") as string);
@@ -47,11 +47,11 @@ const MyProfilePage = () => {
 
 			<Header/>
 			<div className='common_container'>
-				<MyProfileMain />
+				<ProfileMain />
 			</div>
 			<Footer/>
 		</div>
 	);
 };
 
-export default MyProfilePage;
+export default ProfilePage;

@@ -9,6 +9,7 @@ import TestLoginInfoPage from 'pages/test/testPages/TestLoginInfoPage';
 import TestAdminPage from 'pages/test/testPages/TestAdminPage';
 import TestKaKaoRedirect from 'pages/test/testPages/TestKaKaoRedirect';
 import TestSlicePage from 'pages/test/testPages/TestSlicePage';
+import TestTabPage from 'pages/test/testPages/TestTabPage';
 
 
 // 레이아웃
@@ -24,6 +25,7 @@ const TestRouter = [
   {path: '/test/jwt/adminPage', element:<TestAdminPage />},
   {path: '/test/kakao/main', element:<TestKaKaoRedirect />},
   {path: '/test/TestSlicePage', element:<TestSlicePage />},
+  {path: '/test/TestTabPage', element:<TestTabPage />},
   
 ];
 export default TestRouter
