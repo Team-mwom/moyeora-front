@@ -10,14 +10,6 @@
   outline: 3px solid grey;
 }
 
-.moyeoraDetail_title {
-  margin: 0.5%;
-  padding : 1%;
-  display: block;
-
-  outline: 3px solid blue;
-}
-
 .title_pic {
   display: inline-block;
   width: 40%;
@@ -172,6 +164,73 @@
   outline: 3px solid blue;
 }
 
+.moyeoraDetail_title {
+  font-size: 20px;
+  margin: 0.5%;
+  padding : 1%;
+  font-weight: bold;
+  
+  outline: 3px solid red;
+}
+
+.moyeoraDetail_introduce_moyeora_inner {
+  margin: 0.5%;
+  font-size: 15px;
+  padding : 1%;
+  
+  outline: 3px solid red;
+}
+
+.moyeoraDetail_introduce_member_inner {
+  margin: 0.5%;
+  font-size: 15px;
+  padding : 1%;
+  
+  outline: 3px solid red;
+}
+
+.introduce_member {
+  margin: 2%;
+  display: inline-block;
+  vertical-align: middle;
+  box-sizing: border-box;
+  font-size: 15px;
+  width: 46%;
+  height: 150px;
+
+  outline: 3px solid red;
+}
+
+.introduce_member_button {
+  text-align: center;
+  margin: 0.5%;
+  padding : 1%;
+
+  outline: 3px solid red;
+}
+
+.introduce_member_table {
+  width: 100%;
+  height: 100%;
+  border: 1px solid black;
+}
+
+.introduce_member_tr {
+  border: 1px solid black;
+}
+
+.introduce_member_td_pircture {
+  width: 40%;
+  border: 1px solid black;
+}
+
+.introduce_member_info {
+  vertical-align: middle;
+  padding-left:2px;
+  height: 25%;
+  border: 1px solid black;
+}
+
 .moyeoraDetail_guide {
   margin: 0.5%;
   padding : 1%;
@@ -180,38 +239,76 @@
 }
 
 .moyeoraDetail_guide > .guide_people {
+  height: 40px;
+  font-size: 20px;
   margin: 0.5%;
   padding : 1%;
 
   outline: 3px solid red;
+}
+
+.guide_people_icon {
+  font-size:25px;
 }
 
 .moyeoraDetail_guide > .guide_date {
+  height: 40px;
+  font-size: 20px;
   margin: 0.5%;
   padding : 1%;
 
   outline: 3px solid red;
 }
 
+.guide_date_icon {
+  font-size:25px;
+}
+
 .moyeoraDetail_guide > .guide_place {
+  height: 40px;
+  font-size: 20px;
   margin: 0.5%;
   padding : 1%;
 
   outline: 3px solid red;
+}
+
+.guide_place_icon {
+  font-size:25px;
 }
 
 .moyeoraDetail_guide > .guide_map {
   margin: 0.5%;
   padding : 1%;
+  height: 300px;
 
   outline: 3px solid red;
 }
 
-.moyeoraDetail_review_host {
+.moyeoraDetail_visitorBook_list {
   margin: 0.5%;
   padding : 1%;
-
+  padding : 1%;
   outline: 3px solid blue;
+}
+
+.moyeoraDetail_visitorBook_inner {
+  padding : 1%;
+  outline: 3px solid red;
+}
+
+.moyeoraDetail_visitorBook_hr {
+  margin: 20px auto;
+  width: 90%;
+  border-top: 1px solid grey;
+}
+
+.moyeoraDetail_visitorBook_list_button {
+  margin: 0 auto;
+  margin-top: 1%;
+  text-align: center;
+  padding : 0.5%;
+  outline: 3px solid red;
 }
 
 .moyeoraDetail_question {
@@ -228,6 +325,14 @@
   outline: 3px solid red;
 }
 
+.moyeoraDetail_question > .question_write_button {
+  margin: 0.5%;
+  padding : 1%;
+  text-align: center;
+
+  outline: 3px solid red;
+}
+
 .moyeoraDetail_question > .question_board {
   margin: 0.5%;
   padding : 1%;
@@ -235,9 +340,155 @@
   outline: 3px solid red;
 }
 
+.moyeoraDetail_question > .question_board_button {
+  text-align: center;
+  margin: 0.5%;
+  padding : 1%;
+
+  outline: 3px solid red;
+}
+
+.question_board_table {
+  width: 100%;
+  height: 100%;
+
+  border: 1px solid black;
+}
+
+.question_board_tr {
+  border: 1px solid black;
+}
+
+.question_board_td_qusetion,
+.question_board_td_title,
+.question_board_td_wirter,
+.question_board_td_date {
+  border: 1px solid black;
+  text-align: center;
+  font-weight: bold;
+}
+
+.question_board_td_qusetion {
+  width: 15%;
+}
+
+.question_board_td_title {
+  width: 55%;
+}
+
+.question_board_td_wirter {
+  width: 15%;
+}
+
+.question_board_td_date {
+  width: 15%;
+}
+
+.question_board_td {
+  text-align: center;
+  border: 1px solid black;
+}
+
 .moyeoraDetail_recommend {
   margin: 0.5%;
   padding : 1%;
 
   outline: 3px solid blue;
+}
+
+.moyeoraDetail_recommend_inner {
+  margin: 0.5%;
+  font-size: 15px;
+  padding : 1%;
+  
+  outline: 3px solid red;
+}
+
+.recommend {
+  margin: 2%;
+  display: inline-block;
+  vertical-align: middle;
+  box-sizing: border-box;
+  font-size: 15px;
+  width: 46%;
+  height: 150px;
+
+  outline: 3px solid red;
+}
+
+.recommend_table {
+  width: 100%;
+  height: 100%;
+  border: 1px solid black;
+}
+
+.recommend_tr {
+  border: 1px solid black;
+}
+
+.recommend_td_pircture {
+  width: 40%;
+  border: 1px solid black;
+}
+
+.recommend_td_category {
+  vertical-align: middle;
+  padding-left:2px;
+  height: 25%;
+  border: 1px solid black;
+}
+
+.recommend_td_category > .category{
+  height: 80%;
+  display: inline-block;
+  border-radius: 10px;
+  margin-right: 3px;
+  border: 1px solid black;
+}
+
+.category span {
+  vertical-align: middle;
+}
+
+.recommend_td_title {
+  vertical-align: middle;
+  padding-left:2px;
+  height: 30px;
+  font-size: 20px;
+  font-weight: bold;
+  border: 1px solid black;
+}
+
+.recommend_td_count {
+  vertical-align: middle;
+  padding-left:2px;
+  height: 30px;
+  border: 1px solid black;
+}
+
+.recommend_td_icon {
+  padding-left:2px;
+  font-size:25px;
+}
+
+.recommend_td_date {
+  vertical-align: middle;
+  padding-left:2px;
+  height: 30px;
+  border: 1px solid black;
+}
+
+.recommend_td_place {
+  vertical-align: middle;
+  padding-left:2px;
+  height: 30px;
+  border: 1px solid black;
+}
+
+.recommend_button {
+  text-align: center;
+  margin: 0.5%;
+  padding : 1%;
+
+  outline: 3px solid red;
 }

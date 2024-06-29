@@ -55,7 +55,7 @@ const Header = () => {
 							</div>
 							:
 							//로그인 상태 일때
-							// <img className="logo" alt="logo_account_info" src="images/logo_account_info.png" />
+							// <img className="logo" alt="logo_account_info" src="/images/logo_account_info.png" />
 							<div className='signIn' onClick={signOut}>이름:{userInfo.name},닉네임:{userInfo.nickName},이메일:{userInfo.email}</div>
 						}
 						</div>
