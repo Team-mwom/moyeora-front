@@ -6,7 +6,21 @@ import { MdOutlinePlace } from "react-icons/md";
 
 import 'styles/moyeora/commonMoyeora.css'
 
-const MoyeoraResultList = () => {
+interface searchResult {
+  myrSeq: number;
+  myrTitle: string;
+  myrTags: string;
+  myrMaxMember: number;
+  myrPlace: string;
+  myrDate: string;
+  myrMemberCnt: number;
+}
+
+interface MoyeoraResultListProps {
+  items: searchResult[];
+}
+
+const MoyeoraResultList: React.FC<MoyeoraResultListProps> = ({ items }) => {
 	return (
 		<div className='moyeoraCommon_full'>
       <div className='moyeoraCommon_full_container'>
@@ -16,44 +30,46 @@ const MoyeoraResultList = () => {
         <div className='moyeoraCommon_inner'>
           
           {/* for 문 돌려야 됨 */}
-          <div className='moyeoraCommon'>
-            <table className='moyeoraCommon_table'>
-              <tr className='moyeoraCommon_table_tr'>
-                <td className='moyeoraCommon_table_td_pircture' rowSpan={5}>
-                  사진
-                </td>
-                <td className='moyeoraCommon_table_category'>
-                  <div className='category'><span>카테고리</span></div>
-                  <div className='category'><span>카테고리</span></div>
-                </td>
-              </tr>
-              <tr>
-                <td className='moyeoraCommon_table_title'>
-                  <span>제목</span>
-                </td>
-              </tr>
-              <tr>
-                <td className='moyeoraCommon_table_count'>
-                  <BsPeopleFill className="moyeoraCommon_table_icon"/>
-                  <span>인원 수</span>
-                </td>
-              </tr>
-              <tr>
-                <td className='moyeoraCommon_table_date'>
-                  <IoMdTime className="moyeoraCommon_table_icon"/>
-                  <span>시간</span>
-                </td>
-              </tr>
-              <tr>
-                <td className='moyeoraCommon_table_place'>
-                  <MdOutlinePlace className="moyeoraCommon_table_icon"/>
-                  <span>장소</span>
-                </td>
-              </tr>
-            </table>
-          </div>
-
-          <div className='moyeoraCommon'>
+          {items.map(item => (          
+            <div className='moyeoraCommon'>
+              <table className='moyeoraCommon_table'>
+                <tr className='moyeoraCommon_table_tr'>
+                  <td className='moyeoraCommon_table_td_pircture' rowSpan={5}>
+                    사진
+                  </td>
+                  <td className='moyeoraCommon_table_category'>
+                    <div className='category'>
+                      <span>{item.myrTags}</span>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td className='moyeoraCommon_table_title'>
+                    <span>{item.myrTitle}</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td className='moyeoraCommon_table_count'>
+                    <BsPeopleFill className="moyeoraCommon_table_icon"/>
+                    <span>{item.myrMaxMember}</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td className='moyeoraCommon_table_date'>
+                    <IoMdTime className="moyeoraCommon_table_icon"/>
+                    <span>{item.myrDate}</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td className='moyeoraCommon_table_place'>
+                    <MdOutlinePlace className="moyeoraCommon_table_icon"/>
+                    <span>{item.myrPlace}</span>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          ))}
+          {/* <div className='moyeoraCommon'>
             오늘의 모여라
           </div>
           <div className='moyeoraCommon'>
@@ -67,7 +83,7 @@ const MoyeoraResultList = () => {
           </div>
           <div className='moyeoraCommon'>
             오늘의 모여라
-          </div>
+          </div> */}
         </div>
         <div className='moyeoraCommon_moreRead_container'>
           <div className='moyeoraCommon_moreRead'>

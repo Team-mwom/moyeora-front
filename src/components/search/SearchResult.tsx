@@ -95,14 +95,13 @@ const SearchResult = () => {
     }; 
     return(
         <>
-      <div className='common_full'>
-			  <Banner/>
-			  <div className='main_full'>
-          <MoyeoraResultList />
-        </div>
-			  <Footer/>
-		  </div>
-
+          <div className='common_full'>
+            <Banner/>
+            <div className='main_full'>
+              <MoyeoraResultList items={items}/>
+            </div>
+            <Footer/>
+          </div>
         </>
 
     );
