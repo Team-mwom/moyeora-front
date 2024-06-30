@@ -1,11 +1,6 @@
 import React from 'react';
-import {Routes } from 'react-router-dom';
 
-const BbusyeoraRouter = () => {
-  return (
-    <Routes>
-    </Routes>
-  )
-}
-
+const BbusyeoraRouter = [
+  0//ex{path: '/', element:< Main />},
+];
 export default BbusyeoraRouter

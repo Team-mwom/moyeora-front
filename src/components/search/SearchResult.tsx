@@ -3,6 +3,10 @@ import { useEffect, useState} from 'react';
 import { useParams } from "react-router";
 import axios from 'axios';
 
+import Banner from 'components/common/Banner';
+import Footer from 'components/common/Footer';
+import MoyeoraResultList from 'components/moyeora/MoyeoraResultList';
+
 // redux
 import { useSelector, useDispatch } from "react-redux";
 
@@ -89,29 +93,18 @@ const SearchResult = () => {
         myrDate: `${month}/${day}(${week}) ${hours}:${minutes}`
       };
     }; 
-        
-            
     return(
-      <div className="searchResult_container">
-        <div className="searchBox" onScroll={handleScroll}>
-            {items.map(item => (
-                <div className="search_moyeora">
-                  <div className="search_left">
-                    <img className="myrImg" alt="logo_message" src="/images/logo_message.png" />
-                  </div>
-                  <div className="search_right">
-                    <ul>
-                      <li><span>{item.myrTags}</span></li>
-                      <li>{item.myrTitle}</li>
-                      <li>{item.myrMemberCnt}/{item.myrMaxMember}</li>
-                      <li>{item.myrPlace}  {item.myrDate}</li>
-                    </ul>
-                  </div>
-                </div>
-            ))}
-            {loading && <p>검색중...</p>}
+        <>
+      <div className='common_full'>
+			  <Banner/>
+			  <div className='main_full'>
+          <MoyeoraResultList />
         </div>
-      </div>
+			  <Footer/>
+		  </div>
+
+        </>
+
     );
 };
 

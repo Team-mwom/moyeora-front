@@ -1,0 +1,131 @@
+.moyeoraCommon_full {
+  padding: 1%;
+
+  outline: 3px solid black;
+}
+
+.moyeoraCommon_full_container {
+  padding: 0.5%;
+
+  outline: 3px solid grey;
+}
+
+.moyeoraCommon_title {
+  font-size: 20px;
+  color: red;
+  margin: 0.5%;
+  padding : 1%;
+  font-weight: bold;
+  
+  outline: 3px solid blue;
+}
+
+.moyeoraCommon_inner {
+  display: block;
+  margin: 0.5%;
+  font-size: 0;
+  
+  outline: 3px solid blue;
+}
+
+.moyeoraCommon {
+  margin: 2%;
+  display: inline-block;
+  vertical-align: middle;
+  box-sizing: border-box;
+  font-size: 15px;
+  width: 46%;
+  height: 150px;
+
+  outline: 3px solid red;
+}
+
+.moyeoraCommon_table {
+  width: 100%;
+  height: 100%;
+  border: 1px solid black;
+}
+
+.moyeoraCommon_table_tr {
+  border: 1px solid black;
+}
+
+.moyeoraCommon_table_td_pircture {
+  width: 40%;
+  border: 1px solid black;
+}
+
+.moyeoraCommon_table_category {
+  vertical-align: middle;
+  padding-left:2px;
+  height: 25%;
+  border: 1px solid black;
+}
+
+.moyeoraCommon_table_category > .category{
+  height: 80%;
+  display: inline-block;
+  border-radius: 10px;
+  margin-right: 3px;
+  border: 1px solid black;
+}
+
+.category span {
+  vertical-align: middle;
+}
+
+.moyeoraCommon_table_title {
+  vertical-align: middle;
+  padding-left:2px;
+  height: 30px;
+  font-size: 20px;
+  font-weight: bold;
+  border: 1px solid black;
+}
+
+.moyeoraCommon_table_count {
+  vertical-align: middle;
+  padding-left:2px;
+  height: 30px;
+  border: 1px solid black;
+}
+
+.moyeoraCommon_table_date {
+  vertical-align: middle;
+  padding-left:2px;
+  height: 30px;
+  border: 1px solid black;
+}
+
+.moyeoraCommon_table_place {
+  vertical-align: middle;
+  padding-left:2px;
+  height: 30px;
+  border: 1px solid black;
+}
+
+.moyeoraCommon_table_icon {
+  padding-left:2px;
+  font-size:25px;
+}
+
+.moyeoraCommon_moreRead_container {
+  display: block;
+  margin: 0.5%;
+  padding: 0.5%;
+  outline: 3px solid blue;
+}
+
+.moyeoraCommon_moreRead {
+  text-align: center;
+  box-sizing: border-box;
+  margin: 1% 45%;
+  cursor: pointer;
+
+  outline: 3px solid red;
+}
+
+.moyeoraCommon_moreRead:hover {
+  background-color: aqua;
+  font-weight: bold;
+}

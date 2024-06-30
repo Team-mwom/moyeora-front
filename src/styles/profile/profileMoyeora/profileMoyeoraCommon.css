@@ -1,0 +1,37 @@
+.profileMoyeora_full {
+  padding: 0.5%;
+  outline: 3px solid black;
+}
+
+.profileMoyeora_container {
+  padding: 0.5%;
+  outline: 3px solid grey;
+}
+
+.profileMoyeora_title {
+  font-size: 20px;
+  font-weight: bold;
+  color: black;
+  padding : 1%;
+  outline: 3px solid blue;
+}
+
+.profileMoyeora_inner {
+  display: block;
+  font-size: 0;
+
+  outline: 3px solid blue;
+}
+
+.profileMoyeora {
+  padding: 0.5%;
+  margin: 3%;
+  display: inline-block;
+  vertical-align: middle;
+  box-sizing: border-box;
+  font-size: 15px;
+  width: 27.3%;
+  height: 400px;
+
+  outline: 3px solid red;
+}
