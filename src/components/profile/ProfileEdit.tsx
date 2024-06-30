@@ -1,18 +1,27 @@
+import ProfileImg from 'components/common/profile/ProfileImg';
 import React from 'react';
 
 import Button from 'react-bootstrap/Button';
+import { useSelector } from 'react-redux';
+import { ProfileConfig } from 'store/slices/profileConfigSlice';
+import { RootState } from 'store/store';
 
 import 'styles/profile/profileEdit.css'
 
+
+
 const ProfileEdit = () => {
-	
+	const profileConfig:ProfileConfig= useSelector((state: RootState) => {
+    	return state.profileConfig
+	});
 	return (
 		<div className='profileEdit_full'>
 			<div className='profileEdit_container'>
 				<div className='profile_pic_container'>
-					<div className='profile_pic'>
-						사진
-					</div>
+						<ProfileImg
+							nick={profileConfig.nickName}
+							size={320}
+						/>
 				</div>
 				<div className='follower_info_container'>
 					<table className='follow_info_table'>
