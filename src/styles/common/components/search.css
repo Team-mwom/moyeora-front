@@ -27,3 +27,57 @@
 .search_container .search_input input::placeholder {
   color: #aaa;
 }
+
+.searchResult_container {
+  height: 500px; 
+  overflow: auto;
+  border: 1px solid black;
+}
+
+.searchBox {
+  margin:0 auto;
+  border: 1px solid blue;
+  display: flex;
+  width: 65%;
+  min-width: 900px;
+}
+
+.search_moyeora {
+  border: 1px solid red;
+  padding: 30px;
+  margin: 10px;
+  flex: 1;
+}
+
+.search_right > ul > li{
+  margin: 10px 0px;
+}
+
+.search_right > ul > li:nth-child(1) > span{
+  padding: 2px 10px;
+  border: 1px solid rgb(202, 202, 202);
+  border-radius: 15px;
+  font-size: 12px;
+}
+
+.search_right > ul > li:nth-child(1){
+  margin-bottom: 10px;
+}
+
+.search_right > ul > li:nth-child(2){
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.search_right{
+  margin-left: 20px;
+  display: inline-block;
+}
+.search_left{
+  display: inline-block;
+}
+
+.myrImg{
+  width: 100px;
+  height: 100px;
+}
