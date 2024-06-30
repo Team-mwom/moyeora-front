@@ -1,0 +1,9 @@
+.profileImgNick_container{
+  /* border: 1px solid red; */
+  display: flex;
+  align-items: center
+}
+
+.profileImgNick_nick_container{
+  /* border: 1px solid blue; */
+}

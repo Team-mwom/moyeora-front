@@ -17,6 +17,7 @@ import { IconContext } from 'react-icons';
 import { useCookies } from 'react-cookie';
 import { authAxios } from 'utils/auth/authAxios';
 import { authException } from 'utils/auth/authException';
+import ProfileImgNick from 'components/common/profile/ProfileImgNick';
 interface ReviewType {
 	ownerNickName: String;
 	writerNickName: String;
@@ -158,7 +159,14 @@ const VisitorBook = () => {
 								<div className='visitorBook_list'>
 									{/* for문 돌리기 */}
 									<div className='visitorBook_inner'>
-										<span className='visitorBook_nickName'>{rowData.writerNickName}</span>
+										<div className='visitorBook_nickName'>
+											<ProfileImgNick
+												nick={rowData.writerNickName}
+												size={30}
+												distance={10}
+												fontSize={18}
+											/>
+										</div>
 										<span className='visitorBook_stars'>{star.map((stars,idx) => {if(idx<rowData.star) return stars })}</span>
 										<span className='visitorBook_date'>{rowData.date}</span>
 										<hr className='visitorBook_hr' />
