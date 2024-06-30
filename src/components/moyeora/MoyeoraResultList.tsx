@@ -13,7 +13,7 @@ interface searchResult {
   myrMaxMember: number;
   myrPlace: string;
   myrDate: string;
-  myrMemberCnt: number;
+  myrMemberCnt: number; 
 }
 
 interface MoyeoraResultListProps {
