@@ -39,6 +39,7 @@ const Header = () => {
 	return (
 		<div className='header_full'>
 			<div className='header_container'>
+
 				<img className="logo_moyeora" alt="logo_moyeora" src="/images/logo_moyeora.png" onClick={linkHome}/>
 					<div className='logo_container'>
 						<div className='logo_inner'>
