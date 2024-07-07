@@ -1,21 +1,27 @@
 import ProfileImg from 'components/common/profile/ProfileImg';
-import React from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 
 import Button from 'react-bootstrap/Button';
 import { useSelector } from 'react-redux';
 import { ProfileConfig } from 'store/slices/profileConfigSlice';
 import { RootState } from 'store/store';
-
+import Form from 'react-bootstrap/Form';
 import 'styles/profile/profileEdit.css'
-
-
+import ReactDOM from 'react-dom';
+import ProfileImgEdit from './ProfileImgEdit';
+import { useCookies } from 'react-cookie';
 
 const ProfileEdit = () => {
 	const profileConfig:ProfileConfig= useSelector((state: RootState) => {
     	return state.profileConfig
 	});
+
+	const [imgEditPopup, setImgEditPopup] = useState<Boolean>(false);
+
 	return (
 		<div className='profileEdit_full'>
+			{imgEditPopup ? <ProfileImgEdit popup={imgEditPopup} setPopup={setImgEditPopup } />:'' }
+			
 			<div className='profileEdit_container'>
 				<div className='profile_pic_container'>
 						<ProfileImg
@@ -35,7 +41,15 @@ const ProfileEdit = () => {
 						</tbody>
 					</table>
 					<div className='follower_info_button'>
-						<Button variant="dark" size="lg">팔로잉</Button>
+						{profileConfig.owner ?
+					
+							<Button variant="dark" size="lg" onClick={() => { setImgEditPopup(true) }}>이미지 변경</Button> 		
+							:
+							<Button variant="dark" size="lg">팔로잉</Button> 
+							
+						}
+						
+						
 					</div>
 				</div>
 			</div>
