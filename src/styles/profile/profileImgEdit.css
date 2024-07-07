@@ -1,0 +1,18 @@
+.profileImgEdit_full_container {
+  position: fixed;
+  border: 1px solid blue;
+  top:0;
+  left:0;
+  width: 100%;
+  background-color: rgb(0,0,0,50%);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+}
+.profileImgEdit_container{
+
+  width: 500px;
+  height: 200px;
+  background-color: white;
+  margin: auto;
+}
