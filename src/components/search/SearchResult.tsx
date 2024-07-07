@@ -17,6 +17,7 @@ interface searchResult {
   myrMaxMember: number;
   myrPlace: string;
   myrDate: string;
+  formula: number;
   myrMemberCnt: number;
 }
 
@@ -33,8 +34,7 @@ const SearchResult = () => {
 
     const [items, setItems] = useState<searchResult[]>([]);
     const [page, setPage] = useState(0);
-    const [size] = useState(20);
-    const [search, setSearch] = useState('');
+    const [size] = useState(6);
     const [loading, setLoading] = useState(false);
     const [hasMore, setHasMore] = useState(true);
 
@@ -53,9 +53,11 @@ const SearchResult = () => {
           });
 
           console.log("API 응답 로깅 :: " + response.data); // API 응답 로깅
+          const newItems = response.data.content.map(formatItemDate);
+          setItems(prevItems => [...prevItems, ...newItems]);
 
-          setItems(prevItems => [...prevItems, ...response.data.map(formatItemDate)]);
-          setHasMore(!response.data.last);
+          // 더 이상 불러올 페이지가 없으면 hasMore를 false로 설정
+          setHasMore(page < response.data.totalPages - 1);
         } catch (error) {
           console.error('Failed to fetch items', error);
         } finally {
@@ -63,20 +65,9 @@ const SearchResult = () => {
         }
       };
       fetchItems();
-    }, [page, search]);
+    }, [page]);
 
-    const handleScroll = (e: React.UIEvent<HTMLElement>) => {
-      if (e.currentTarget.scrollHeight - e.currentTarget.scrollTop === e.currentTarget.clientHeight) {
-          setPage(prevPage => prevPage + 1);
-      }
-    };
 
-    const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setItems([]);
-        setPage(0);
-        setSearch(e.target.value);
-        setHasMore(true);
-    };
 
     const formatItemDate = (item: searchResult) => {
       const date = new Date(item.myrDate);
@@ -87,18 +78,29 @@ const SearchResult = () => {
       const week = ['일', '월', '화', '수', '목', '금', '토'][weekday];
       const hours = String(date.getHours()).padStart(2, '0');
       const minutes = String(date.getMinutes()).padStart(2, '0');
-  
+      
       return {
         ...item,
         myrDate: `${month}/${day}(${week}) ${hours}:${minutes}`
       };
     }; 
+
+    // 더 많은 아이템을 로드하는 함수
+    const loadMore = () => {
+      setPage(prevPage => prevPage + 1);
+    };
+
+    useEffect(() => {
+      // ... (이전 useEffect 내용 유지)
+    }, [page, params.word, size]); // params.word와 size를 의존성 배열에 추가
+
+
     return(
         <>
           <div className='common_full'>
             <Banner/>
             <div className='main_full'>
-              <MoyeoraResultList items={items}/>
+              <MoyeoraResultList items={items} onLoadMore={loadMore} hasMore={hasMore} loading={loading}/>
             </div>
             <Footer/>
           </div>
