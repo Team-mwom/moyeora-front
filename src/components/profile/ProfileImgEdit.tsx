@@ -1,14 +1,24 @@
 
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { Button } from 'react-bootstrap';
+import { useCookies } from 'react-cookie';
 import Resizer from "react-image-file-resizer";
+import { useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
+import { ProfileConfig } from 'store/slices/profileConfigSlice';
+import { RootState } from 'store/store';
 import 'styles/profile/profileImgEdit.css'
+import { authAxios } from 'utils/auth/authAxios';
+import { authException } from 'utils/auth/authException';
 
 
 const ProfileImgEdit = ( props:any) => {
 
-  const [imagePriview, setImagePreview] = useState('');
-
+  	const profileConfig:ProfileConfig= useSelector((state: RootState) => {
+    	return state.profileConfig
+	});
+  const [imagePriview, setImagePreview] = useState("");
+  const [cookies, setCookie, removeCookie] = useCookies();
 	const onImageHandler = async (e:any) => {
 			const file = await e.target.files[0];                                  //사용자가 업로드한 이미지를 비동기적으로 가져온다.
 			console.log("imgae incoding before : ", file);
@@ -31,7 +41,23 @@ const ProfileImgEdit = ( props:any) => {
 			} catch (error) {                                                      //리사이징에 실패했을시 console에 출력하게 한다.
 				console.log("file resizing failed");
 			}
-	};
+  };
+ 
+  const saveImg = useCallback(() => { 
+
+    if (imagePriview == "") {
+      alert("이미지를 선택해주세요")
+    } else {
+      authAxios.post('/api/user/changeProfileImg', { 'profileImg': imagePriview } ).then((res) => {
+        if (authException(res, [cookies, setCookie, removeCookie])) {
+         window.location.reload();
+        }   
+      }).catch((err) => { alert('로그인 후 이용해주세요') })
+    
+    }
+
+
+  },[imagePriview])
 
 	return (
     <div className='profileImgEdit_full_container'>
@@ -45,7 +71,9 @@ const ProfileImgEdit = ( props:any) => {
         />
       <br></br>
       <img src={imagePriview}></img>
-      <Button variant="dark" onClick={()=>props.setPopup(false)}>닫기</Button> 
+        <Button variant="dark" onClick={() => props.setPopup(false)}>닫기</Button> 
+        <Button variant="dark" onClick={saveImg}>저장</Button> 
+        
       </div>
 	  </div>
 	);
