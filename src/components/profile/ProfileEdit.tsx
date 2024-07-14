@@ -28,7 +28,8 @@ const ProfileEdit = () => {
       , margin: "auto"
       , borderRadius: "4px"
       , boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)"
-      , padding: "20px"
+			, padding: "20px"
+		
     }
   }
 	return (

@@ -1,11 +1,14 @@
+
 .profile_view_img {
   border: 0.5px solid rgb(185, 185, 185);
   object-fit: cover;
   border-radius: 50%;
   cursor: pointer;
+ 
 }
 .profileImgEdit_container {
   text-align: center;
+ 
 }
 .profile_view_container{
   margin: 20px 0;
