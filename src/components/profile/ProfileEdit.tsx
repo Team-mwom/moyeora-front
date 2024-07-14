@@ -10,18 +10,37 @@ import 'styles/profile/profileEdit.css'
 import ReactDOM from 'react-dom';
 import ProfileImgEdit from './ProfileImgEdit';
 import { useCookies } from 'react-cookie';
+import Modal from "react-modal";
 
 const ProfileEdit = () => {
 	const profileConfig:ProfileConfig= useSelector((state: RootState) => {
     	return state.profileConfig
 	});
 
-	const [imgEditPopup, setImgEditPopup] = useState<Boolean>(false);
-
+	const [imgEditPopup, setImgEditPopup] = useState<boolean>(false);
+	const customStyles = {
+    overlay: {
+      backgroundColor: "rgba(0, 0, 0, 0.5)"
+    }
+    , content: {
+      width: "700px"
+      , height: "450px"
+      , margin: "auto"
+      , borderRadius: "4px"
+      , boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)"
+      , padding: "20px"
+    }
+  }
 	return (
 		<div className='profileEdit_full'>
-			{imgEditPopup ? <ProfileImgEdit popup={imgEditPopup} setPopup={setImgEditPopup } />:'' }
+		
+
+			<Modal isOpen={imgEditPopup} style={customStyles}>
+				<ProfileImgEdit popup={imgEditPopup} setPopup={setImgEditPopup} />
+			</Modal>
+				
 			
+
 			<div className='profileEdit_container'>
 				<div className='profile_pic_container'>
 						<ProfileImg
