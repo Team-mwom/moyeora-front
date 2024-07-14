@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 
-import 'styles/profile/profileMenu.css'
+
 
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
@@ -25,7 +25,7 @@ import VisitorBook from 'components/profile/profileMenu/profileInfo/VisitorBook'
 import { constants } from 'buffer';
 
 import ProfileMoyeoraMain from 'components/profile/ProfileMoyeoraMenu';
-
+import 'styles/profile/profileMenu.css'
 
 const ProfileMenu = () => {
 
@@ -41,13 +41,13 @@ const ProfileMenu = () => {
 		<ButtonGroup className="mb-2">
 					{memu.map((radio, idx) => (
 						<ToggleButton
+							className='ToggleButton'
 							key={idx}
 							id={`memu-${idx}`}
 							type="radio"
-							variant="outline-dark"
+							variant={menuValue === radio.value?"dark":"outline-dark"}
 							name="memu"
 							value={radio.value}
-							checked={menuValue === radio.value}
 							onChange={(e) => setMoeyoraRadioValue(e.currentTarget.value) }
 						>
 							{radio.name}

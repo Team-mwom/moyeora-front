@@ -48,10 +48,9 @@ const ProfileMoyeoraMenu = () => {
 							key={idx}
 							id={`moyeoraMenu-${idx}`}
 							type="radio"
-							variant="outline-dark"
+							variant={moeyoraMenuValue === radio.value?"dark":"outline-dark"}
 							name="moyeoraMenu"
 							value={radio.value}
-							checked={moeyoraMenuValue === radio.value}
 							onChange={(e) => setMoeyoraRadioValue2(e.currentTarget.value) }
 						>
 							{radio.name}
