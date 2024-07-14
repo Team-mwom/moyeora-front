@@ -25,7 +25,6 @@ const Search = () => {
 		}
 
 		var url = "/search/" + word;
-		alert(url);
 		window.location.href = url;
 	};
 
@@ -45,8 +44,7 @@ const Search = () => {
 		<div className='search_container'>
 			<div className="search_input">
 				<form className="data_search_form" onSubmit={onSubmit}>
-					<input type="text" value={word} placeholder='통합검색' 
-					   onChange={getSearchData} />
+					<input type="text" value={word} placeholder='통합검색' onChange={getSearchData} />
 					<button value="검색">검색</button>
 				</form>
 			</div>
