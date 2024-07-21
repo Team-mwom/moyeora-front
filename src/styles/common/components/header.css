@@ -1,5 +1,5 @@
 .header_full {
-  outline : 3px solid black;
+  outline : 1px solid black;
 }
 
 .header_container {
@@ -8,19 +8,17 @@
   align-items: center;
   vertical-align: middle;
   width: 60%;
-  height: 100px;
   padding: 0.5%;
   margin: auto;
   font-size: 50px;
   text-align: center;
-
-  outline: 3px solid red;
+  /* outline: 3px solid red; */
 }
 
 .logo_moyeora {
   cursor: pointer;
   height: 80px;
-  outline: 3px solid blue;
+  /* outline: 3px solid blue; */
 }
 
 .logo_container {
@@ -28,26 +26,58 @@
   padding: 0;
   display: flex;
   align-items: center;
-  outline: 3px solid blue;
 }
 
+/* 오른쪽 버튼 부분 */
 .logo_inner {
-  margin: .25rem;
-  padding: 1rem 1rem;
   display: flex;
   align-items: center;
-  outline: 3px solid red;
+  height: 55px;
+  padding: 13px;
+  cursor: pointer;
+  margin: 0px 2px;
 }
 
-.logo_inner .logo {
-  cursor: pointer;
+.logo_inner:hover {
+  border: 0.5px solid rgb(191, 190, 190);
+  padding: 12px;
 }
 
 .logo_inner .signIn {
   cursor: pointer;
-  font-size: 12px;
+  font-size: 14px;
 }
-
-.logo_inner .signIn:hover {
-  font-weight: bold;
+/* 회원정보관련 */
+.logo_inner_profile{
+  position: relative;
+  min-width: 100px;
+}
+.profileImgNick_nick_container {
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.profileDetail_contailer{
+  width: calc(100% + 2px);
+  position: absolute;
+  left:-1px;
+  border: 0.5px solid rgb(191, 190, 190);
+  border-top:none;
+  background-color: white;
+  top:53.5px;
+  font-size: 14px;
+}
+.profileDetail_inner{
+  width: 100%;
+  text-align: center;
+  padding: 14px 0;
+  border-bottom:0.5px solid rgb(228, 228, 228);
+}
+.profileDetail_inner:hover {
+  background-color: rgba(238, 234, 234, 0.32);
+}
+.profileDetail_logout{
+  border: none;
+  color:rgb(211, 103, 103);
 }
