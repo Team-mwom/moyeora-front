@@ -1,4 +1,8 @@
-import React from 'react';
+import React, { useState }from 'react';
+
+import { authAxios } from 'utils/auth/authAxios';
+import { authException } from 'utils/auth/authException';
+import { useCookies } from 'react-cookie';
 
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
@@ -7,7 +11,40 @@ import Button from 'react-bootstrap/Button';
 
 import 'styles/moyeora/createMoyeora.css'
 
+interface createMoyeoraType {
+	myrTitle: String;
+	myrTags: String;
+	myrMainImg: String;
+	myrMaxMember: String;
+	myrDate: String;
+}
+
+interface createMoyeoraInfoType {
+	myrTitle: String;
+	myrTags: String;
+	myrMainImg: String;
+	myrMaxMember: String;
+	myrDate: String;
+}
+
 const CreateMoyeora = () => {
+
+	const [cookies, setCookie, removeCookie] = useCookies();
+
+	const clickCreateMoyeora = (e: any) => {
+		let sendData: createMoyeoraType = {
+			myrTitle: ""
+			, myrTags: ""
+			, myrMainImg: ""
+			, myrMaxMember: ""
+			, myrDate: ""
+		};
+		authAxios.post("/api/moyeora/create-moyeora", sendData).then((res) => {
+			if (authException(res, [cookies, setCookie, removeCookie])) {
+				e.target.form.content.value = "";
+			}
+		}).catch(()=>alert('로그인후 이용가능합니다.'))
+	}
 
 	return (
 		<div className='createMoyeora_full'>
