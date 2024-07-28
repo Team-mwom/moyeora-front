@@ -27,7 +27,6 @@ interface ReviewType {
 }
 
 const VisitorBook = () => {
-	const fristSize = 3;//더보기 누르기 전 사이즈
 	const pagingSize = 7;//더보기 누른 후 사이즈
 	const profileConfig:ProfileConfig= useSelector((state: RootState) => {
     	return state.profileConfig
@@ -65,25 +64,15 @@ const VisitorBook = () => {
 	}
 	
 
-	useEffect(() => {//더보기 누르기 전
-		handleStar();
-		axios.get('/api/all/memberReviewList?page=0&size=' + fristSize+'&nickName='+profileConfig.nickName
+	useEffect(() => {
 		
-		)
-			.then((response) => {
-			
-				setReview(response.data as ReviewType[])
-			})
-      .catch((error) => console.log(error));
+		morelist();//리스트 뿌려줌
+		handleStar();//페이징 숫자 찍어줌
    
     }, [profileConfig]);
 	
-	const clickMoreList = useCallback((e: any) => {//더보기 눌렀을때
-		e.target.hidden = true;
-		morelist();
-	}, [profileConfig]);
 	
-	const morelist = useCallback(() => {//더보기
+	const morelist = useCallback(() => {
 		axios.get('/api/all/memberReviewList?page=0&size='+pagingSize+'&nickName='+profileConfig.nickName)
 			.then((response) => {
 				setReview(
@@ -180,11 +169,6 @@ const VisitorBook = () => {
 						
 						}
 						<div className='visitorBook_list_button'>
-						<Button variant="outline-dark" size="lg" onClick={clickMoreList}>
-							
-							더보기 +
-							
-						</Button>
 						<Pagination>{pageNums}</Pagination>
 						</div>
 				</form>

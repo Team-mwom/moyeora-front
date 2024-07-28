@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 
 import 'styles/common/components/header.css'
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import axios from 'axios';
 import ProfileImgNick from './profile/ProfileImgNick';
@@ -18,8 +18,13 @@ const Header = () => {
 	const navigate = useNavigate();
   const [cookies, setCookie, removeCookie] = useCookies();
 	const [profileDetailOpen, setProfileDetailOpen] = useState<boolean>(false);
-
+	const location = useLocation();
 	const linkSignIn = () => {
+		const pathname = location.pathname;
+		const queryParams = new URLSearchParams(location.search);
+		const params = queryParams + "" == "" ? "" : "?" + queryParams;
+		const returnPath = pathname + params;//현재url저장 (로그인후 돌아오기 위해)
+		localStorage.setItem("returnPath",returnPath);
 		if(userInfo == null)
 		window.location.href = KAKAO_AUTH_URL
 	}
@@ -43,7 +48,6 @@ const Header = () => {
 			axios.get("/api/all/signOut").then(() => { 
 				localStorage.clear();
         removeCookie('refreshToken', {path:'/'});
-        navigate("/");
 			})
       
     }
@@ -73,10 +77,11 @@ const Header = () => {
 							:
 							//로그인 상태 일때
 							<ProfileImgNick
-												nick={userInfo.nickName}
-												size={40}
-												distance={10}
-												fontSize={19}
+								img={userInfo.profileImg}
+								nick={userInfo.nickName}
+								size={40}
+								distance={10}
+								fontSize={19}
 							/>
 							//<div className='signIn' onClick={signOut}>이름:{userInfo.name},닉네임:{userInfo.nickName},이메일:{userInfo.email}</div>
 						}

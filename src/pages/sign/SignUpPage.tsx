@@ -88,12 +88,17 @@ const SignUpPage = () => {
           
 				authAxios.post('/api/user/getMyInfo').then((res) => {//사용자 정보를 로컬스토리지에 저장
             const resData = {
-              name: res.data.name,
               nickName: res.data.nickName,
-              email:res.data.email
+              profileImg:res.data.profileImg
           }
           localStorage.setItem("userInfo",JSON.stringify(resData));
-          navigate('/');
+          if (localStorage.getItem('returnPath') == null) {
+              navigate('/');
+            } else {
+              const returnPath = localStorage.getItem('returnPath') + "";
+              localStorage.removeItem('returnPath');
+              navigate(returnPath);
+            }
           })
 			}).catch((err) => { })
 		}).catch((err) => { alert('심각한 애러')})
