@@ -1,0 +1,5 @@
+.profileImg{
+  border: 0.5px solid rgb(185, 185, 185);
+  object-fit: cover;
+  border-radius: 50%;
+}
