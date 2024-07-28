@@ -16,7 +16,8 @@ const ProfileImgEdit = ( props:any) => {
    
   const profileConfig:ProfileConfig= useSelector((state: RootState) => {
     	return state.profileConfig
-	});
+  });
+  const userInfo = JSON.parse(localStorage.getItem("userInfo") as string);
   const [imagePriview, setImagePreview] = useState("");
   const [cookies, setCookie, removeCookie] = useCookies();
 	const onImageHandler = async (e:any) => {
@@ -48,9 +49,15 @@ const ProfileImgEdit = ( props:any) => {
     if (imagePriview == "") {
       alert("이미지를 선택해주세요")
     } else {
+      
       authAxios.post('/api/user/changeProfileImg', { 'profileImg': imagePriview } ).then((res) => {
         if (authException(res, [cookies, setCookie, removeCookie])) {
-         window.location.reload();
+          const resData = {
+            nickName: userInfo.nickName,
+            profileImg:imagePriview
+          }
+          localStorage.setItem('userInfo', JSON.stringify(resData));
+          window.location.reload();
         }   
       }).catch((err) => { alert('로그인 후 이용해주세요') })
     
