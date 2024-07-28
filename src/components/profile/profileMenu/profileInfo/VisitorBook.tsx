@@ -24,6 +24,7 @@ interface ReviewType {
 	star: number;
 	content: String;
 	date: String;
+	profileImg: String;
 }
 
 const VisitorBook = () => {
@@ -123,6 +124,7 @@ const VisitorBook = () => {
 				star: starPoint,
 				content: content,
 				date: "",
+				profileImg:""
 			}
 			authAxios.post("/api/user/insertReview", sendData).then((res) => {
 				if (authException(res, [cookies, setCookie, removeCookie])) {
@@ -150,6 +152,7 @@ const VisitorBook = () => {
 									<div className='visitorBook_inner'>
 										<div className='visitorBook_nickName'>
 											<ProfileImgNick
+												img={ rowData.profileImg}
 												nick={rowData.writerNickName}
 												size={30}
 												distance={10}
