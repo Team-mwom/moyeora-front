@@ -16,7 +16,7 @@ const ProfileEdit = () => {
 	const profileConfig:ProfileConfig= useSelector((state: RootState) => {
     	return state.profileConfig
 	});
-
+	const userInfo = JSON.parse(localStorage.getItem("userInfo") as string);
 	const [imgEditPopup, setImgEditPopup] = useState<boolean>(false);
 	const customStyles = {
     overlay: {
@@ -44,9 +44,10 @@ const ProfileEdit = () => {
 
 			<div className='profileEdit_container'>
 				<div className='profile_pic_container'>
-						<ProfileImg
-							nick={profileConfig.nickName}
-							size={320}
+					<ProfileImg
+						img={userInfo.profileImg}
+						nick={profileConfig.nickName}
+						size={320}
 						/>
 				</div>
 				<div className='follower_info_container'>
