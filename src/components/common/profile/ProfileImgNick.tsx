@@ -2,7 +2,7 @@ import React from 'react';
 import ProfileImg from './ProfileImg';
 import 'styles/common/components/profile/profileImgNick.css'
 
-const ProfileImgNick = ({ nick,size,distance,fontSize }: any) => {
+const ProfileImgNick = ({ nick,size,distance,fontSize,img }: any) => {
 	const componentHeight = {
 		height:size
 	}
@@ -15,6 +15,7 @@ const ProfileImgNick = ({ nick,size,distance,fontSize }: any) => {
 			style={componentHeight}
 			>
 			<ProfileImg
+				img={img}
 				nick={nick}
 				size={size}
 			/>

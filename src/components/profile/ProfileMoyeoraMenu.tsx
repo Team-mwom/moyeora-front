@@ -23,12 +23,11 @@ import MyBbusyeora from 'components/profile/profileMenu/profileBbusyeora/MyBbusy
 // 방명록 Component
 import VisitorBook from 'components/profile/profileMenu/profileInfo/VisitorBook';
 import { constants } from 'buffer';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 
 
 const ProfileMoyeoraMenu = () => {
-
-  const [moeyoraMenuValue, setMoeyoraRadioValue2] = useState('1');
 
 	const moyeoraMenu:any[] = [
     { name: '참여중인 모여라', value: '1' ,content:<ActiveMoyeora/>},
@@ -36,8 +35,25 @@ const ProfileMoyeoraMenu = () => {
     { name: '내 모여라', value: '3', content: <MyMoyeora /> },
     { name: '캘린더', value: '4', content: <Calendar /> },
     
-  ];
+	];
+		
+	const location = useLocation();
+	const queryParams = new URLSearchParams(location.search);
+	const menu2Param = 
+		queryParams.get('menu2') == null||0>(queryParams.get('menu2') as unknown as number)||moyeoraMenu.length<(queryParams.get('menu2') as unknown as number)
+		? '1' : queryParams.get('menu2');
+	const [moeyoraMenuValue, setMoeyoraRadioValue2] = useState(menu2Param);
+	const navi = useNavigate();
 
+
+
+
+
+	const menuValueHandler = (e:any) =>  {
+		setMoeyoraRadioValue2(e.currentTarget.value);
+		queryParams.set('menu2', e.currentTarget.value);
+		navi(location.pathname+"?"+queryParams);
+	}
 	return (
 		<div className='profileMenu_full'>
 	
@@ -51,7 +67,7 @@ const ProfileMoyeoraMenu = () => {
 							variant={moeyoraMenuValue === radio.value?"dark":"outline-dark"}
 							name="moyeoraMenu"
 							value={radio.value}
-							onChange={(e) => setMoeyoraRadioValue2(e.currentTarget.value) }
+							onChange={ menuValueHandler }
 						>
 							{radio.name}
 						</ToggleButton>

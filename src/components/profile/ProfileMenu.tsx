@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 
 
@@ -26,36 +26,53 @@ import { constants } from 'buffer';
 
 import ProfileMoyeoraMain from 'components/profile/ProfileMoyeoraMenu';
 import 'styles/profile/profileMenu.css'
+import { useLocation } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
-const ProfileMenu = () => {
 
-  const [menuValue, setMoeyoraRadioValue] = useState('1');
+const ProfileMenu = (props:any) => {
 
-	const memu:any[] = [
+	const menu:any[] = [
     { name: '모여라', value: '1' ,content:<ProfileMoyeoraMain/>},
     { name: '방명록', value: '2' ,content:<VisitorBook/>},
   ];
+	
+	const location = useLocation();
+	const queryParams = new URLSearchParams(location.search);
+	const menu1Param =
+		queryParams.get('menu1') == null||0>(queryParams.get('menu1') as unknown as number)||menu.length<(queryParams.get('menu1') as unknown as number)
+			? '1' : queryParams.get('menu1');
+
+	const [menuValue, setMoeyoraRadioValue] = useState( menu1Param);
+	const navi = useNavigate();
+
+
+	const menuValueHandler = (e:any) =>  {
+		setMoeyoraRadioValue(e.currentTarget.value);
+		queryParams.set('menu1', e.currentTarget.value);
+			navi(location.pathname+"?"+queryParams);
+	}
+
 
 	return (
 		<div className='profileMenu_full'>
 		<ButtonGroup className="mb-2">
-					{memu.map((radio, idx) => (
+					{menu.map((radio, idx) => (
 						<ToggleButton
 							className='ToggleButton'
 							key={idx}
-							id={`memu-${idx}`}
+							id={`menu-${idx}`}
 							type="radio"
 							variant={menuValue === radio.value?"dark":"outline-dark"}
-							name="memu"
+							name="menu"
 							value={radio.value}
-							onChange={(e) => setMoeyoraRadioValue(e.currentTarget.value) }
+							onChange={ menuValueHandler}
 						>
 							{radio.name}
 						</ToggleButton>
 					))}
 				</ButtonGroup>
-		
-			{ memu[menuValue as unknown as number -1].content}
+			{ menu[menuValue as unknown as number -1].content}
 			
 	
 		</div>

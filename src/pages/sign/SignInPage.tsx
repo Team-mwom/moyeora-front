@@ -35,15 +35,21 @@ export const SignInPage = () => {
         
           authAxios.post('/api/user/getMyInfo').then((res) => {//사용자 정보를 로컬스토리지에 저장
             const resData = {
-              name: res.data.name,
               nickName: res.data.nickName,
-              email:res.data.email
+              profileImg:res.data.profileImg
           }
           
          
-          localStorage.setItem("userInfo",JSON.stringify(resData));
-          alert("로그인 성공")
-          navigate('/');
+            localStorage.setItem("userInfo",JSON.stringify(resData));
+            alert("로그인 성공");
+            if (localStorage.getItem('returnPath') == null) {
+              navigate('/');
+            } else {
+              const returnPath = localStorage.getItem('returnPath') + "";
+              localStorage.removeItem('returnPath');
+              navigate(returnPath);
+            }
+            
           
           })
           
