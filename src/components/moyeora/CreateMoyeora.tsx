@@ -11,43 +11,65 @@ import Button from 'react-bootstrap/Button';
 
 import 'styles/moyeora/createMoyeora.css'
 
-interface Moyeora {
+interface moyeora {
+	subCategorySeq: Number;
 	myrTitle: String;
 	myrTags: String;
 	myrMainImg: String;
-	myrMaxMember: number;
-	//myrDate: String; //Entity 에는 LocalDateTime 타입인데 어떻게 넣어줘야하는지 고민해봐야할듯
+	myrMaxMember: String;
 }
 
-interface MoyeoraInfo {
-	//myrTitle: String; //MoyeoraInfo Entity랑 구조 맞춰서 ㄱ
-	//myrTags: String;
-	//myrMainImg: String;
-	//myrMaxMember: String;
-	//myrDate: String;
+interface moyeoraInfo {
+	myrIntroduce: String;
+	myrOwnerIntroduce: String;
+	myrGenderYn: String;
+	myrApprovalYn: String;
+	myrMinAge: Number;
+	myrMaxAge: Number;
+	myrPrice: String;
+	myrPriceInfo: String;
+	myrQuestion1: String;
+	myrQuestion2: String;
+	myrQuestion3: String;
 }
-interface SendData{
-	moyeora: Moyeora;
-	moyeoraInfo: MoyeoraInfo;
-} 
+
+interface moyeoraPlace {
+	myrAddressNumber: String;
+	myrAddressLocation: String;
+	myrPlace: Number;
+	myrLongitude: Number;
+	myrLatitude: Number;
+	myrSido: String;
+	myrSigungu: String;
+}
 
 const CreateMoyeora = () => {
 
 	const [cookies, setCookie, removeCookie] = useCookies();
 
 	const clickCreateMoyeora = (e: any) => {
-		let sendData:SendData = {
-			moyeora:{
-				myrTitle: "test"
-			, myrTags: "test"
-			, myrMainImg: "test"
-			, myrMaxMember: 1
-			//, myrDate: "test"
-			},
-			moyeoraInfo: {
-				
-			}
-		
+		let moyeora = {
+			// myrTitle: "test"
+			// , myrTags: "test"
+			// , myrMainImg: "test"
+			// , myrMaxMember: "test"
+			// , myrDate: "test"
+		}
+		let moyeoraInfo = {
+			// myrTitle: "test"
+			// , myrTags: "test"
+			// , myrMainImg: "test"
+			// , myrMaxMember: "test"
+			// , myrDate: "test"
+		}
+		let moyeoraPlace = {
+
+		}
+
+		let sendData = {
+			moyeora
+			, moyeoraInfo
+			, moyeoraPlace
 		};
 		console.log("cookies =>", cookies)
 		console.log("setCookie =>", setCookie)
