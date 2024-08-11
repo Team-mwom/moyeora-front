@@ -11,7 +11,7 @@ import Button from 'react-bootstrap/Button';
 
 import 'styles/moyeora/createMoyeora.css'
 
-interface createMoyeoraType {
+interface moyeora {
 	myrTitle: String;
 	myrTags: String;
 	myrMainImg: String;
@@ -19,7 +19,7 @@ interface createMoyeoraType {
 	myrDate: String;
 }
 
-interface createMoyeoraInfoType {
+interface moyeoraInfo {
 	myrTitle: String;
 	myrTags: String;
 	myrMainImg: String;
@@ -32,20 +32,22 @@ const CreateMoyeora = () => {
 	const [cookies, setCookie, removeCookie] = useCookies();
 
 	const clickCreateMoyeora = (e: any) => {
-		let sendData: createMoyeoraType = {
+		let sendData: moyeora = {
 			myrTitle: "test"
-			, myrTags: ""
-			, myrMainImg: ""
-			, myrMaxMember: ""
-			, myrDate: ""
+			, myrTags: "test"
+			, myrMainImg: "test"
+			, myrMaxMember: "test"
+			, myrDate: "test"
 		};
 		console.log("cookies =>", cookies)
 		console.log("setCookie =>", setCookie)
 		console.log("removeCookie =>", removeCookie)
+		console.log("sendData 1 =>", sendData)
 		authAxios.post("/api/user/moyeora/create-moyeora", sendData).then((res) => {
 			if (authException(res, [cookies, setCookie, removeCookie])) {
-				e.target.form.content.value = "";
+				// e.target.form.content.value = "";
 			}
+		console.log("sendData 2 =>", sendData)
 		}).catch(()=>alert('로그인후 이용가능합니다.'))
 	}
 
