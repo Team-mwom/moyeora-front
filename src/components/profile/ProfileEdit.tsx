@@ -12,11 +12,13 @@ import ProfileImgEdit from './ProfileImgEdit';
 import { useCookies } from 'react-cookie';
 import Modal from "react-modal";
 import { PiImagesThin } from "react-icons/pi";
+import { useParams } from 'react-router-dom';
 
 const ProfileEdit = () => {
 	const profileConfig:ProfileConfig= useSelector((state: RootState) => {
     	return state.profileConfig
 	});
+	const param = useParams();
 	const userInfo = JSON.parse(localStorage.getItem("userInfo") as string);
 	const [imgEditPopup, setImgEditPopup] = useState<boolean>(false);
 	const customStyles = {
@@ -46,20 +48,24 @@ const ProfileEdit = () => {
 			<div className='profileEdit_container'>
 				<div className='profile_pic_container'>
 					<ProfileImg
-						img={userInfo.profileImg}
-						nick={profileConfig.nickName}
+				
+						nick={param.nickName}
 						size={400}
 					/>
-					<div className='profile_pic_change_div'>
-
-						<div className='profile_pic_change_btn'>
-							<PiImagesThin />
-						</div>
-						
-					</div>
+						{profileConfig.owner ?
+						<div className='profile_pic_change_div'>
+							<div className='profile_pic_change_btn' onClick={() => { setImgEditPopup(true) }}>
+								<PiImagesThin />
+							</div>	
+						</div>	
+							:
+							""
+							
+						}
+				
 				</div>
 				<div className='follower_info_container'>
-					<div className='profileEdit_nickName'>{userInfo.nickName}</div>
+					<div className='profileEdit_nickName'>{param.nickName}</div>
 					<table className='follow_info_table'>
 						<tbody>
 							<tr className=''>
@@ -73,7 +79,7 @@ const ProfileEdit = () => {
 					<div className='follower_info_button'>
 						{profileConfig.owner ?
 					
-							<Button variant="outline-dark" size="lg" onClick={() => { setImgEditPopup(true) }}>이미지 변경</Button> 		
+							<Button variant="outline-dark" size="lg" onClick={() => { alert('설정 페이지로 이동')}}>프로필 설정</Button> 		
 							:
 							<Button variant="outline-dark" size="lg">팔로잉</Button> 
 							
