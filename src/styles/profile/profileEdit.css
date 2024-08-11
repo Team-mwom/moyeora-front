@@ -1,19 +1,18 @@
 .profileEdit_full {
-  outline: 3px solid black;
 }
 
 .profileEdit_container {
-  display: block;
+  text-align: center;
 
-  outline: 3px solid grey;
 }
 
 .profile_pic_container {
   display: inline-block;
-  width: 50%;
+  width: 100%;
   vertical-align: middle;
   text-align: center;
-  outline: 3px solid blue;
+  margin-top: 10px;
+  max-width: 600px;
 }
 
 .profile_pic {
@@ -25,62 +24,84 @@
   align-items: center;
   vertical-align: middle;
 
-  border: 3px solid red;
+}
+
+.profile_pic_change_div{
+  display: inline-block;
+  position: absolute;
+ 
+
+}
+.profile_pic_change_btn {
+  margin: 40px 0px 0px -95px;
+  font-size: 40px;
+  background-color: white;
+  border: 1px solid gray;
+  text-align: center;
+  border-radius: 20%;
+  cursor: pointer;
+  width: 55px;
+  height: 55px;
+  padding: 1px 0 0 0;
+}
+.profile_pic_change_btn:hover {
+  background-color: rgb(211, 211, 211);
 }
 
 .follower_info_container {
   display: inline-block;
   vertical-align: middle;
-  width: 50%;
-  
-  outline: 3px solid blue;
-}
+  width: 100%;
+  max-width: 600px;
+  margin:0px auto;
 
+  
+
+}
+.profileEdit_nickName{
+  margin: 10px 0 25px 0;
+  text-align: center;
+  width: 100%;
+  font-size: 24px;
+  font-weight: bold;
+}
 .follow_info_table {
   margin: 0 auto;
   padding: 0.5%;
-  width: 100%;
+  width: 50%;
   height: 40px;
-  font-size: 24px;
+  font-size: 18px;
   font-weight: bold;
 
-  outline: 3px solid blue;
 }
 
 .follow_info_td_follower {
   text-align: right;
   padding-right: 2%;
   width: 30%;
-  
-  outline: 3px solid red;
 }
 
 .follow_info_td_following {
   text-align: right;
   padding-right: 2%;
   width: 25%;
-  
-  outline: 3px solid red;
+
 }
 
 .follow_info_td_count_follower {
   text-align: left;
   padding-left: 2%;
   width: 20%;
-  
-  outline: 3px solid red;
+
 }
 
 .follow_info_td_count_following {
   text-align: left;
   padding-left: 2%;
   width: 25%;
-  
-  outline: 3px solid red;
 }
 
 .follower_info_button {
   text-align: center;
 
-  outline: 3px solid red;
 }
