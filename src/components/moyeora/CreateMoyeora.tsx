@@ -33,13 +33,16 @@ const CreateMoyeora = () => {
 
 	const clickCreateMoyeora = (e: any) => {
 		let sendData: createMoyeoraType = {
-			myrTitle: ""
+			myrTitle: "test"
 			, myrTags: ""
 			, myrMainImg: ""
 			, myrMaxMember: ""
 			, myrDate: ""
 		};
-		authAxios.post("/api/moyeora/create-moyeora", sendData).then((res) => {
+		console.log("cookies =>", cookies)
+		console.log("setCookie =>", setCookie)
+		console.log("removeCookie =>", removeCookie)
+		authAxios.post("/api/user/moyeora/create-moyeora", sendData).then((res) => {
 			if (authException(res, [cookies, setCookie, removeCookie])) {
 				e.target.form.content.value = "";
 			}
@@ -247,7 +250,7 @@ const CreateMoyeora = () => {
 				</div>
 
 				<div className='createMoyeora_save'>
-					<Button variant="outline-dark" size="lg">
+					<Button variant="outline-dark" size="lg" onClick={clickCreateMoyeora}>
 						모임 생성
 					</Button>
 				</div>
