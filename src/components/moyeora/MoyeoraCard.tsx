@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { Moyeora } from 'interface/MoyeoraInterface';
 
@@ -11,13 +12,19 @@ interface MoyeoraCardProps {
 }
 
 const MoyeoraCard: React.FC<MoyeoraCardProps> = ({ moyeora }) => {
+  const navigate = useNavigate();
+
+  const handleCardClick = () => {
+    navigate(`/detail/${moyeora.myrSeq}`);
+  };
+
   return (
-    <div className='moyeoraCommon'>
+    <div className='moyeoraCommon' onClick={handleCardClick}>
       <table className='moyeoraCommon_table'>
         <tbody>
           <tr className='moyeoraCommon_table_tr'>
             <td className='moyeoraCommon_table_td_pircture' rowSpan={5}>
-              사진
+              {moyeora.myrMainImg}
             </td>
             <td className='moyeoraCommon_table_category'>
               <div className='category'><span>{moyeora.categoryName}</span></div>
@@ -32,7 +39,7 @@ const MoyeoraCard: React.FC<MoyeoraCardProps> = ({ moyeora }) => {
           <tr>
             <td className='moyeoraCommon_table_count'>
               <BsPeopleFill className="moyeoraCommon_table_icon" />
-              <span>{moyeora.myrCurrentMember} / {moyeora.myrMaxMember}</span>
+              <span>{moyeora.myrMemberCnt} / {moyeora.myrMaxMember}</span>
             </td>
           </tr>
           <tr>
