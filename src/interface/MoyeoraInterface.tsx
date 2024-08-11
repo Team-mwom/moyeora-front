@@ -4,15 +4,15 @@
  * @author jhkang
  */
 export interface Moyeora {
-  myrSeq?: number;
-  categorySeq?: number;
+  myrSeq: number;
+  categorySeq: number;
   categoryName: string;
-  subCategorySeq?: number;
+  subCategorySeq: number;
   subCategoryName: string;
   myrTitle: string;
   myrTags?: string;
   myrMainImg?: string;
-  myrCurrentMember: number;
+  myrMemberCnt: number;
   myrMaxMember: number;
   myrPlace: string;
   myrDate: string;
