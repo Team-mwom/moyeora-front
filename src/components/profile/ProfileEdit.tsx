@@ -47,10 +47,14 @@ const ProfileEdit = () => {
 					<ProfileImg
 						img={userInfo.profileImg}
 						nick={profileConfig.nickName}
-						size={320}
-						/>
+						size={400}
+					/>
+					<div className='profile_pic_change_div'>
+						<Button className='profile_pic_change_btn' variant="outline-dark" size="lg" onClick={() => { setImgEditPopup(true) }}>변경</Button>
+					</div>
 				</div>
 				<div className='follower_info_container'>
+					<div className='profileEdit_nickName'>{userInfo.nickName}</div>
 					<table className='follow_info_table'>
 						<tbody>
 							<tr className=''>
@@ -64,9 +68,9 @@ const ProfileEdit = () => {
 					<div className='follower_info_button'>
 						{profileConfig.owner ?
 					
-							<Button variant="dark" size="lg" onClick={() => { setImgEditPopup(true) }}>이미지 변경</Button> 		
+							<Button variant="outline-dark" size="lg" onClick={() => { setImgEditPopup(true) }}>이미지 변경</Button> 		
 							:
-							<Button variant="dark" size="lg">팔로잉</Button> 
+							<Button variant="outline-dark" size="lg">팔로잉</Button> 
 							
 						}
 						
