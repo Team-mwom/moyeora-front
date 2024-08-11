@@ -11,33 +11,43 @@ import Button from 'react-bootstrap/Button';
 
 import 'styles/moyeora/createMoyeora.css'
 
-interface moyeora {
+interface Moyeora {
 	myrTitle: String;
 	myrTags: String;
 	myrMainImg: String;
-	myrMaxMember: String;
-	myrDate: String;
+	myrMaxMember: number;
+	//myrDate: String; //Entity 에는 LocalDateTime 타입인데 어떻게 넣어줘야하는지 고민해봐야할듯
 }
 
-interface moyeoraInfo {
-	myrTitle: String;
-	myrTags: String;
-	myrMainImg: String;
-	myrMaxMember: String;
-	myrDate: String;
+interface MoyeoraInfo {
+	//myrTitle: String; //MoyeoraInfo Entity랑 구조 맞춰서 ㄱ
+	//myrTags: String;
+	//myrMainImg: String;
+	//myrMaxMember: String;
+	//myrDate: String;
 }
+interface SendData{
+	moyeora: Moyeora;
+	moyeoraInfo: MoyeoraInfo;
+} 
 
 const CreateMoyeora = () => {
 
 	const [cookies, setCookie, removeCookie] = useCookies();
 
 	const clickCreateMoyeora = (e: any) => {
-		let sendData: moyeora = {
-			myrTitle: "test"
+		let sendData:SendData = {
+			moyeora:{
+				myrTitle: "test"
 			, myrTags: "test"
 			, myrMainImg: "test"
-			, myrMaxMember: "test"
-			, myrDate: "test"
+			, myrMaxMember: 1
+			//, myrDate: "test"
+			},
+			moyeoraInfo: {
+				
+			}
+		
 		};
 		console.log("cookies =>", cookies)
 		console.log("setCookie =>", setCookie)
