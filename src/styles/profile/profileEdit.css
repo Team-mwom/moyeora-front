@@ -33,9 +33,19 @@
 
 }
 .profile_pic_change_btn {
-  margin: 40px 0px 0px -100px;
-  font-size: 15px;
+  margin: 40px 0px 0px -95px;
+  font-size: 40px;
   background-color: white;
+  border: 1px solid gray;
+  text-align: center;
+  border-radius: 20%;
+  cursor: pointer;
+  width: 55px;
+  height: 55px;
+  padding: 1px 0 0 0;
+}
+.profile_pic_change_btn:hover {
+  background-color: rgb(211, 211, 211);
 }
 
 .follower_info_container {

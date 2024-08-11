@@ -11,6 +11,7 @@ import ReactDOM from 'react-dom';
 import ProfileImgEdit from './ProfileImgEdit';
 import { useCookies } from 'react-cookie';
 import Modal from "react-modal";
+import { PiImagesThin } from "react-icons/pi";
 
 const ProfileEdit = () => {
 	const profileConfig:ProfileConfig= useSelector((state: RootState) => {
@@ -50,7 +51,11 @@ const ProfileEdit = () => {
 						size={400}
 					/>
 					<div className='profile_pic_change_div'>
-						<Button className='profile_pic_change_btn' variant="outline-dark" size="lg" onClick={() => { setImgEditPopup(true) }}>변경</Button>
+
+						<div className='profile_pic_change_btn'>
+							<PiImagesThin />
+						</div>
+						
 					</div>
 				</div>
 				<div className='follower_info_container'>
