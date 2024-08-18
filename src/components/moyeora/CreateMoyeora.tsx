@@ -11,38 +11,201 @@ import Button from 'react-bootstrap/Button';
 
 import 'styles/moyeora/createMoyeora.css'
 
-interface createMoyeoraType {
+interface moyeoraDto {
 	myrTitle: String;
 	myrTags: String;
-	myrMainImg: String;
-	myrMaxMember: String;
-	myrDate: String;
+	myrMaxMember: Number;
+	// myrMainImg: String;
+	// subCategorySeq: Number;
 }
 
-interface createMoyeoraInfoType {
-	myrTitle: String;
-	myrTags: String;
-	myrMainImg: String;
-	myrMaxMember: String;
-	myrDate: String;
+interface moyeoraInfoDto {
+	myrIntroduce: String;
+	myrOwnerIntroduce: String;
+	myrGenderYn: String;
+	myrApprovalYn: String;
+	myrMinAge: Number;
+	myrMaxAge: Number;
+	// myrPrice: String;
+	// myrPriceInfo: String;
+	myrQuestion1: String;
+	myrQuestion2: String;
+	myrQuestion3: String;
+}
+
+interface moyeoraPlaceDto {
+	myrAddressNumber: String;
+	myrAddressLocation: String;
+	myrPlace: Number;
+	myrLongitude: Number;
+	myrLatitude: Number;
+	myrSido: String;
+	myrSigungu: String;
 }
 
 const CreateMoyeora = () => {
 
 	const [cookies, setCookie, removeCookie] = useCookies();
 
+	// moyeoraDto
+	const [myrTitle, setMyrTitle] = useState<String>("");
+	const [myrTags, setMyrTags] = useState<String>("");
+	const [myrMaxMember, setMyrMaxMember] = useState<Number>(0);
+
+	const changeMyrTitle = (e: any) => {
+		let myrTitle = e.target.value;
+		setMyrTitle(myrTitle);
+	}
+	const changeMyrTags = (e: any) => {
+		let myrTags = e.target.value;
+		setMyrTags(myrTags);
+	}
+	const changeMyrMaxMember = (e: any) => {
+		let myrMaxMember = e.target.value;
+		setMyrMaxMember(myrMaxMember);
+	}
+
+	// moyeoraInfoDto
+	const [myrIntroduce, setMyrIntroduce] = useState<String>("");
+	const [myrOwnerIntroduce, setMyrOwnerIntroduce] = useState<String>("");
+	const [myrGenderYn, setMyrGenderYn] = useState<String>("");
+	const [myrApprovalYn, setMyrApprovalYn] = useState<String>("");
+	const [myrMinAge, setMyrMinAge] = useState<Number>(0);
+	const [myrMaxAge, setMyrMaxAge] = useState<Number>(0);
+	// const [myrPrice, setMyrPrice] = useState<String>("");
+	// const [myrPriceInfo, setMyrPriceInfo] = useState<String>("");
+	const [myrQuestion1, setMyrQuestion1] = useState<String>("");
+	const [myrQuestion2, setMyrQuestion2] = useState<String>("");
+	const [myrQuestion3, setMyrQuestion3] = useState<String>("");
+
+	const changeMyrIntroduce = (e: any) => {
+		let myrIntroduce = e.target.value;
+		setMyrIntroduce(myrIntroduce);
+	}
+	const changeMyrOwnerIntroduce = (e: any) => {
+		let myrOwnerIntroduce = e.target.value;
+		setMyrOwnerIntroduce(myrOwnerIntroduce);
+	}
+	const changeMyrGenderYn = (e: any) => {
+		let myrGenderYn = e.target.value;
+		setMyrGenderYn(myrGenderYn);
+	}
+	const changeMyrApprovalYn = (e: any) => {
+		let myrApprovalYn = e.target.value;
+		setMyrApprovalYn(myrApprovalYn);
+	}
+	const changeMyrMinAge = (e: any) => {
+		let myrMinAge = e.target.value;
+		setMyrMinAge(myrMinAge);
+	}
+	const changeMyrMaxAge = (e: any) => {
+		let myrMaxAge = e.target.value;
+		setMyrMaxAge(myrMaxAge);
+	}
+	// const changeMyrPrice = (e: any) => {
+	// 	let myrPrice = e.target.value;
+	// 	setMyrPrice(myrPrice);
+	// }
+	// const changeMyrPriceInfo = (e: any) => {
+	// 	let myrPriceInfo = e.target.value;
+	// 	setMyrPriceInfo(myrPriceInfo);
+	// }
+	const changeMyrQuestion1 = (e: any) => {
+		let myrQuestion1 = e.target.value;
+		setMyrQuestion1(myrQuestion1);
+	}
+	const changeMyrQuestion2 = (e: any) => {
+		let myrQuestion2 = e.target.value;
+		setMyrQuestion2(myrQuestion2);
+	}
+	const changeMyrQuestion3 = (e: any) => {
+		let myrQuestion3 = e.target.value;
+		setMyrQuestion3(myrQuestion3);
+	}
+
+	// moyeoraPlaceDto
+	const [myrAddressNumber, setMyrAddressNumber] = useState<String>("");
+	const [myrAddressLocation, setMyrAddressLocation] = useState<String>("");
+	const [myrPlace, setMyrPlace] = useState<Number>(0);
+	const [myrLongitude, setMyrLongitude] = useState<Number>(0);
+	const [myrLatitude, setMyrLatitude] = useState<Number>(0);
+	const [myrSido, setMyrSido] = useState<String>("");
+	const [myrSigungu, setMyrSigungu] = useState<String>("");
+
+	const changeMyrAddressNumber = (e: any) => {
+		let myrAddressNumber = e.target.value;
+		setMyrAddressNumber(myrAddressNumber);
+	}
+	const changeMyrAddressLocation = (e: any) => {
+		let myrAddressLocation = e.target.value;
+		setMyrAddressLocation(myrAddressLocation);
+	}
+	const changeMyrPlace = (e: any) => {
+		let myrPlace = e.target.value;
+		setMyrPlace(myrPlace);
+	}
+	const changeMyrLongitude = (e: any) => {
+		let myrLongitude = e.target.value;
+		setMyrLongitude(myrLongitude);
+	}
+	const changeMyrLatitude = (e: any) => {
+		let myrLatitude = e.target.value;
+		setMyrLatitude(myrLatitude);
+	}
+	const changeMyrSido = (e: any) => {
+		let myrSido = e.target.value;
+		setMyrSido(myrSido);
+	}
+	const changeMyrSigungu = (e: any) => {
+		let myrSigungu = e.target.value;
+		setMyrSigungu(myrSigungu);
+	}
+
 	const clickCreateMoyeora = (e: any) => {
-		let sendData: createMoyeoraType = {
-			myrTitle: ""
-			, myrTags: ""
-			, myrMainImg: ""
-			, myrMaxMember: ""
-			, myrDate: ""
+		let moyeoraDto: moyeoraDto = {
+			myrTitle: myrTitle
+			, myrTags: myrTags
+			, myrMaxMember: myrMaxMember
+			// , myrMainImg: ""
+			// , subCategorySeq: 0
+		}
+		let moyeoraInfoDto: moyeoraInfoDto = {
+			myrIntroduce: myrIntroduce
+			, myrOwnerIntroduce: myrOwnerIntroduce
+			, myrGenderYn: myrGenderYn
+			, myrApprovalYn: myrApprovalYn
+			, myrMinAge: myrMinAge
+			, myrMaxAge: myrMaxAge
+			// , myrPrice: myrPrice
+			// , myrPriceInfo: myrPriceInfo
+			, myrQuestion1: myrQuestion1
+			, myrQuestion2: myrQuestion2
+			, myrQuestion3: myrQuestion3
+		}
+		let moyeoraPlaceDto: moyeoraPlaceDto = {
+			myrAddressNumber: myrAddressNumber
+			, myrAddressLocation: myrAddressLocation
+			, myrPlace: myrPlace
+			, myrLongitude: myrLongitude
+			, myrLatitude: myrLatitude
+			, myrSido: myrSido
+			, myrSigungu: myrSigungu
+		}
+
+		let sendData = {
+			moyeoraDto
+			, moyeoraInfoDto
+			, moyeoraPlaceDto
 		};
-		authAxios.post("/api/moyeora/create-moyeora", sendData).then((res) => {
+		console.log("cookies =>", cookies)
+		console.log("setCookie =>", setCookie)
+		console.log("removeCookie =>", removeCookie)
+		console.log("sendData 1 =>", sendData)
+		authAxios.post("/api/user/moyeora/create-moyeora", sendData).then((res) => {
 			if (authException(res, [cookies, setCookie, removeCookie])) {
-				e.target.form.content.value = "";
+				// e.target.form.content.value = "";
 			}
+		console.log("sendData 2 =>", sendData)
 		}).catch(()=>alert('로그인후 이용가능합니다.'))
 	}
 
@@ -58,6 +221,7 @@ const CreateMoyeora = () => {
 						<Form.Control
 							placeholder="모여라 이름을 입력해주세요 !"
 							aria-describedby="inputGroup-sizing-sm"
+							onKeyUp={changeMyrTitle}
 						/>
 					</InputGroup>
 				</div>
@@ -86,6 +250,7 @@ const CreateMoyeora = () => {
 						<Form.Control
 							placeholder="태그를 입력해주세요 !"
 							aria-describedby="inputGroup-sizing-sm"
+							onKeyUp={changeMyrTags}
 						/>
 					</InputGroup>
 					<div className='title_introduce'>
@@ -118,6 +283,7 @@ const CreateMoyeora = () => {
 							as="textarea"
 							placeholder="Leave a comment here"
 							style={{ height: '150px' }}
+							onKeyUp={changeMyrIntroduce}
 						/>
 					</FloatingLabel>
 				</div>
@@ -131,6 +297,7 @@ const CreateMoyeora = () => {
 							as="textarea"
 							placeholder="Leave a comment here"
 							style={{ height: '150px' }}
+							onKeyUp={changeMyrOwnerIntroduce}
 						/>
 					</FloatingLabel>
 				</div>
@@ -141,14 +308,18 @@ const CreateMoyeora = () => {
 				<div className='createMoyeora_notification'>
 					<div className='gender'>
 						<Form>
-							<Form.Check inline type="radio" aria-label="radio 1" label="성별 무관" />
-							<Form.Check inline type="radio" aria-label="radio 1" label="남/여" />
+							{/* <Form.Check inline type="radio" aria-label="radio 1" label="성별 무관" /> */}
+							{/* <Form.Check inline type="radio" aria-label="radio 1" label="남/여" /> */}
+							<Form.Check inline type="radio" aria-label="radio 1" label="성별 무관" onKeyUp={changeMyrGenderYn}/>
+							<Form.Check inline type="radio" aria-label="radio 1" label="남/여" onKeyUp={changeMyrGenderYn}/>
 						</Form>
 					</div>
 					<div className='type'>
 						<Form>
-							<Form.Check inline type="radio" aria-label="radio 1" label="선착순" />
-							<Form.Check inline type="radio" aria-label="radio 1" label="승인제" />
+							{/* <Form.Check inline type="radio" aria-label="radio 1" label="선착순" />
+							<Form.Check inline type="radio" aria-label="radio 1" label="승인제" /> */}
+							<Form.Check inline type="radio" aria-label="radio 1" label="선착순" onKeyUp={changeMyrApprovalYn}/>
+							<Form.Check inline type="radio" aria-label="radio 1" label="승인제" onKeyUp={changeMyrApprovalYn}/>
 						</Form>
 					</div>
 
@@ -180,11 +351,12 @@ const CreateMoyeora = () => {
 							<Form.Control
 								placeholder="인원을 입력해주세요 !"
 								aria-describedby="inputGroup-sizing-sm"
+								onKeyUp={changeMyrMaxMember}
 							/>
 						</InputGroup>
 					</div>
 
-					{/* 나이 제한 */}
+					{/* 나이 제한, changeMyrMinAge, changeMyrPrice */}
 					<br/>
 					<div className='age_type'>
 						<InputGroup className="mb-3" size="sm">
@@ -205,6 +377,7 @@ const CreateMoyeora = () => {
 						</InputGroup>
 					</div>
 
+					{/* 지도 API 사용하여 어떻게 나눠야되는지 고민 */}
 					<div className='place'>
 						<InputGroup size="sm">
 							<Form.Control
@@ -232,6 +405,7 @@ const CreateMoyeora = () => {
 					</div>
 				</div>
 
+				{/* changeMyrQuestion1, changeMyrQuestion2, changeMyrQuestion3 */}
 				<div className='title'>
 					질문 사항
 				</div>
@@ -240,6 +414,7 @@ const CreateMoyeora = () => {
 						<Form.Control
 							placeholder="질문을 입력해주세요 !"
 							aria-describedby="inputGroup-sizing-sm"
+							onKeyUp={changeMyrQuestion1}
 						/>
 					</InputGroup>
 					<br/>
@@ -247,7 +422,7 @@ const CreateMoyeora = () => {
 				</div>
 
 				<div className='createMoyeora_save'>
-					<Button variant="outline-dark" size="lg">
+					<Button variant="outline-dark" size="lg" onClick={clickCreateMoyeora}>
 						모임 생성
 					</Button>
 				</div>
