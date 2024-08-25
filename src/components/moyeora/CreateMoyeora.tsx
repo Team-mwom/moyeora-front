@@ -21,13 +21,12 @@ interface moyeoraDto {
 
 interface moyeoraInfoDto {
 	myrIntroduce: String;
+	myrOwnerName: String;
 	myrOwnerIntroduce: String;
 	myrGenderYn: String;
 	myrApprovalYn: String;
 	myrMinAge: Number;
 	myrMaxAge: Number;
-	// myrPrice: String;
-	// myrPriceInfo: String;
 	myrQuestion1: String;
 	myrQuestion2: String;
 	myrQuestion3: String;
@@ -67,13 +66,12 @@ const CreateMoyeora = () => {
 
 	// moyeoraInfoDto
 	const [myrIntroduce, setMyrIntroduce] = useState<String>("");
+	const [myrOwnerName, setMyrOwnerName] = useState<String>("");
 	const [myrOwnerIntroduce, setMyrOwnerIntroduce] = useState<String>("");
 	const [myrGenderYn, setMyrGenderYn] = useState<String>("");
 	const [myrApprovalYn, setMyrApprovalYn] = useState<String>("");
 	const [myrMinAge, setMyrMinAge] = useState<Number>(0);
 	const [myrMaxAge, setMyrMaxAge] = useState<Number>(0);
-	// const [myrPrice, setMyrPrice] = useState<String>("");
-	// const [myrPriceInfo, setMyrPriceInfo] = useState<String>("");
 	const [myrQuestion1, setMyrQuestion1] = useState<String>("");
 	const [myrQuestion2, setMyrQuestion2] = useState<String>("");
 	const [myrQuestion3, setMyrQuestion3] = useState<String>("");
@@ -81,6 +79,10 @@ const CreateMoyeora = () => {
 	const changeMyrIntroduce = (e: any) => {
 		let myrIntroduce = e.target.value;
 		setMyrIntroduce(myrIntroduce);
+	}
+	const changeMyrOwnerName = (e: any) => {
+		let myrOwnerName = e.target.value;
+		setMyrOwnerName(myrOwnerName);
 	}
 	const changeMyrOwnerIntroduce = (e: any) => {
 		let myrOwnerIntroduce = e.target.value;
@@ -102,14 +104,6 @@ const CreateMoyeora = () => {
 		let myrMaxAge = e.target.value;
 		setMyrMaxAge(myrMaxAge);
 	}
-	// const changeMyrPrice = (e: any) => {
-	// 	let myrPrice = e.target.value;
-	// 	setMyrPrice(myrPrice);
-	// }
-	// const changeMyrPriceInfo = (e: any) => {
-	// 	let myrPriceInfo = e.target.value;
-	// 	setMyrPriceInfo(myrPriceInfo);
-	// }
 	const changeMyrQuestion1 = (e: any) => {
 		let myrQuestion1 = e.target.value;
 		setMyrQuestion1(myrQuestion1);
@@ -171,13 +165,12 @@ const CreateMoyeora = () => {
 		}
 		let moyeoraInfoDto: moyeoraInfoDto = {
 			myrIntroduce: myrIntroduce
+			, myrOwnerName : myrOwnerName
 			, myrOwnerIntroduce: myrOwnerIntroduce
 			, myrGenderYn: myrGenderYn
 			, myrApprovalYn: myrApprovalYn
 			, myrMinAge: myrMinAge
 			, myrMaxAge: myrMaxAge
-			// , myrPrice: myrPrice
-			// , myrPriceInfo: myrPriceInfo
 			, myrQuestion1: myrQuestion1
 			, myrQuestion2: myrQuestion2
 			, myrQuestion3: myrQuestion3
@@ -275,6 +268,7 @@ const CreateMoyeora = () => {
 						<Form.Control
 							placeholder="모임 대장 이름을 입력해주세요 !"
 							aria-describedby="inputGroup-sizing-sm"
+							onKeyUp={changeMyrOwnerName}
 						/>
 					</InputGroup>
 					<br />
