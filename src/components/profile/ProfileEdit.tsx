@@ -57,7 +57,6 @@ const ProfileEdit = () => {
 			authAxios.post('/api/user/isFollow', [param.nickName]).then((res) => {
 				if (authException(res, [cookies, setCookie, removeCookie])) {
 					setFollowed(res.data as boolean);
-					
 				}
 			}).catch(() => { alert('follow 정보 오류'); })
 		}
