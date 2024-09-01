@@ -312,7 +312,7 @@ const CreateMoyeora = () => {
 						/>
 					</InputGroup>
 					<br />
-					<FloatingLabel controlId="floatingTextarea2" label="멤버에게 자신을 소개해주세요 !">
+					<FloatingLabel controlId="floatingTextarea2" style={{zIndex:0}} label="멤버에게 자신을 소개해주세요 !">
 						<Form.Control
 							as="textarea"
 							placeholder="Leave a comment here"
@@ -326,7 +326,7 @@ const CreateMoyeora = () => {
 					모임 소개
 				</div>
 				<div className='createMoyeora_moyeoraIntroduce'>
-					<FloatingLabel controlId="floatingTextarea2" label="모임을 소개해주세요 !">
+					<FloatingLabel controlId="floatingTextarea2" style={{zIndex:0}} label="모임을 소개해주세요 !">
 						<Form.Control
 							as="textarea"
 							placeholder="Leave a comment here"
@@ -420,7 +420,7 @@ const CreateMoyeora = () => {
 								aria-describedby="basic-addon2"
 								value={enroll_company.code}
 							/>
-							<Button variant="outline-secondary" id="button-addon2" onClick={handleComplete}>
+							<Button variant="outline-secondary" id="button-addon2" style={{zIndex:0}} onClick={handleComplete}>
 								검색
 							</Button>
 						</InputGroup>
