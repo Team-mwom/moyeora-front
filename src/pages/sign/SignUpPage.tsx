@@ -11,7 +11,7 @@ import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import { authAxios } from 'utils/auth/authAxios';
-
+import Modal from "react-modal";
 
 interface Data {
 	name: String,
@@ -53,6 +53,7 @@ const SignUpPage = () => {
 		{ name: false, nickName: false, email: false ,authNumber:false}
 	const regex = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}');//메일 정규 표현식
 	let authNumber = "";
+
 	//팝업관련
 	const [enroll_company, setEnroll_company] = useState({//주소데이터
 	  code:'',
@@ -62,6 +63,21 @@ const SignUpPage = () => {
 	const handleComplete = (data:any) => { 
 			setPopup(!popup);
 	}
+	const customStyles = {
+    overlay: {
+      backgroundColor: "rgba(0, 0, 0, 0.5)"
+    }
+    , content: {
+      width: "750px"
+      , height: "510px"
+      , margin: "auto"
+      , borderRadius: "4px"
+      , boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)"
+			, padding: "25px"
+		
+    }
+	}
+	//
 
 	const sendSMS = useCallback((e: any) => {//인증번호를 만들어서 문자로 보냅니다.
 		var phone = "" + data.memberInfoEntity.phoneFirst + data.memberInfoEntity.phoneMiddle + data.memberInfoEntity.phoneLast;
@@ -265,7 +281,7 @@ const SignUpPage = () => {
 								aria-describedby="inputGroup-sizing-sm"
 								onChange={onChangeNickName}
 							/>
-							<Button variant="dark" onClick={checkNickName}>중복확인</Button>
+							<Button variant="outline-dark" onClick={checkNickName} style={{zIndex:0}}>중복확인</Button>
 						</InputGroup>
 						<InputGroup size="sm" className="mb-3">
 							<InputGroup.Text id="inputGroup-sizing-sm">이메일</InputGroup.Text>
@@ -297,7 +313,7 @@ const SignUpPage = () => {
 								aria-describedby="inputGroup-sizing-sm"
 								onChange={onChangePhone3}
 							/>
-							<Button className='phone' variant="dark" onClick={sendSMS}>인증번호 전송</Button>
+							<Button className='phone' variant="outline-dark" onClick={sendSMS} style={{zIndex:0}}>인증번호 전송</Button>
 						</InputGroup>
 						<InputGroup size="sm" className="mb-3">
 							<InputGroup.Text id="inputGroup-sizing-sm">인증번호</InputGroup.Text>	
@@ -307,7 +323,7 @@ const SignUpPage = () => {
 								aria-describedby="inputGroup-sizing-sm"
 								name = "authNumber"
 							/>
-							<Button className='phone' variant="dark" onClick={checkAuthNumber}>인증번호 확인</Button>
+							<Button className='phone' variant="outline-dark" onClick={checkAuthNumber} style={{zIndex:0}}>인증번호 확인</Button>
 						</InputGroup>
 						<InputGroup size="sm" className="mb-3">
 							<InputGroup.Text id="inputGroup-sizing-sm">우편번호</InputGroup.Text>
@@ -326,7 +342,8 @@ const SignUpPage = () => {
 								value={enroll_company.addr}
 								disabled
 							/>
-							<Button variant="dark" onClick={handleComplete}>주소찾기</Button>
+							<Button className='btn' variant="outline-dark" onClick={handleComplete}  style={{zIndex:0}}>주소찾기</Button>
+							
 						</InputGroup>
 							<InputGroup size="sm" className="mb-3">
 							<InputGroup.Text id="inputGroup-sizing-sm">상세주소</InputGroup.Text>
@@ -339,12 +356,16 @@ const SignUpPage = () => {
 							
 						</InputGroup>
 
-					{popup && <Post company={enroll_company} setcompany={setEnroll_company}></Post>}
+						
+				<Modal isOpen={popup} style={customStyles}>
+							<Post company={enroll_company} setcompany={setEnroll_company} setPopup={setPopup}></Post>
+				</Modal>
+			
 						
 					</div>
 				</div>
 				<div className='signUp_button_container'>
-					<Button variant="dark" onClick={check}>회원가입</Button>
+					<Button variant="outline-dark" onClick={check} style={{zIndex:0}}>회원가입</Button>
 				
 				</div>
 			</form>
