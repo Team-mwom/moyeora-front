@@ -18,6 +18,10 @@ import { useCookies } from 'react-cookie';
 import { authAxios } from 'utils/auth/authAxios';
 import { authException } from 'utils/auth/authException';
 import ProfileImgNick from 'components/common/profile/ProfileImgNick';
+import {format, register } from 'timeago.js' //임포트하기 register 한국어 선택
+import koLocale from 'timeago.js/lib/lang/ko' //한국어 선택
+register('ko', koLocale);
+
 interface ReviewType {
 	ownerNickName: String;
 	writerNickName: String;
@@ -160,7 +164,7 @@ const VisitorBook = () => {
 											/>
 										</div>
 										<span className='visitorBook_stars'>{star.map((stars,idx) => {if(idx<rowData.star) return stars })}</span>
-										<span className='visitorBook_date'>{rowData.date}</span>
+										<span className='visitorBook_date'>{format(rowData.date+"", 'ko')}</span>
 										<hr className='visitorBook_hr' />
 										{rowData.content}
 									</div>
@@ -169,8 +173,10 @@ const VisitorBook = () => {
 								</div>
 							)
 						)
-						
-						}
+	
+					}
+					{review?.length == 0 ? <div>작성된 방명록이 없습니다.</div> : ""}
+					
 						<div className='visitorBook_list_button'>
 						<Pagination>{pageNums}</Pagination>
 						</div>
