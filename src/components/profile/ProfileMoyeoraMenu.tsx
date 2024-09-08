@@ -30,7 +30,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 const ProfileMoyeoraMenu = () => {
 
 	const moyeoraMenu:any[] = [
-    { name: '참여중인 모여라', value: '1' ,content:<ActiveMoyeora/>},
+    { name: '참여한 모여라', value: '1' ,content:<ActiveMoyeora/>},
     { name: '좋아요 모여라', value: '2' ,content:<LikeMoyeora/>},
     { name: '내 모여라', value: '3', content: <MyMoyeora /> },
     { name: '캘린더', value: '4', content: <Calendar /> },
