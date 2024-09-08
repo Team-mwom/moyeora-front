@@ -9,6 +9,7 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Button from 'react-bootstrap/Button';
+import Modal from "react-modal";
 
 import 'styles/moyeora/createMoyeora.css'
 
@@ -94,6 +95,21 @@ const CreateMoyeora = () => {
 	const onChangeAddressDetail = useCallback((e: any) => { 
 		moyeoraPlaceDto.myrPlace = e.target.value;
 	}, []);
+
+	const customStyles = {
+    overlay: {
+      backgroundColor: "rgba(0, 0, 0, 0.5)"
+    }
+    , content: {
+      width: "700px"
+      , height: "510px"
+      , margin: "auto"
+      , borderRadius: "4px"
+      , boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)"
+			, padding: "25px"
+		
+    }
+	}
 	// end
 
 	// moyeoraDto
@@ -440,6 +456,10 @@ const CreateMoyeora = () => {
 							/>
 						</InputGroup>
 
+						<Modal isOpen={popup} style={customStyles}>
+							<Post company={enroll_company} setcompany={setEnroll_company} setPopup={setPopup}></Post>
+						</Modal>
+
 					</div>
 				</div>
 
@@ -465,9 +485,6 @@ const CreateMoyeora = () => {
 					</Button>
 				</div>
 			</div>
-
-			{popup && <Post company={enroll_company} setcompany={setEnroll_company}></Post>}
-
 		</div>
 	);
 };
