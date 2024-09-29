@@ -58,7 +58,7 @@ const ProfileEdit = () => {
 				if (authException(res, [cookies, setCookie, removeCookie])) {
 					setFollowed(res.data as boolean);
 				}
-			}).catch(() => { alert('follow 정보 오류'); })
+			}).catch(() => { })
 		}
 	}
 	const countfollower = () => {
@@ -66,7 +66,7 @@ const ProfileEdit = () => {
 			if (authException(res, [cookies, setCookie, removeCookie])) {
 				setFollowState({ follower: res.data.followers, following: res.data.followings });
 			}
-		}).catch(() => { alert('follow 정보 오류'); })
+		}).catch(() => { })
 		
 	}
 	
