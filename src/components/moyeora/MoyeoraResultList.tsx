@@ -11,9 +11,9 @@ interface searchResult {
   myrTitle: string;
   myrTags: string;
   myrMaxMember: number;
+  myrMainImg: string;
   myrPlace: string;
   myrDate: string;
-  formula: number;
   myrMemberCnt: number; 
 }
 
@@ -29,7 +29,7 @@ const MoyeoraResultList: React.FC<MoyeoraResultListProps> = ({ items,onLoadMore,
 		<div className='moyeoraCommon_full'>
       <div className='moyeoraCommon_full_container'>
         <div className='moyeoraCommon_title'>
-          오늘의 모여라 !
+          
         </div>
         <div className='moyeoraCommon_inner'>
           
@@ -40,7 +40,7 @@ const MoyeoraResultList: React.FC<MoyeoraResultListProps> = ({ items,onLoadMore,
                 <tbody>
                   <tr className='moyeoraCommon_table_tr'>
                     <td className='moyeoraCommon_table_td_pircture' rowSpan={5}>
-                      사진
+                      <span>{item.myrMainImg}</span>
                     </td>
                     <td className='moyeoraCommon_table_category'>
                       <div className='category'>
