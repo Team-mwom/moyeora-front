@@ -7,6 +7,8 @@ import { BsPeopleFill } from "react-icons/bs";
 import { IoMdTime } from "react-icons/io";
 import { MdOutlinePlace } from "react-icons/md";
 
+import MoyeoraMainImg from "./MoyeoraMainImg"
+
 interface MoyeoraCardProps {
   moyeora: Moyeora;
 }
@@ -20,12 +22,10 @@ const MoyeoraCard: React.FC<MoyeoraCardProps> = ({ moyeora }) => {
 
   return (
     <div className='moyeoraCommon' onClick={handleCardClick}>
+      <MoyeoraMainImg img={moyeora.myrMainImg}/>
       <table className='moyeoraCommon_table'>
-        <tbody>
+   
           <tr className='moyeoraCommon_table_tr'>
-            <td className='moyeoraCommon_table_td_pircture' rowSpan={5}>
-              {moyeora.myrMainImg}
-            </td>
             <td className='moyeoraCommon_table_category'>
               <div className='category'><span>{moyeora.categoryName}</span></div>
               <div className='category'><span>{moyeora.subCategoryName}</span></div>
@@ -54,7 +54,7 @@ const MoyeoraCard: React.FC<MoyeoraCardProps> = ({ moyeora }) => {
               <span>{moyeora.myrDate}</span>
             </td>
           </tr>
-        </tbody>
+    
       </table>
     </div>
   );
