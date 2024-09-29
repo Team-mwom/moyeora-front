@@ -7,6 +7,7 @@ import { Moyeora } from 'interface/MoyeoraInterface';
 import 'styles/moyeora/commonMoyeora.css'
 import MoyeoraCard from './MoyeoraCard';
 
+
 // interface searchResult {
 //   myrSeq: number;
 //   myrTitle: string;
@@ -17,6 +18,7 @@ import MoyeoraCard from './MoyeoraCard';
 //   formula: number;
 //   myrMemberCnt: number; 
 // }
+
 
 interface MoyeoraResultListProps {
   items: Moyeora[];
@@ -30,13 +32,17 @@ const MoyeoraResultList: React.FC<MoyeoraResultListProps> = ({ items,onLoadMore,
 		<div className='moyeoraCommon_full'>
       <div className='moyeoraCommon_full_container'>
         <div className='moyeoraCommon_title'>
+
           검색당함
+
         </div>
         <div className='moyeoraCommon_inner'>
           
           {/* for 문 돌려야 됨 */}
           {items.map((item,index) => (          
+
            <MoyeoraCard key={index} moyeora={item} />
+
           ))}
         </div>
         {hasMore && (

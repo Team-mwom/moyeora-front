@@ -1,83 +1,184 @@
-
-.search_container .search_input form {
-  margin: 20px 0 100px 0;
-  text-align: center;
-}
-.search_container .search_input form input {
-  padding-left: 50px;
-  border-radius: 30px;
-  font-size: 25px;
-  height: 50px;
-  width: 60%;
-  border: 0;
-  outline: 3px solid #e96c7c;
-}
-
-.search_container .search_input button {
-  margin-left: 20px;
-  padding : 20px 15px 15px 15px;
-  cursor: pointer;
-  outline: 3px solid #e96c7c;
-  border: 0;
-  border-radius: 80px;
-  background-color: white;
-
-}
-
-.search_container .search_input input::placeholder {
-  color: #aaa;
-}
-
-.searchResult_container {
-  height: 500px; 
-  overflow: auto;
-  border: 1px solid black;
-}
-
-.searchBox {
-  margin:0 auto;
-  border: 1px solid blue;
+.filter_tags {
   display: flex;
-  width: 65%;
-  min-width: 900px;
-}
-
-.search_moyeora {
-  border: 1px solid red;
-  padding: 30px;
-  margin: 10px;
-  flex: 1;
-}
-
-.search_right > ul > li{
-  margin: 10px 0px;
-}
-
-.search_right > ul > li:nth-child(1) > span{
-  padding: 2px 10px;
-  border: 1px solid rgb(202, 202, 202);
-  border-radius: 15px;
-  font-size: 12px;
-}
-
-.search_right > ul > li:nth-child(1){
+  flex-wrap: wrap;
   margin-bottom: 10px;
+  margin-top: 5px;
 }
 
-.search_right > ul > li:nth-child(2){
-  font-size: 20px;
+.filter_tag {
+  background-color: #f0f0f0;
+  padding: 5px 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.filter_tag button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-left: 5px;
+  color: #888;
+}
+
+.search_container_div{
+  position: sticky;
+  top: 0px;
+}
+.search_input_wrapper {
+  position: relative;
+}
+
+.search_form {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border: 2px solid #e96c7c;
+  border-radius: 30px;
+  overflow: hidden;
+}
+
+.detailed_search_btn {
+  background: none;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #e96c7c;
+}
+
+.search_form input {
+  flex-grow: 1;
+  border: none;
+  padding: 15px;
+  font-size: 16px;
+  outline: none;
+}
+
+.search_submit_btn {
+  background: none;
+  color: #e96c7c;
+  border: none;
+  padding: 15px 25px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: color 0.3s;
+}
+
+.search_submit_btn:hover {
+  color: #d55c6c;
+}
+
+.required {
+  color: #e96c7c;
+  margin-left: 2px;
+}
+
+.filter-select:disabled {
+  background-color: #f0f0f0;
+  cursor: not-allowed;
+}
+
+.apply-button.disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.apply-button.disabled:hover {
+  background-color: #cccccc;
+}
+
+
+
+
+/* 상세검색 부분 */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content-div {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 500px;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.modal-title {
+  font-size: 1.5rem;
   font-weight: bold;
+  color: #333;
 }
 
-.search_right{
-  margin-left: 20px;
-  display: inline-block;
-}
-.search_left{
-  display: inline-block;
+.close-button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #666;
 }
 
-.myrImg{
-  width: 100px;
-  height: 100px;
+.filter-group {
+  margin-bottom: 1.5rem;
 }
+
+.filter-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #555;
+}
+
+.filter-select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  color: #333;
+  background-color: #f9f9f9;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.filter-select:focus {
+  outline: none;
+  border-color: #e96c7c;
+  box-shadow: 0 0 0 2px rgba(233, 108, 124, 0.2);
+}
+
+.apply-button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #e96c7c;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.apply-button:hover {
+  background-color: #d55c6c;
+}
+
