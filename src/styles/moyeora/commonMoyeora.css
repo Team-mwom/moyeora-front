@@ -112,14 +112,20 @@
 .moyeoraCommon_moreRead_container {
   display: block;
   margin: 0.5%;
-  padding: 0.5%;
+  padding: 0.5%; 
   outline: 3px solid blue;
+  /*text-align: center;*/
 }
+/*.moyeoraCommon_moreRead_container button{
+  width: 100px;
+  text-align: center;
+  background-color: white;
+}*/
 
 .moyeoraCommon_moreRead {
   text-align: center;
   box-sizing: border-box;
-  margin: 1% 45%;
+  margin: 10px 0px;
   cursor: pointer;
 
   outline: 3px solid red;

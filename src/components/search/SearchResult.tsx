@@ -15,9 +15,9 @@ interface searchResult {
   myrTitle: string;
   myrTags: string;
   myrMaxMember: number;
+  myrMainImg: string;
   myrPlace: string;
   myrDate: string;
-  formula: number;
   myrMemberCnt: number;
 }
 

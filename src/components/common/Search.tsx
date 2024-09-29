@@ -13,6 +13,7 @@ export interface FilterOption {
 	sido: string;
 	sigungu: string;
 	category: string;
+	subcategory: string;
 }
 
 const Search = () => {
@@ -22,6 +23,7 @@ const Search = () => {
 		sido: '',
 		sigungu: '',
 		category: '',
+		subcategory: ''
 	}); // 필터 옵션 상태값
 	const params = useParams();
 
@@ -50,7 +52,13 @@ const Search = () => {
 
 	// 필터 옵션 변경 처리 함수
 	const handleFilterChange = (key: keyof FilterOption, value: string) => {
-    setFilterOptions(prev => ({...prev, [key]: value}));
+    setFilterOptions(prev => {
+      const newOptions = {...prev, [key]: value};
+      if (key === 'sido') {
+        newOptions.sigungu = '';
+      }
+      return newOptions;
+    });
   }
 
 	// 필터 제거 함수
@@ -75,7 +83,7 @@ const Search = () => {
 	},[params.word]) // 수정
 
 	return (
-		<div className='search_container'>
+		<div className='search_container_div'>
 			{/* 선택된 필터 태그 표시 */}
 			<div className='filter_tags'>
 				{filterOptions.sido && (

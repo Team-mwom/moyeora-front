@@ -1,10 +1,25 @@
 // SearchModal.tsx
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
+import axios from 'axios';
 
 interface FilterOption {
   sido: string;
-  sigungu: string;
-  category: string;
+	sigungu: string;
+	category: string;
+	subcategory: string;
+}
+
+interface category{
+  categorySeq: number;
+  categoryName: string;
+  categoryClassYn: string;
+}
+
+interface subCategory{
+  subCategorySeq: number;
+  categorySeq: number;
+  subCategoryName: string;
+  categoryEntity: category;
 }
 
 interface SearchModalProps {
@@ -17,23 +32,22 @@ interface SearchModalProps {
 const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, handleFilterChange, currentFilters  }) => {
   const [selectedSido, setSelectedSido] = useState(currentFilters.sido);
   const [selectedSigungu, setSelectedSigungu] = useState(currentFilters.sigungu);
-  const [selectedCategory, setSelectedCategory] = useState(currentFilters.category);
+  const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
+  const [selectedSubCategory, setSelectedSubCategory] = useState(currentFilters.subcategory);
+  
+  const [categories, setCategories] = useState<category[]>([]);
+  const [subCategories, setSubCategories] = useState<subCategory[]>([]);
+  const [sigungus, setSigungus] = useState<string[]>([]);
 
-  useEffect(() => {
-    if (isOpen) {
-      setSelectedSido(currentFilters.sido);
-      setSelectedSigungu(currentFilters.sigungu);
-      setSelectedCategory(currentFilters.category);
-    }
-  }, [isOpen, currentFilters]);
-
-  if (!isOpen) return null;
+  //const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
+  const [filteredSubCategories, setFilteredSubCategories] = useState<subCategory[]>([]);
 
   const handleSidoChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value;
     setSelectedSido(value);
     setSelectedSigungu(''); // 시도가 변경되면 시군구 초기화
     handleFilterChange('sido', value);
+    handleFilterChange('sigungu', '');
   };
 
   const handleSigunguChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -42,13 +56,80 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, handleFilter
     handleFilterChange('sigungu', value);
   };
 
-  const handleApply = () => {
-    if (selectedSido) {
-      onClose();
-    } else {
-      alert('시도를 선택해주세요.');
-    }
+  // 카테고리 선택 처리 함수
+  const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const categorySeq = parseInt(e.target.value);
+    setSelectedCategory(categorySeq);
+    setSelectedSubCategory(''); // 카테고리가 변경되면 서브 카테고리 선택 초기화
+
+    // 선택된 카테고리의 이름을 찾아 필터에 적용
+    const selectedCategoryName = categories.find(cat => cat.categorySeq === categorySeq)?.categoryName || '';
+    handleFilterChange('category', selectedCategoryName);
   };
+
+  // 서브 카테고리 선택 처리 함수
+  const handleSubCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const value = e.target.value;
+    setSelectedSubCategory(value);
+    handleFilterChange('subcategory', value);
+  };
+
+  
+
+  const searchModalData = useCallback(async () => {
+    if (!isOpen) return; // 모달이 열려있지 않으면 데이터를 가져오지 않음
+
+    try {
+      const response = await axios.get('/api/all/main/selectSearchModalData/');
+      const data = response.data;
+
+      setCategories(data.categories || []);
+      setSubCategories(data.subCategories || []);
+      setSigungus(data.sigungus || []);
+
+      //console.log("API 응답 로깅 :: " + response.data); // API 응답 로깅
+      //const newItems = response.data.content.map(formatItemDate);
+      //setItems(prevItems => [...prevItems, ...newItems]);
+
+      // 더 이상 불러올 페이지가 없으면 hasMore를 false로 설정
+      //setHasMore(page < response.data.totalPages - 1);
+    } catch (error) {
+      console.error('Failed to fetch items', error);
+    } finally {
+      //setLoading(false);
+    }
+  }, [isOpen]);
+
+  useEffect(() => {
+    searchModalData();
+  }, [searchModalData]);
+
+  useEffect( () => {
+      //searchModalData();
+      setSelectedSido(currentFilters.sido);
+      setSelectedSigungu(currentFilters.sigungu);
+      setSelectedSubCategory(currentFilters.subcategory);
+
+      // 현재 필터에서 카테고리에 해당하는 categorySeq 찾기
+      const currentCategory = categories.find(cat => cat.categoryName === currentFilters.category);
+      setSelectedCategory(currentCategory ? currentCategory.categorySeq : null);
+  }, [currentFilters, categories]);
+
+  // 카테고리가 변경될 때마다 서브 카테고리 필터링함
+  useEffect(() => {
+    if (selectedCategory !== null && subCategories.length > 0) {
+      console.log('subCategories :: ', JSON.stringify(subCategories, null, 2));
+
+      const filtered = subCategories.filter(sub => sub.categoryEntity.categorySeq === selectedCategory);
+      console.log("filtered :: " + filtered);
+      
+      setFilteredSubCategories(filtered);
+    } else {
+      setFilteredSubCategories([]);
+    }
+  }, [selectedCategory, subCategories]);
+  
+  if (!isOpen) return null;
 
   return (
     <div className='modal-overlay'>
@@ -107,25 +188,36 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, handleFilter
         </div>
 
         {/* 카테고리 선택 */}
-
         <div className="filter-group">
           <label className="filter-label" htmlFor="category-select">카테고리</label>
           <select
             id="category-select"
             className="filter-select"
-            onChange={(e) => {
-              setSelectedCategory(e.target.value);
-              handleFilterChange('category', e.target.value);
-            }}
-            value={selectedCategory}
-            //disabled={!selectedSido}
+            onChange={handleCategoryChange}
+            value={selectedCategory || ''}
           >
             <option value="">카테고리 선택</option>
-            <option value="음식점">음식점</option>
-            <option value="카페">카페</option>
-            <option value="쇼핑">쇼핑</option>
-            <option value="문화시설">문화시설</option>
-            <option value="숙박">숙박</option>
+            {categories.map((category) => (
+              <option key={category.categorySeq} value={category.categorySeq}>
+                {category.categoryName}
+              </option>
+            ))}
+          </select>
+
+          {/* 서브카테고리 선택 */}
+          <select
+            id="subCategory-select"
+            className="filter-select"
+            onChange={handleSubCategoryChange}
+            value={selectedSubCategory}
+            disabled={!selectedCategory} // 카테고리가 선택되지 않으면 비활성화
+          >
+            <option value="">서브카테고리 선택</option>
+            {filteredSubCategories.map((subCategory) => (
+              <option key={subCategory.subCategorySeq} value={subCategory.subCategoryName}>
+                {subCategory.subCategoryName}
+              </option>
+            ))}
           </select>
         </div>
 
