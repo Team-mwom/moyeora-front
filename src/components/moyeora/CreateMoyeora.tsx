@@ -18,7 +18,7 @@ interface moyeoraDto {
 	myrTags: String;
 	myrMaxMember: Number;
 	// myrMainImg: String;
-	// subCategorySeq: Number;
+	subCategorySeq: Number;
 }
 
 interface moyeoraInfoDto {
@@ -51,7 +51,7 @@ const CreateMoyeora = () => {
 		, myrTags: ""
 		, myrMaxMember: 0
 		// , myrMainImg: ""
-		// , subCategorySeq: 0
+		, subCategorySeq: 1
 	}
 	let moyeoraInfoDto: moyeoraInfoDto = {
 		myrIntroduce: ""
@@ -251,6 +251,10 @@ const CreateMoyeora = () => {
 			, moyeoraPlaceDto
 		};
 
+		console.log("data ===>", sendData)
+		console.log("data ===>", sendData)
+		console.log("data ===>", sendData)
+		
 		authAxios.post("/api/user/moyeora/create-moyeora", sendData).then((res) => {
 			if (authException(res, [cookies, setCookie, removeCookie])) {
 
