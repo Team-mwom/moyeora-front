@@ -36,38 +36,40 @@
   font-size: 15px;
   width: 46%;
   height: 150px;
+  outline: 1px solid black;
 
-  outline: 3px solid red;
+
 }
 
 .moyeoraCommon_table {
+  display: inline-block;
   width: 100%;
+  max-width: 70%;
   height: 100%;
-  border: 1px solid black;
-}
+  outline: 1px solid rgb(255, 0, 0);
 
-.moyeoraCommon_table_tr {
-  border: 1px solid black;
 }
-
-.moyeoraCommon_table_td_pircture {
-  width: 40%;
-  border: 1px solid black;
+.moyeoraCommon_table > tr {
+  width: 100%;
+  display: inline-block;
 }
 
 .moyeoraCommon_table_category {
   vertical-align: middle;
   padding-left:2px;
-  height: 25%;
-  border: 1px solid black;
+
 }
+
 
 .moyeoraCommon_table_category > .category{
   height: 80%;
   display: inline-block;
   border-radius: 10px;
   margin-right: 3px;
-  border: 1px solid black;
+  outline: 1px solid black;
+  padding: 2px 3px;
+  margin:3px 3px 2px 3px;
+
 }
 
 .category span {
@@ -80,28 +82,28 @@
   height: 30px;
   font-size: 20px;
   font-weight: bold;
-  border: 1px solid black;
+
 }
 
 .moyeoraCommon_table_count {
   vertical-align: middle;
   padding-left:2px;
   height: 30px;
-  border: 1px solid black;
+
 }
 
 .moyeoraCommon_table_date {
   vertical-align: middle;
   padding-left:2px;
   height: 30px;
-  border: 1px solid black;
+
 }
 
 .moyeoraCommon_table_place {
   vertical-align: middle;
   padding-left:2px;
   height: 30px;
-  border: 1px solid black;
+
 }
 
 .moyeoraCommon_table_icon {
@@ -112,14 +114,20 @@
 .moyeoraCommon_moreRead_container {
   display: block;
   margin: 0.5%;
-  padding: 0.5%;
+  padding: 0.5%; 
   outline: 3px solid blue;
+  /*text-align: center;*/
 }
+/*.moyeoraCommon_moreRead_container button{
+  width: 100px;
+  text-align: center;
+  background-color: white;
+}*/
 
 .moyeoraCommon_moreRead {
   text-align: center;
   box-sizing: border-box;
-  margin: 1% 45%;
+  margin: 10px 0px;
   cursor: pointer;
 
   outline: 3px solid red;

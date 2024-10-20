@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Button, FloatingLabel } from "react-bootstrap";
 import DaumPostcode from "react-daum-postcode";
 import 'styles/sign/post.css'
 
@@ -23,14 +24,22 @@ const Post = (props:any) => {
       addr: addr,
 
     })
+      
+      props.setPopup(false);
     }
 
     return (
-        <div >
-            <DaumPostcode
+        <div className="post_container">
+            <div className="post_list_div">
+                <DaumPostcode
                 className="postmodal"
                 autoClose
                 onComplete={complete} />
+            </div>
+            <div className="post_btn_div">
+                <Button className="post_close_btn" variant="dark" onClick={() => props.setPopup(false)}>닫기</Button> 
+            </div>
+            
         </div>
     );
 };

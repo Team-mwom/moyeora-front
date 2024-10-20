@@ -1,4 +1,5 @@
-import React, { useState }from 'react';
+import React, { useCallback, useState }from 'react';
+import Post from 'components/sign/Post';
 
 import { authAxios } from 'utils/auth/authAxios';
 import { authException } from 'utils/auth/authException';
@@ -8,6 +9,7 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Button from 'react-bootstrap/Button';
+import Modal from "react-modal";
 
 import 'styles/moyeora/createMoyeora.css'
 
@@ -16,7 +18,7 @@ interface moyeoraDto {
 	myrTags: String;
 	myrMaxMember: Number;
 	// myrMainImg: String;
-	// subCategorySeq: Number;
+	subCategorySeq: Number;
 }
 
 interface moyeoraInfoDto {
@@ -44,7 +46,71 @@ interface moyeoraPlaceDto {
 
 const CreateMoyeora = () => {
 
+	let moyeoraDto: moyeoraDto = {
+		myrTitle: ""
+		, myrTags: ""
+		, myrMaxMember: 0
+		// , myrMainImg: ""
+		, subCategorySeq: 1
+	}
+	let moyeoraInfoDto: moyeoraInfoDto = {
+		myrIntroduce: ""
+		, myrOwnerName : ""
+		, myrOwnerIntroduce: ""
+		, myrGenderYn: ""
+		, myrApprovalYn: ""
+		, myrMinAge: 0
+		, myrMaxAge: 0
+		, myrQuestion1: ""
+		, myrQuestion2: ""
+		, myrQuestion3: ""
+	}
+	let moyeoraPlaceDto: moyeoraPlaceDto = {
+		myrAddressNumber: ""
+		, myrAddressLocation: ""
+		, myrPlace: 0
+		, myrLongitude: 0
+		, myrLatitude: 0
+		, myrSido: ""
+		, myrSigungu: ""
+	}
+
 	const [cookies, setCookie, removeCookie] = useCookies();
+
+	/**
+	 * 다음 우편번호 서비스 API 관련
+	 */
+	// start
+	const [enroll_company, setEnroll_company] = useState({
+	  code:'',
+    addr: '',
+	});
+
+	const [popup, setPopup] = useState(false);//주소찾기 팝업
+
+	const handleComplete = (e:any) => { 
+		setPopup(!popup);
+	}
+
+	const onChangeAddressDetail = useCallback((e: any) => { 
+		moyeoraPlaceDto.myrPlace = e.target.value;
+	}, []);
+
+	const customStyles = {
+    overlay: {
+      backgroundColor: "rgba(0, 0, 0, 0.5)"
+    }
+    , content: {
+      width: "700px"
+      , height: "510px"
+      , margin: "auto"
+      , borderRadius: "4px"
+      , boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)"
+			, padding: "25px"
+		
+    }
+	}
+	// end
 
 	// moyeoraDto
 	const [myrTitle, setMyrTitle] = useState<String>("");
@@ -156,49 +222,43 @@ const CreateMoyeora = () => {
 	}
 
 	const clickCreateMoyeora = (e: any) => {
-		let moyeoraDto: moyeoraDto = {
-			myrTitle: myrTitle
-			, myrTags: myrTags
-			, myrMaxMember: myrMaxMember
-			// , myrMainImg: ""
-			// , subCategorySeq: 0
-		}
-		let moyeoraInfoDto: moyeoraInfoDto = {
-			myrIntroduce: myrIntroduce
-			, myrOwnerName : myrOwnerName
-			, myrOwnerIntroduce: myrOwnerIntroduce
-			, myrGenderYn: myrGenderYn
-			, myrApprovalYn: myrApprovalYn
-			, myrMinAge: myrMinAge
-			, myrMaxAge: myrMaxAge
-			, myrQuestion1: myrQuestion1
-			, myrQuestion2: myrQuestion2
-			, myrQuestion3: myrQuestion3
-		}
-		let moyeoraPlaceDto: moyeoraPlaceDto = {
-			myrAddressNumber: myrAddressNumber
-			, myrAddressLocation: myrAddressLocation
-			, myrPlace: myrPlace
-			, myrLongitude: myrLongitude
-			, myrLatitude: myrLatitude
-			, myrSido: myrSido
-			, myrSigungu: myrSigungu
-		}
+		moyeoraDto.myrTitle = myrTitle
+		moyeoraDto.myrTags = myrTags
+		moyeoraDto.myrMaxMember = myrMaxMember
+
+		moyeoraInfoDto.myrIntroduce = myrIntroduce
+		moyeoraInfoDto.myrOwnerName = myrOwnerName
+		moyeoraInfoDto.myrOwnerIntroduce = myrOwnerIntroduce
+		moyeoraInfoDto.myrGenderYn = myrGenderYn
+		moyeoraInfoDto.myrApprovalYn = myrApprovalYn
+		moyeoraInfoDto.myrMinAge = myrMinAge
+		moyeoraInfoDto.myrMaxAge = myrMaxAge
+		moyeoraInfoDto.myrQuestion1 = myrQuestion1
+		moyeoraInfoDto.myrQuestion2 = myrQuestion2
+		moyeoraInfoDto.myrQuestion3 = myrQuestion3
+
+		moyeoraPlaceDto.myrAddressNumber = myrAddressNumber
+		moyeoraPlaceDto.myrAddressLocation = myrAddressLocation
+		moyeoraPlaceDto.myrPlace = myrPlace
+		moyeoraPlaceDto.myrLongitude = myrLongitude
+		moyeoraPlaceDto.myrLatitude = myrLatitude
+		moyeoraPlaceDto.myrSido = myrSido
+		moyeoraPlaceDto.myrSigungu = myrSigungu
 
 		let sendData = {
 			moyeoraDto
 			, moyeoraInfoDto
 			, moyeoraPlaceDto
 		};
-		console.log("cookies =>", cookies)
-		console.log("setCookie =>", setCookie)
-		console.log("removeCookie =>", removeCookie)
-		console.log("sendData 1 =>", sendData)
+
+		console.log("data ===>", sendData)
+		console.log("data ===>", sendData)
+		console.log("data ===>", sendData)
+		
 		authAxios.post("/api/user/moyeora/create-moyeora", sendData).then((res) => {
 			if (authException(res, [cookies, setCookie, removeCookie])) {
-				// e.target.form.content.value = "";
+
 			}
-		console.log("sendData 2 =>", sendData)
 		}).catch(()=>alert('로그인후 이용가능합니다.'))
 	}
 
@@ -272,7 +332,7 @@ const CreateMoyeora = () => {
 						/>
 					</InputGroup>
 					<br />
-					<FloatingLabel controlId="floatingTextarea2" label="멤버에게 자신을 소개해주세요 !">
+					<FloatingLabel controlId="floatingTextarea2" style={{zIndex:0}} label="멤버에게 자신을 소개해주세요 !">
 						<Form.Control
 							as="textarea"
 							placeholder="Leave a comment here"
@@ -286,7 +346,7 @@ const CreateMoyeora = () => {
 					모임 소개
 				</div>
 				<div className='createMoyeora_moyeoraIntroduce'>
-					<FloatingLabel controlId="floatingTextarea2" label="모임을 소개해주세요 !">
+					<FloatingLabel controlId="floatingTextarea2" style={{zIndex:0}} label="모임을 소개해주세요 !">
 						<Form.Control
 							as="textarea"
 							placeholder="Leave a comment here"
@@ -375,11 +435,12 @@ const CreateMoyeora = () => {
 					<div className='place'>
 						<InputGroup size="sm">
 							<Form.Control
-								placeholder="주소 검색"
+								placeholder="우편번호"
 								aria-label="Recipient's username"
 								aria-describedby="basic-addon2"
+								value={enroll_company.code}
 							/>
-							<Button variant="outline-secondary" id="button-addon2">
+							<Button variant="outline-secondary" id="button-addon2" style={{zIndex:0}} onClick={handleComplete}>
 								검색
 							</Button>
 						</InputGroup>
@@ -388,14 +449,21 @@ const CreateMoyeora = () => {
 							<Form.Control
 								placeholder="기본 주소"
 								aria-describedby="inputGroup-sizing-sm"
+								value={enroll_company.addr}
 							/>
 						</InputGroup>
 						<InputGroup size="sm">
 							<Form.Control
 								placeholder="상세 주소"
 								aria-describedby="inputGroup-sizing-sm"
+								onChange={onChangeAddressDetail}
 							/>
 						</InputGroup>
+
+						<Modal isOpen={popup} style={customStyles}>
+							<Post company={enroll_company} setcompany={setEnroll_company} setPopup={setPopup}></Post>
+						</Modal>
+
 					</div>
 				</div>
 

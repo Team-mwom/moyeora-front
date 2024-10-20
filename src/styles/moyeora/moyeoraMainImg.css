@@ -1,0 +1,21 @@
+.MoyeoraMainImg_container{
+
+
+height: 100%;
+width: 30%;
+display: inline;
+position: relative;
+object-fit: cover;
+float: left;
+
+}
+.MoyeoraMainImg{
+  display:inline-block;
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+ 
+
+}

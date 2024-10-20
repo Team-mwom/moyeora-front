@@ -1,8 +1,8 @@
-.postmodal {
-  background: rgba(0, 0, 0, 0.25);
-  position: fixed;
-  left: 0;
-  top: 0;
-  height: 100%;
+.post_btn_div{
   width: 100%;
+  text-align: center;
+  margin-top: 17px;
+}
+.post_container {
+ background-color: white;
 }

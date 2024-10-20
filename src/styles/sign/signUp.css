@@ -30,5 +30,8 @@
   padding : 1%;
   font-weight: bold;
   text-align: center;
+}
 
+.btn {
+  z-Index: 0;
 }
