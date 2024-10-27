@@ -32,12 +32,16 @@ interface SearchModalProps {
 const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, handleFilterChange, currentFilters  }) => {
   const [selectedSido, setSelectedSido] = useState(currentFilters.sido);
   const [selectedSigungu, setSelectedSigungu] = useState(currentFilters.sigungu);
+  const [sigunguList, setSigunguList] = useState<string[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
   const [selectedSubCategory, setSelectedSubCategory] = useState(currentFilters.subcategory);
   
   const [categories, setCategories] = useState<category[]>([]);
   const [subCategories, setSubCategories] = useState<subCategory[]>([]);
   const [sigungus, setSigungus] = useState<string[]>([]);
+
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   //const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
   const [filteredSubCategories, setFilteredSubCategories] = useState<subCategory[]>([]);
@@ -48,6 +52,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, handleFilter
     setSelectedSigungu(''); // 시도가 변경되면 시군구 초기화
     handleFilterChange('sido', value);
     handleFilterChange('sigungu', '');
+    fetchSigunguList(value);
   };
 
   const handleSigunguChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -125,7 +130,29 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, handleFilter
     }
   }, [selectedCategory, subCategories]);
   
-  if (!isOpen) return null;
+  const fetchSigunguList = useCallback(async (sido: string) => {
+    if (!sido) return;
+    
+    setLoading(true);
+    setError(null);
+    try {
+      alert("sido :: " + sido);
+      const response = await fetch(`/api/districts/${sido}`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch sigungu list');
+      }
+      const data = await response.json();
+      setSigunguList(data);
+    } catch (error) {
+      console.error('Error fetching sigungu list:', error);
+      setError('시군구 목록을 불러오는데 실패했습니다.');
+      setSigunguList([]);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  if (!isOpen) return null;  
 
   return (
     <div className='modal-overlay'>
@@ -171,13 +198,20 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, handleFilter
             className="filter-select"
             onChange={handleSigunguChange}
             value={selectedSigungu}
-            disabled={!selectedSido}
+            disabled={!selectedSido || loading}
           >
             <option value="">선택해주세요(시/군/구)</option>
-            <option value="강남구">강남구</option>
-            <option value="서초구">서초구</option>
-            {/* 다른 옵션추가해야함! */}
+            {loading ? (
+              <option value="" disabled>로딩중...</option>
+            ) : (
+              sigunguList.map((sigungu) => (
+                <option key={sigungu} value={sigungu}>
+                  {sigungu}
+                </option>
+              ))
+            )}
           </select>
+          {error && <div>{error}</div>}
         </div>
 
         {/* 카테고리 선택 */}

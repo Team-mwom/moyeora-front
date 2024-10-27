@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useParams, useLocation } from "react-router";
 import axios from 'axios';
 
+import Search from 'components/common/Search';
 import Banner from 'components/common/Banner';
 import Footer from 'components/common/Footer';
 import MoyeoraResultList from 'components/moyeora/MoyeoraResultList';
@@ -131,13 +132,8 @@ const SearchResult = () => {
 
     return(
         <>
-          <div className='common_full'>
-            <Banner/>
-            <div className='main_full'>
-              <MoyeoraResultList items={items} onLoadMore={loadMore} hasMore={hasMore} loading={loading}/>
-            </div>
-            <Footer/>
-          </div>
+          <Search/>
+          <MoyeoraResultList items={items} onLoadMore={loadMore} hasMore={hasMore} loading={loading}/>
         </>
 
     );

@@ -4,7 +4,7 @@ import React from 'react';
 //compo
 import Header from 'components/common/Header';
 import Banner from 'components/common/Banner';
-import Search from 'components/common/Search';
+import Footer from 'components/common/Footer';
 import SearchResult from 'components/search/SearchResult';
 
 //style
@@ -14,11 +14,18 @@ import "styles/common/components/search.css"
 const SearchMain = () => {
 
 	return (
-		<div className="search_container">
+		
+		<div className='common_full'>
 			<Header/>
-			<Search/>
-			<SearchResult/>	
+			<Banner/>
+			<div className='main_full'>
+				<div className="search_container">
+					<SearchResult/>	
+				</div>
+			</div>
+			<Footer/>
 		</div>
+			
 	);
 };
 
