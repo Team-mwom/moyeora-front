@@ -1,5 +1,6 @@
 import React, { useCallback, useState }from 'react';
 import Post from 'components/sign/Post';
+import { useNavigate } from 'react-router-dom';
 
 import { authAxios } from 'utils/auth/authAxios';
 import { authException } from 'utils/auth/authException';
@@ -45,6 +46,9 @@ interface moyeoraPlaceDto {
 }
 
 const CreateMoyeora = () => {
+
+	const navigate = useNavigate();
+
 
 	let moyeoraDto: moyeoraDto = {
 		myrTitle: ""
@@ -257,7 +261,10 @@ const CreateMoyeora = () => {
 		
 		authAxios.post("/api/user/moyeora/create-moyeora", sendData).then((res) => {
 			if (authException(res, [cookies, setCookie, removeCookie])) {
-
+				console.log("=== 모여봐 생성 완료 ! ===")
+				
+				navigate("/");
+				alert("모여봐 생성 완료 !")
 			}
 		}).catch(()=>alert('로그인후 이용가능합니다.'))
 	}
