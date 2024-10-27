@@ -1,6 +1,6 @@
 import React from 'react';
 import { useCallback, useState, ChangeEvent, useEffect, useRef } from 'react';
-import { useParams } from "react-router";
+import { useParams, useNavigate } from "react-router";
 import SearchModal from './SearchModal';
 import "styles/common/components/search.css"
 
@@ -26,6 +26,7 @@ const Search = () => {
 		subcategory: ''
 	}); // 필터 옵션 상태값
 	const params = useParams();
+	const navigate = useNavigate();
 
 	// 검색 form 처리 함수
 	const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -35,7 +36,13 @@ const Search = () => {
 			return false;
 		}
 
-		window.location.href = "/search/" + word;
+		// URL 파라미터에 필터 옵션 추가
+    const searchParams = new URLSearchParams();
+    Object.entries(filterOptions).forEach(([key, value]) => {
+      if (value) searchParams.append(key, value);
+    });
+    
+    navigate(`/search/${word}?${searchParams.toString()}`);
 	};
   
 	// 검색어 입력 처리 함수
@@ -57,6 +64,9 @@ const Search = () => {
       if (key === 'sido') {
         newOptions.sigungu = '';
       }
+			if(key === 'category'){
+				newOptions.subcategory = '';
+			}
       return newOptions;
     });
   }
@@ -68,7 +78,10 @@ const Search = () => {
 			if (key === 'sido') {
 				newOptions.sido = '';
 				newOptions.sigungu = '';
-			} else {
+			} else if(key === 'category'){
+				newOptions.category = '';
+				newOptions.subcategory = '';
+			}else {
 				newOptions[key] = '';
 			}
 			return newOptions;
@@ -91,13 +104,12 @@ const Search = () => {
 						{filterOptions.sido} {filterOptions.sigungu}
 						<button onClick={() => {
 							removeFilter('sido');
-							removeFilter('sigungu');
 						}}>x</button>
 					</span>
 				)}
 				{filterOptions.category && (
 					<span className="filter_tag">
-						{filterOptions.category}
+						{filterOptions.category} {filterOptions.subcategory}
 						<button onClick={() => removeFilter('category')}>x</button>
 					</span>
 				)}

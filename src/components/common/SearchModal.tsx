@@ -118,11 +118,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, handleFilter
   // 카테고리가 변경될 때마다 서브 카테고리 필터링함
   useEffect(() => {
     if (selectedCategory !== null && subCategories.length > 0) {
-      console.log('subCategories :: ', JSON.stringify(subCategories, null, 2));
-
       const filtered = subCategories.filter(sub => sub.categoryEntity.categorySeq === selectedCategory);
-      console.log("filtered :: " + filtered);
-      
       setFilteredSubCategories(filtered);
     } else {
       setFilteredSubCategories([]);
@@ -142,14 +138,14 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, handleFilter
 
         {/* 시도 선택 */}
         <div className="filter-group">
-          <label className="filter-label" htmlFor="sido-select">시도</label>
+          <label className="filter-label" htmlFor="sido-select">지역</label>
           <select
             id="sido-select"
             className="filter-select"
             onChange={handleSidoChange}
             value={selectedSido}
           >
-            <option value="">선택해주세요</option>
+            <option value="">선택해주세요(시/도)</option>
             <option value="서울">서울</option>
             <option value="부산">부산</option>
             <option value="대구">대구</option>
@@ -168,11 +164,8 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, handleFilter
             <option value="경상남도">경남</option>
             <option value="제주">제주</option>
           </select>
-        </div>
 
-        {/* 시군구 선택 */}
-        <div className="filter-group">
-          <label className="filter-label" htmlFor="sigungu-select">시군구</label>
+           {/* 시군구 선택 */}
           <select
             id="sigungu-select"
             className="filter-select"
@@ -180,7 +173,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, handleFilter
             value={selectedSigungu}
             disabled={!selectedSido}
           >
-            <option value="">선택해주세요</option>
+            <option value="">선택해주세요(시/군/구)</option>
             <option value="강남구">강남구</option>
             <option value="서초구">서초구</option>
             {/* 다른 옵션추가해야함! */}
