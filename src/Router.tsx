@@ -7,6 +7,7 @@ import PageNotFound from 'pages/main/PageNotFound';
 import ProfileRouter from 'router/mainRouters/ProfileRouter';
 import SignRouter from 'router/mainRouters/SignRouter';
 import MoyeoraRouter from 'router/mainRouters/MoyeoraRouter';
+import MemberSettingRouter from 'router/mainRouters/MemberSettingRouter';
 export default function Router() {
   return (
     <BrowserRouter>
@@ -15,6 +16,7 @@ export default function Router() {
         {getRoutes(ProfileRouter)}
         {getRoutes(SignRouter)}
         {getRoutes(MoyeoraRouter)}
+        {getRoutes(MemberSettingRouter)}
         <Route path="*" element={<PageNotFound />} /> {/*이친구는 맨밑에 위치 */}
       </Routes>
     </BrowserRouter>

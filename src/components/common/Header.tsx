@@ -41,6 +41,12 @@ const Header = () => {
 			navigate("/profile/"+userInfo.nickName);
 	}
 		, [userInfo]);
+	const linkSetting = useCallback(
+		(e: React.MouseEvent<HTMLElement>) => {
+			
+			navigate("/setting");
+	}
+		, []);
 	
 	const signOut = useCallback(
 		(e: React.MouseEvent<HTMLElement>) => {
@@ -97,7 +103,7 @@ const Header = () => {
 								<div className='profileDetail_inner' onClick={linkProfile}>
 									캘린더
 								</div>
-								<div className='profileDetail_inner' onClick={linkProfile}>
+								<div className='profileDetail_inner' onClick={linkSetting}>
 									설정
 								</div>
 								<div className='profileDetail_inner profileDetail_logout' onClick={signOut}>
