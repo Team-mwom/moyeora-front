@@ -32,12 +32,16 @@ interface SearchModalProps {
 const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, handleFilterChange, currentFilters  }) => {
   const [selectedSido, setSelectedSido] = useState(currentFilters.sido);
   const [selectedSigungu, setSelectedSigungu] = useState(currentFilters.sigungu);
+  const [sigunguList, setSigunguList] = useState<string[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
   const [selectedSubCategory, setSelectedSubCategory] = useState(currentFilters.subcategory);
   
   const [categories, setCategories] = useState<category[]>([]);
   const [subCategories, setSubCategories] = useState<subCategory[]>([]);
   const [sigungus, setSigungus] = useState<string[]>([]);
+
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   //const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
   const [filteredSubCategories, setFilteredSubCategories] = useState<subCategory[]>([]);
@@ -48,6 +52,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, handleFilter
     setSelectedSigungu(''); // 시도가 변경되면 시군구 초기화
     handleFilterChange('sido', value);
     handleFilterChange('sigungu', '');
+    fetchSigunguList(value);
   };
 
   const handleSigunguChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -118,18 +123,36 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, handleFilter
   // 카테고리가 변경될 때마다 서브 카테고리 필터링함
   useEffect(() => {
     if (selectedCategory !== null && subCategories.length > 0) {
-      console.log('subCategories :: ', JSON.stringify(subCategories, null, 2));
-
       const filtered = subCategories.filter(sub => sub.categoryEntity.categorySeq === selectedCategory);
-      console.log("filtered :: " + filtered);
-      
       setFilteredSubCategories(filtered);
     } else {
       setFilteredSubCategories([]);
     }
   }, [selectedCategory, subCategories]);
   
-  if (!isOpen) return null;
+  const fetchSigunguList = useCallback(async (sido: string) => {
+    if (!sido) return;
+    
+    setLoading(true);
+    setError(null);
+    try {
+      alert("sido :: " + sido);
+      const response = await fetch(`/api/districts/${sido}`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch sigungu list');
+      }
+      const data = await response.json();
+      setSigunguList(data);
+    } catch (error) {
+      console.error('Error fetching sigungu list:', error);
+      setError('시군구 목록을 불러오는데 실패했습니다.');
+      setSigunguList([]);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  if (!isOpen) return null;  
 
   return (
     <div className='modal-overlay'>
@@ -142,14 +165,14 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, handleFilter
 
         {/* 시도 선택 */}
         <div className="filter-group">
-          <label className="filter-label" htmlFor="sido-select">시도</label>
+          <label className="filter-label" htmlFor="sido-select">지역</label>
           <select
             id="sido-select"
             className="filter-select"
             onChange={handleSidoChange}
             value={selectedSido}
           >
-            <option value="">선택해주세요</option>
+            <option value="">선택해주세요(시/도)</option>
             <option value="서울">서울</option>
             <option value="부산">부산</option>
             <option value="대구">대구</option>
@@ -168,23 +191,27 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, handleFilter
             <option value="경상남도">경남</option>
             <option value="제주">제주</option>
           </select>
-        </div>
 
-        {/* 시군구 선택 */}
-        <div className="filter-group">
-          <label className="filter-label" htmlFor="sigungu-select">시군구</label>
+           {/* 시군구 선택 */}
           <select
             id="sigungu-select"
             className="filter-select"
             onChange={handleSigunguChange}
             value={selectedSigungu}
-            disabled={!selectedSido}
+            disabled={!selectedSido || loading}
           >
-            <option value="">선택해주세요</option>
-            <option value="강남구">강남구</option>
-            <option value="서초구">서초구</option>
-            {/* 다른 옵션추가해야함! */}
+            <option value="">선택해주세요(시/군/구)</option>
+            {loading ? (
+              <option value="" disabled>로딩중...</option>
+            ) : (
+              sigunguList.map((sigungu) => (
+                <option key={sigungu} value={sigungu}>
+                  {sigungu}
+                </option>
+              ))
+            )}
           </select>
+          {error && <div>{error}</div>}
         </div>
 
         {/* 카테고리 선택 */}
