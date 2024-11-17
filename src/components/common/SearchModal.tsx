@@ -85,7 +85,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, handleFilter
     if (!isOpen) return; // 모달이 열려있지 않으면 데이터를 가져오지 않음
 
     try {
-      const response = await axios.get('/api/all/main/selectSearchModalData/');
+      const response = await axios.get('/api/all/category/search-category');
       const data = response.data;
 
       setCategories(data.categories || []);
