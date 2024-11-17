@@ -16,7 +16,7 @@ const MoyeoraToday: React.FC = () => {
   const fetchMoyeoraList = async () => {
     setLoading(true);
     try {
-      const response = await axios.get<Moyeora[]>(`http://localhost:8080/api/all/main/list?page=${page}&size=${size}`);
+      const response = await axios.get<Moyeora[]>(`/api/all/main/list?page=${page}&size=${size}`);
       const newMoyeoraList = response.data;
 
       setMoyeoraList(prevList => [...prevList, ...newMoyeoraList]);

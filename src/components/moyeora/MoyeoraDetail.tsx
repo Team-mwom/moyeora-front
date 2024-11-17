@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
-import Modal from "react-modal";
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
+
+import { Moyeora } from 'interface/MoyeoraInterface';
 
 import { IoMdTime } from "react-icons/io";
 import { BsPeopleFill } from "react-icons/bs";
@@ -11,11 +14,13 @@ import Form from 'react-bootstrap/Form';
 
 import MoyeoraJoinModal from 'components/moyeora/MoyeoraJoinModal';
 
-import 'styles/moyeora/moyeoraDetail.css'
-import 'styles/moyeora/commonMoyeora.css'
+import 'styles/moyeora/moyeoraDetail.css';
+import 'styles/moyeora/commonMoyeora.css';
 
 const MoyeoraDetail = () => {
+  const { myrSeq } = useParams<{ myrSeq: string }>();
   const [isOpen, setIsOpen] = useState(false);
+  const [basicInfo, setBasicInfo] = useState<Moyeora | null>(null);
 
   const openMoyeoraJoinModal = () => {
     setIsOpen(true);
@@ -24,6 +29,15 @@ const MoyeoraDetail = () => {
   const closeMoyeoraJoinModal = () => {
     setIsOpen(false);
   }
+
+  useEffect(() => {
+    if (myrSeq) {
+      axios.get('/api/all/moyeora/${myrSeq}/basic-info')
+        .then(response => setBasicInfo(response.data))
+        .catch(error => console.error('Error fetching basic info:', error));
+      }
+      console.log(basicInfo);
+  }, [myrSeq]);
 
 	return (
 		<div className='moyeoraDetail_full'>
@@ -36,7 +50,7 @@ const MoyeoraDetail = () => {
 
         <div className='moyeoraDetail_title'>
           <div className='title_pic'>
-            사진
+            {basicInfo?.myrMainImg ? <img src={basicInfo.myrMainImg} alt="Main" /> : "사진"}
           </div>
 
           <div className='title_info_container'>
@@ -44,22 +58,22 @@ const MoyeoraDetail = () => {
               <tbody>
                 <tr className=''>
                   <td className='title_info_td_member'>
-                    모여라 인원수
+                    {basicInfo ? `${basicInfo.myrMemberCnt} / ${basicInfo.myrMaxMember}` : '모여라 인원수'}
                   </td>
                 </tr>
                 <tr className=''>
                   <td className='title_info_td_title'>
-                    모여라 제목
+                    {basicInfo?.myrTitle || '모여라 제목'}
                   </td>
                 </tr>
                 <tr className=''>
                   <td className='title_info_td_category'>
-                    모여라 카테고리
+                    {basicInfo ? `${basicInfo.categoryName} / ${basicInfo.subCategoryName}` : '모여라 카테고리'}
                   </td>
                 </tr>
                 <tr className=''>
                   <td className='title_info_td_tag'>
-                    모여라 태그
+                    {basicInfo?.myrTags || '모여라 태그'}
                   </td>
                 </tr>
               </tbody>
@@ -149,14 +163,17 @@ const MoyeoraDetail = () => {
           <div className='guide_people'>
             <BsPeopleFill className="guide_people_icon"/>
             guide_people
+            {basicInfo ? `${basicInfo.myrMemberCnt} / ${basicInfo.myrMaxMember}` : '인원수'}
           </div>
           <div className='guide_date'>
             <IoMdTime className="guide_date_icon"/>
             guide_date
+            {basicInfo?.myrDate || '시간'}
           </div>
           <div className='guide_place'>
             <MdOutlinePlace className="guide_place_icon"/>
             guide_place
+            {basicInfo?.myrPlace || '장소'}
           </div>
           <div className='guide_map'>
             지도 위치
