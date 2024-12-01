@@ -101,15 +101,15 @@ const Search = () => {
 			<div className='filter_tags'>
 				{filterOptions.sido && (
 					<span className="filter_tag">
-						{filterOptions.sido} {filterOptions.sigungu}
-						<button onClick={() => {
-							removeFilter('sido');
-						}}>x</button>
+						{filterOptions.sido} 
+						{filterOptions.sigungu && ` ${filterOptions.sigungu}`}
+						<button onClick={() => removeFilter('sido')}>x</button>
 					</span>
 				)}
 				{filterOptions.category && (
 					<span className="filter_tag">
-						{filterOptions.category} {filterOptions.subcategory}
+						{filterOptions.category} 
+						{filterOptions.subcategory && ` > ${filterOptions.subcategory}`}
 						<button onClick={() => removeFilter('category')}>x</button>
 					</span>
 				)}
