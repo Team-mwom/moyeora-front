@@ -12,7 +12,7 @@ import ProfileImgEdit from './ProfileImgEdit';
 import { useCookies } from 'react-cookie';
 import Modal from "react-modal";
 import { PiImagesThin } from "react-icons/pi";
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { authAxios } from 'utils/auth/authAxios';
 import { authException } from 'utils/auth/authException';
 import axios from 'axios';
@@ -21,30 +21,17 @@ interface FollowState{
 	follower: number;
 	following: number;
 }
+
 const ProfileEdit = () => {
 	const profileConfig:ProfileConfig= useSelector((state: RootState) => {
     	return state.profileConfig
 	});
+	const navi = useNavigate();
 	const param = useParams();
 	const userInfo = JSON.parse(localStorage.getItem("userInfo") as string);
-	const [imgEditPopup, setImgEditPopup] = useState<boolean>(false);//이미지 팝업
 	const [cookies, setCookie, removeCookie] = useCookies();//쿠키
 	const [followState, setFollowState] = useState<FollowState>({follower:0,following:0});
 	const [followed, setFollowed] = useState(false);
-	const customStyles = {
-    overlay: {
-      backgroundColor: "rgba(0, 0, 0, 0.5)"
-    }
-    , content: {
-      width: "700px"
-      , height: "450px"
-      , margin: "auto"
-      , borderRadius: "4px"
-      , boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)"
-			, padding: "20px"
-		
-    }
-	}
 
 
 	useEffect(() => {
@@ -86,34 +73,18 @@ const ProfileEdit = () => {
 		}).catch(() => { alert('로그인 후 이용가능합니다.'); })
 	}, []);
 	
+	const profiletSetting = () => {
+		navi("/setting?menu1=2");
+	 }
+
 	return (
 		<div className='profileEdit_full'>
-		
-
-			<Modal isOpen={imgEditPopup} style={customStyles}>
-				<ProfileImgEdit popup={imgEditPopup} setPopup={setImgEditPopup} />
-			</Modal>
-				
-			
-
 			<div className='profileEdit_container'>
 				<div className='profile_pic_container'>
 					<ProfileImg
-				
 						nick={param.nickName}
 						size={400}
 					/>
-						{profileConfig.owner ?
-						<div className='profile_pic_change_div'>
-							<div className='profile_pic_change_btn' onClick={() => { setImgEditPopup(true) }}>
-								<PiImagesThin />
-							</div>	
-						</div>	
-							:
-							""
-							
-						}
-				
 				</div>
 				<div className='follower_info_container'>
 					<div className='profileEdit_nickName'>{param.nickName}</div>
@@ -130,7 +101,7 @@ const ProfileEdit = () => {
 					<div className='follower_info_button'>
 						{profileConfig.owner ?
 					
-							<Button variant="outline-dark" size="lg" onClick={() => { alert('설정 페이지로 이동')}}>프로필 설정</Button> 		
+							<Button variant="outline-dark" size="lg" onClick={profiletSetting}>프로필 설정</Button> 		
 							:
 							followed?
 								<Button variant="outline-dark" size="lg" onClick={unfollow}>팔로우 취소</Button>

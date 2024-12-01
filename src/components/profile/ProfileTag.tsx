@@ -6,12 +6,7 @@ const ProfileTag = () => {
 
 	return (
 		<div className='profileTag_full'>
-			<hr className='profileTag_hr'/>
-			<div className='profileTag_container'>
-				#ProfileTag
-				#ProfileTag
-				#ProfileTag
-			</div>
+		
 		</div>
 	);
 };

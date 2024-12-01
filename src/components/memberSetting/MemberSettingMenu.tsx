@@ -7,6 +7,7 @@ import { useLocation } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import MemberMoyeoraSetting from './MemberMoyeoraSetting';
 import MemberProfileSetting from './MemberProfileSetting';
+import MemberAccountSetting from './MemberAccountSetting';
 
 
 const MemberSettingMenu = (props:any) => {
@@ -14,9 +15,8 @@ const MemberSettingMenu = (props:any) => {
 	const menu:any[] = [
     { name: '모여라', value: '1' ,content:<MemberMoyeoraSetting/>},
     { name: '프로필', value: '2' ,content:<MemberProfileSetting/>},
-    { name: '알림', value: '3' ,content:null},
-    { name: '기타', value: '4' ,content:null},
-    { name: '계정', value: '5' ,content:null},
+    { name: '기타', value: '3' ,content:null},
+    { name: '계정', value: '4' ,content:<MemberAccountSetting/>},
   ];
 	
 	const location = useLocation();
