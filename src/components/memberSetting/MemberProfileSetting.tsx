@@ -41,6 +41,7 @@ const MemberProfileSetting = () => {
 			axios.get('/api/all/signUp/checkNickName?nickName='+newNick.current!.value).then((res)=>{
 				if (res.data) {
 					setNickChecked(true);
+					newNick.current!.disabled = true;
 					alert("사용 가능 한 닉네임 입니다.");
 				} else {
 					
@@ -53,13 +54,12 @@ const MemberProfileSetting = () => {
 	
 	const changeNickName = useCallback(() => {
 		if (nickChecked) {
-			alert("변경 완료");
-
 			authAxios.post('/api/user/changeNickName', {nickName:newNick.current!.value}  ).then((res) => {
 				if (authException(res, [cookies, setCookie, removeCookie])) {
 					userInfo.nickName = newNick.current!.value;
 					localStorage.setItem('userInfo', JSON.stringify(userInfo));
-					navigate("");
+					alert("변경완료");
+					navigate("/profile/"+newNick.current!.value);
 					
         }   
       }).catch((err) => { alert('로그인 후 이용해주세요') })
@@ -95,12 +95,7 @@ const MemberProfileSetting = () => {
 							</div>	
 						</div>	
 			</div>
-			<span className='memberSetting_subTitle'>관심사 설정</span>
-			<div className='nickName_setting_contatiner'>
-				<Form.Control placeholder="관심사1"></Form.Control>
-				<Form.Control placeholder="관심사2"></Form.Control>
-				<Form.Control placeholder="관심사1"></Form.Control>
-			</div>
+		
 
 
 
