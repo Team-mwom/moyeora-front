@@ -265,6 +265,7 @@ const CreateMoyeora = () => {
 	}
 	const changeMyrGenderYn = (e: any) => {
 		let myrGenderYn = e.target.value;
+		console.log("===>", myrGenderYn)
 		setMyrGenderYn(myrGenderYn);
 	}
 	const changeMyrApprovalYn = (e: any) => {
@@ -495,50 +496,10 @@ const CreateMoyeora = () => {
 					안내 사항
 				</div>
 				<div className='createMoyeora_notification'>
-					<div className='gender'>
-						<Form>
-							{/* <Form.Check inline type="radio" aria-label="radio 1" label="성별 무관" /> */}
-							{/* <Form.Check inline type="radio" aria-label="radio 1" label="남/여" /> */}
-							<Form.Check inline type="radio" aria-label="radio 1" label="성별 무관" onKeyUp={changeMyrGenderYn}/>
-							<Form.Check inline type="radio" aria-label="radio 1" label="남/여" onKeyUp={changeMyrGenderYn}/>
-						</Form>
-					</div>
-					<div className='type'>
-						<Form>
-							{/* <Form.Check inline type="radio" aria-label="radio 1" label="선착순" />
-							<Form.Check inline type="radio" aria-label="radio 1" label="승인제" /> */}
-							<Form.Check inline type="radio" aria-label="radio 1" label="선착순" onKeyUp={changeMyrApprovalYn}/>
-							<Form.Check inline type="radio" aria-label="radio 1" label="승인제" onKeyUp={changeMyrApprovalYn}/>
-						</Form>
-					</div>
-
-					<div className='gender_diff_type'>
-						{/* 성별 무관 , 남/여로 분기 */}
-						<div className='gender_diff'>
-							<InputGroup size="sm">
-								<Form.Control
-									placeholder="남"
-									aria-describedby="inputGroup-sizing-sm"
-								/>
-							</InputGroup>
-						</div>
-						<div className='gender_diff'>
-							<InputGroup size="sm">
-								<Form.Control
-									placeholder="여"
-									aria-describedby="inputGroup-sizing-sm"
-								/>
-							</InputGroup>
-						</div>
-						<div className='title_introduce'>
-							인원을 입력해주세요
-						</div>
-					</div>
-					{/* 성별 무관 , 남/여로 분기 */}
 					<div className='gender_diff_type'>
 						<InputGroup size="sm">
 							<Form.Control
-								placeholder="인원을 입력해주세요 !"
+								placeholder="최대 인원을 입력해주세요 !"
 								aria-describedby="inputGroup-sizing-sm"
 								onKeyUp={changeMyrMaxMember}
 							/>
