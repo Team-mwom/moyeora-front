@@ -1,5 +1,7 @@
-import React, { useCallback, useState }from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Post from 'components/sign/Post';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 import { authAxios } from 'utils/auth/authAxios';
 import { authException } from 'utils/auth/authException';
@@ -44,7 +46,32 @@ interface moyeoraPlaceDto {
 	myrSigungu: String;
 }
 
+interface FilterOption {
+	category: string;
+	subcategory: string;
+}
+
+interface category {
+  categorySeq: number;
+  categoryName: string;
+  categoryClassYn: string;
+}
+
+interface subCategory {
+  subCategorySeq: number;
+  categorySeq: number;
+  subCategoryName: string;
+  categoryEntity: category;
+}
+
+interface search {
+  handleFilterChange: (key: keyof FilterOption, value: string) => void;
+  currentFilters: FilterOption;
+}
+
 const CreateMoyeora = () => {
+
+	const navigate = useNavigate();
 
 	let moyeoraDto: moyeoraDto = {
 		myrTitle: ""
@@ -76,6 +103,88 @@ const CreateMoyeora = () => {
 	}
 
 	const [cookies, setCookie, removeCookie] = useCookies();
+
+	/**
+	 * 카테고리 관련
+	 */
+	// start
+	const [filterOptions, setFilterOptions] = useState<FilterOption>({
+		category: '',
+		subcategory: ''
+	}); // 필터 옵션 상태값
+
+	const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
+  const [selectedSubCategory, setSelectedSubCategory] = useState(filterOptions.subcategory);
+
+	const [categories, setCategories] = useState<category[]>([]);
+  const [subCategories, setSubCategories] = useState<subCategory[]>([]);
+
+	const [filteredSubCategories, setFilteredSubCategories] = useState<subCategory[]>([]);
+
+	const handleFilterChange = (key: keyof FilterOption, value: string) => {
+    setFilterOptions(prev => {
+      const newOptions = {...prev, [key]: value};
+			if(key === 'category'){
+				newOptions.subcategory = '';
+			}
+      return newOptions;
+    });
+  }
+
+	// 카테고리 선택 처리 함수
+	const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+		const categorySeq = parseInt(e.target.value);
+		setSelectedCategory(categorySeq);
+		setSelectedSubCategory(''); // 카테고리가 변경되면 서브 카테고리 선택 초기화
+
+		// 선택된 카테고리의 이름을 찾아 필터에 적용
+		const selectedCategoryName = categories.find(cat => cat.categorySeq === categorySeq)?.categoryName || '';
+		handleFilterChange('category', selectedCategoryName);
+	};
+
+	// 서브 카테고리 선택 처리 함수
+	const handleSubCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+		const value = e.target.value;
+		setSelectedSubCategory(value);
+		handleFilterChange('subcategory', value);
+	};
+
+	const searchModalData = useCallback(async () => {
+		try {
+			const response = await axios.get('/api/all/category/search-category/');
+			const data = response.data;
+
+			setCategories(data.categories || []);
+			setSubCategories(data.subCategories || []);
+
+		} catch (error) {
+			console.error('Failed to fetch items', error);
+		} finally {
+		}
+	}, []);
+	
+	useEffect(() => {
+		searchModalData();
+	}, [searchModalData]);
+	
+	useEffect( () => {
+		setSelectedSubCategory(filterOptions.subcategory);
+
+		// 현재 필터에서 카테고리에 해당하는 categorySeq 찾기
+		const currentCategory = categories.find(cat => cat.categoryName === filterOptions.category);
+		setSelectedCategory(currentCategory ? currentCategory.categorySeq : null);
+	}, [filterOptions, categories]);
+
+	// 카테고리가 변경될 때마다 서브 카테고리 필터링함
+	useEffect(() => {
+		if (selectedCategory !== null && subCategories.length > 0) {
+			const filtered = subCategories.filter(sub => sub.categoryEntity.categorySeq === selectedCategory);
+			setFilteredSubCategories(filtered);
+		} else {
+			setFilteredSubCategories([]);
+		}
+	}, [selectedCategory, subCategories]);
+	// end
 
 	/**
 	 * 다음 우편번호 서비스 API 관련
@@ -156,6 +265,7 @@ const CreateMoyeora = () => {
 	}
 	const changeMyrGenderYn = (e: any) => {
 		let myrGenderYn = e.target.value;
+		console.log("===>", myrGenderYn)
 		setMyrGenderYn(myrGenderYn);
 	}
 	const changeMyrApprovalYn = (e: any) => {
@@ -257,7 +367,10 @@ const CreateMoyeora = () => {
 		
 		authAxios.post("/api/user/moyeora/create-moyeora", sendData).then((res) => {
 			if (authException(res, [cookies, setCookie, removeCookie])) {
-
+				console.log("=== 모여봐 생성 완료 ! ===")
+				
+				navigate("/");
+				alert("모여봐 생성 완료 !")
 			}
 		}).catch(()=>alert('로그인후 이용가능합니다.'))
 	}
@@ -279,20 +392,43 @@ const CreateMoyeora = () => {
 					</InputGroup>
 				</div>
 
-				{/* DB에서 값 가져와야함 */}
 				<div className='title'>
 					주제
 				</div>
 				<div className='createMoyeora_bigCategory'>
-					주제 목록
+					<select
+            id="category-select"
+            className="filter-select"
+            onChange={handleCategoryChange}
+            value={selectedCategory || ''}
+          >
+            <option value="">카테고리 선택</option>
+            {categories.map((category) => (
+              <option key={category.categorySeq} value={category.categorySeq}>
+                {category.categoryName}
+              </option>
+            ))}
+          </select>
 				</div>
 
-				{/* DB에서 값 가져와야함 */}
 				<div className='title'>
 					소주제
 				</div>
 				<div className='createMoyeora_smallCategory'>
-					소주제 목록
+				<select
+            id="subCategory-select"
+            className="filter-select"
+            onChange={handleSubCategoryChange}
+            value={selectedSubCategory}
+            disabled={!selectedCategory} // 카테고리가 선택되지 않으면 비활성화
+          >
+            <option value="">서브카테고리 선택</option>
+            {filteredSubCategories.map((subCategory) => (
+              <option key={subCategory.subCategorySeq} value={subCategory.subCategoryName}>
+                {subCategory.subCategoryName}
+              </option>
+            ))}
+          </select>
 				</div>
 
 				<div className='title'>
@@ -360,50 +496,10 @@ const CreateMoyeora = () => {
 					안내 사항
 				</div>
 				<div className='createMoyeora_notification'>
-					<div className='gender'>
-						<Form>
-							{/* <Form.Check inline type="radio" aria-label="radio 1" label="성별 무관" /> */}
-							{/* <Form.Check inline type="radio" aria-label="radio 1" label="남/여" /> */}
-							<Form.Check inline type="radio" aria-label="radio 1" label="성별 무관" onKeyUp={changeMyrGenderYn}/>
-							<Form.Check inline type="radio" aria-label="radio 1" label="남/여" onKeyUp={changeMyrGenderYn}/>
-						</Form>
-					</div>
-					<div className='type'>
-						<Form>
-							{/* <Form.Check inline type="radio" aria-label="radio 1" label="선착순" />
-							<Form.Check inline type="radio" aria-label="radio 1" label="승인제" /> */}
-							<Form.Check inline type="radio" aria-label="radio 1" label="선착순" onKeyUp={changeMyrApprovalYn}/>
-							<Form.Check inline type="radio" aria-label="radio 1" label="승인제" onKeyUp={changeMyrApprovalYn}/>
-						</Form>
-					</div>
-
-					<div className='gender_diff_type'>
-						{/* 성별 무관 , 남/여로 분기 */}
-						<div className='gender_diff'>
-							<InputGroup size="sm">
-								<Form.Control
-									placeholder="남"
-									aria-describedby="inputGroup-sizing-sm"
-								/>
-							</InputGroup>
-						</div>
-						<div className='gender_diff'>
-							<InputGroup size="sm">
-								<Form.Control
-									placeholder="여"
-									aria-describedby="inputGroup-sizing-sm"
-								/>
-							</InputGroup>
-						</div>
-						<div className='title_introduce'>
-							인원을 입력해주세요
-						</div>
-					</div>
-					{/* 성별 무관 , 남/여로 분기 */}
 					<div className='gender_diff_type'>
 						<InputGroup size="sm">
 							<Form.Control
-								placeholder="인원을 입력해주세요 !"
+								placeholder="최대 인원을 입력해주세요 !"
 								aria-describedby="inputGroup-sizing-sm"
 								onKeyUp={changeMyrMaxMember}
 							/>

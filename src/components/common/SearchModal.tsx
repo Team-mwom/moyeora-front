@@ -22,6 +22,22 @@ interface subCategory{
   categoryEntity: category;
 }
 
+interface sido{
+  orgCd: string;
+  orgNm: string;
+  upOrgCd: string;
+  orgClsCd: string;
+  cdDelYn: string;
+}
+
+interface sigungu{
+  orgCd: string;
+  orgNm: string;
+  upOrgCd: string;
+  orgClsCd: string;
+  cdDelYn: string;
+}
+
 interface SearchModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -29,49 +45,68 @@ interface SearchModalProps {
   currentFilters: FilterOption;
 }
 
-const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, handleFilterChange, currentFilters  }) => {
-  const [selectedSido, setSelectedSido] = useState(currentFilters.sido);
-  const [selectedSigungu, setSelectedSigungu] = useState(currentFilters.sigungu);
+const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, handleFilterChange, currentFilters  }) => {  
+  // 카테도리, 서브카테고리 선택 처리
   const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
   const [selectedSubCategory, setSelectedSubCategory] = useState(currentFilters.subcategory);
-  
+  // 카테고리, 서브카테고리(API로 가져온값 저장)
   const [categories, setCategories] = useState<category[]>([]);
   const [subCategories, setSubCategories] = useState<subCategory[]>([]);
-  const [sigungus, setSigungus] = useState<string[]>([]);
+  //const [sigungus, setSigungus] = useState<string[]>([]);
 
-  //const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
+  // 시/도, 시/군/구 선택처리
+  const [selectedSido, setSelectedSido] = useState<string | null>(null); //useState(currentFilters.sido);
+  const [selectedSigungu, setSelectedSigungu] = useState(currentFilters.sigungu);
+  // 시/도, 시/군/구 (API로 가져온값 저장)
+  const [sidoList, setSido] = useState<sido[]>([]);
+  const [sigunguList, setSigungu] = useState<sigungu[]>([]);
+
+
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [filteredSubCategories, setFilteredSubCategories] = useState<subCategory[]>([]);
+  const [filteredSigungu, setFilteredSigungu] = useState<sigungu[]>([]);
 
+  // 시/도 선택 처리 함수
   const handleSidoChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const value = e.target.value;
-    setSelectedSido(value);
+    const selectSidoCd = e.target.value;
+
+    // 선택된 시/도의 이름을 찾아 필터에 적용
+    const selectedSidoName = sidoList.find(sido => sido.orgCd === selectSidoCd)?.orgNm || '';
+
+    setSelectedSido(selectSidoCd);
     setSelectedSigungu(''); // 시도가 변경되면 시군구 초기화
-    handleFilterChange('sido', value);
-    handleFilterChange('sigungu', '');
+    handleFilterChange('sido', selectedSidoName);
   };
 
+  // 시/군/구 선택 처리 함수
   const handleSigunguChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const value = e.target.value;
-    setSelectedSigungu(value);
-    handleFilterChange('sigungu', value);
+    const selectedSigunguCd = e.target.value;
+    // 선택된 서브카테고리의 이름을 찾아 필터에 적용
+    const selectedSigunguName = sigunguList.find(sigungu => sigungu.orgCd === selectedSigunguCd)?.orgNm || '';
+    
+    setSelectedSigungu(selectedSigunguCd);
+    handleFilterChange('sigungu', selectedSigunguName);
   };
 
   // 카테고리 선택 처리 함수
   const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const categorySeq = parseInt(e.target.value);
-    setSelectedCategory(categorySeq);
-    setSelectedSubCategory(''); // 카테고리가 변경되면 서브 카테고리 선택 초기화
-
     // 선택된 카테고리의 이름을 찾아 필터에 적용
     const selectedCategoryName = categories.find(cat => cat.categorySeq === categorySeq)?.categoryName || '';
+    setSelectedCategory(categorySeq);
+    setSelectedSubCategory(''); // 카테고리가 변경되면 서브 카테고리 선택 초기화
     handleFilterChange('category', selectedCategoryName);
   };
 
   // 서브 카테고리 선택 처리 함수
   const handleSubCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const value = e.target.value;
-    setSelectedSubCategory(value);
-    handleFilterChange('subcategory', value);
+    const subCategorySeq = parseInt(e.target.value);
+    // 선택된 서브카테고리의 이름을 찾아 필터에 적용
+    const selectedSubCategoryName = subCategories.find(cat => cat.subCategorySeq === subCategorySeq)?.subCategoryName || '';
+    
+    setSelectedSubCategory(subCategorySeq+"");
+    handleFilterChange('subcategory', selectedSubCategoryName);
   };
 
   
@@ -80,12 +115,13 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, handleFilter
     if (!isOpen) return; // 모달이 열려있지 않으면 데이터를 가져오지 않음
 
     try {
-      const response = await axios.get('/api/all/main/selectSearchModalData/');
+      const response = await axios.get('/api/all/category/search-category');
       const data = response.data;
 
       setCategories(data.categories || []);
       setSubCategories(data.subCategories || []);
-      setSigungus(data.sigungus || []);
+      setSido(data.sido || []);
+      setSigungu(data.sigungu || []);
 
       //console.log("API 응답 로깅 :: " + response.data); // API 응답 로깅
       //const newItems = response.data.content.map(formatItemDate);
@@ -104,32 +140,27 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, handleFilter
     searchModalData();
   }, [searchModalData]);
 
-  useEffect( () => {
-      //searchModalData();
-      setSelectedSido(currentFilters.sido);
-      setSelectedSigungu(currentFilters.sigungu);
-      setSelectedSubCategory(currentFilters.subcategory);
-
-      // 현재 필터에서 카테고리에 해당하는 categorySeq 찾기
-      const currentCategory = categories.find(cat => cat.categoryName === currentFilters.category);
-      setSelectedCategory(currentCategory ? currentCategory.categorySeq : null);
-  }, [currentFilters, categories]);
-
   // 카테고리가 변경될 때마다 서브 카테고리 필터링함
   useEffect(() => {
     if (selectedCategory !== null && subCategories.length > 0) {
-      console.log('subCategories :: ', JSON.stringify(subCategories, null, 2));
-
       const filtered = subCategories.filter(sub => sub.categoryEntity.categorySeq === selectedCategory);
-      console.log("filtered :: " + filtered);
-      
       setFilteredSubCategories(filtered);
     } else {
       setFilteredSubCategories([]);
     }
   }, [selectedCategory, subCategories]);
-  
-  if (!isOpen) return null;
+
+   // 시/도가 변경될 때마다 시군구 필터링함
+  useEffect(() => {
+    if (selectedSido !== null && sigunguList.length > 0) {
+      const filtered = sigunguList.filter(sigungu => sigungu.upOrgCd === selectedSido);
+      setFilteredSigungu(filtered);
+    } else {
+      setFilteredSigungu([]);
+    }
+  }, [selectedSido, sigunguList]);
+
+  if (!isOpen) return null;  
 
   return (
     <div className='modal-overlay'>
@@ -142,48 +173,35 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, handleFilter
 
         {/* 시도 선택 */}
         <div className="filter-group">
-          <label className="filter-label" htmlFor="sido-select">시도</label>
+          <label className="filter-label" htmlFor="sido-select">지역</label>
           <select
             id="sido-select"
             className="filter-select"
             onChange={handleSidoChange}
-            value={selectedSido}
+            value={selectedSido || ''}
           >
-            <option value="">선택해주세요</option>
-            <option value="서울">서울</option>
-            <option value="부산">부산</option>
-            <option value="대구">대구</option>
-            <option value="인천">인천</option>
-            <option value="광주">광주</option>
-            <option value="대전">대전</option>
-            <option value="울산">울산</option>
-            <option value="세종">세종</option>
-            <option value="경기">경기</option>
-            <option value="강원">강원</option>
-            <option value="충청북도">충북</option>
-            <option value="충청남도">충남</option>
-            <option value="전라북도">전북</option>
-            <option value="전라남도">전남</option>
-            <option value="경상북도">경북</option>
-            <option value="경상남도">경남</option>
-            <option value="제주">제주</option>
+            <option value="">선택해주세요(시/도)</option>
+            {sidoList.map((sido) => (
+              <option key={sido.orgCd} value={sido.orgCd}>
+                {sido.orgNm}
+              </option>
+            ))}
           </select>
-        </div>
 
-        {/* 시군구 선택 */}
-        <div className="filter-group">
-          <label className="filter-label" htmlFor="sigungu-select">시군구</label>
+           {/* 시군구 선택 */}
           <select
             id="sigungu-select"
             className="filter-select"
             onChange={handleSigunguChange}
-            value={selectedSigungu}
+            value={selectedSigungu || ''}
             disabled={!selectedSido}
           >
-            <option value="">선택해주세요</option>
-            <option value="강남구">강남구</option>
-            <option value="서초구">서초구</option>
-            {/* 다른 옵션추가해야함! */}
+            <option value="">선택해주세요(시/군/구)</option>
+              {filteredSigungu.map((sigungu) => (
+                <option key={sigungu.orgCd} value={sigungu.orgCd}>
+                  {sigungu.orgNm}
+                </option>
+              ))}
           </select>
         </div>
 
@@ -209,12 +227,12 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, handleFilter
             id="subCategory-select"
             className="filter-select"
             onChange={handleSubCategoryChange}
-            value={selectedSubCategory}
+            value={selectedSubCategory || ''}
             disabled={!selectedCategory} // 카테고리가 선택되지 않으면 비활성화
           >
             <option value="">서브카테고리 선택</option>
             {filteredSubCategories.map((subCategory) => (
-              <option key={subCategory.subCategorySeq} value={subCategory.subCategoryName}>
+              <option key={subCategory.subCategorySeq} value={subCategory.subCategorySeq}>
                 {subCategory.subCategoryName}
               </option>
             ))}

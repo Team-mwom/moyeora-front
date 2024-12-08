@@ -1,8 +1,9 @@
 import React from 'react';
-import { useEffect, useState} from 'react';
-import { useParams } from "react-router";
+import { useEffect, useState } from 'react';
+import { useParams, useLocation } from "react-router";
 import axios from 'axios';
 
+import Search from 'components/common/Search';
 import Banner from 'components/common/Banner';
 import Footer from 'components/common/Footer';
 import MoyeoraResultList from 'components/moyeora/MoyeoraResultList';
@@ -11,6 +12,11 @@ import MoyeoraResultList from 'components/moyeora/MoyeoraResultList';
 import { useSelector, useDispatch } from "react-redux";
 
 interface searchResult {
+  categorySeq: number; 
+  categoryName: string; 
+  subCategorySeq: number;
+  subCategoryName: string;
+
   myrSeq: number;
   myrTitle: string;
   myrTags: string;
@@ -27,16 +33,44 @@ interface searchPage {
   number: number;
 }
 
+interface FilterOption {
+  sido: string;
+  sigungu: string;
+  category: string;
+  subcategory: string;
+}
+
 const SearchResult = () => {
-    
     const [word, setWord] = useState('');
     const params = useParams();
+    const location = useLocation();
 
     const [items, setItems] = useState<searchResult[]>([]);
     const [page, setPage] = useState(0);
     const [size] = useState(6);
     const [loading, setLoading] = useState(false);
     const [hasMore, setHasMore] = useState(true);
+    const [filterOptions, setFilterOptions] = useState<FilterOption>({
+      sido: '',
+      sigungu: '',
+      category: '',
+      subcategory: ''
+    });
+
+    useEffect(() => {
+      const searchParams = new URLSearchParams(location.search);
+      const newFilterOptions: FilterOption = {
+        sido: searchParams.get('sido') || '',
+        sigungu: searchParams.get('sigungu') || '',
+        category: searchParams.get('category') || '',
+        subcategory: searchParams.get('subcategory') || ''
+      };
+      setFilterOptions(newFilterOptions);
+      setWord(params.word || '');
+      setPage(0);
+      setItems([]);
+      setHasMore(true);
+    }, [location.search, params.word]);
 
     useEffect(() => {
       const fetchItems = async () => {
@@ -48,7 +82,8 @@ const SearchResult = () => {
               params:{
                   word: params.word,
                   page: page,
-                  size: size
+                  size: size,
+                  ...filterOptions
               }
           });
 
@@ -97,13 +132,8 @@ const SearchResult = () => {
 
     return(
         <>
-          <div className='common_full'>
-            <Banner/>
-            <div className='main_full'>
-              <MoyeoraResultList items={items} onLoadMore={loadMore} hasMore={hasMore} loading={loading}/>
-            </div>
-            <Footer/>
-          </div>
+          <Search/>
+          <MoyeoraResultList items={items} onLoadMore={loadMore} hasMore={hasMore} loading={loading}/>
         </>
 
     );
