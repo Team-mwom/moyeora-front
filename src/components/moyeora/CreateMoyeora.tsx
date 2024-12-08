@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import Post from 'components/sign/Post';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -12,14 +12,18 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Button from 'react-bootstrap/Button';
 import Modal from "react-modal";
-
+import Resizer from "react-image-file-resizer";
 import 'styles/moyeora/createMoyeora.css'
+import MoyeoraMainImg from './MoyeoraMainImg';
+
+
+
 
 interface moyeoraDto {
 	myrTitle: String;
 	myrTags: String;
 	myrMaxMember: Number;
-	// myrMainImg: String;
+	myrMainImg: String;
 	subCategorySeq: Number;
 }
 
@@ -77,7 +81,7 @@ const CreateMoyeora = () => {
 		myrTitle: ""
 		, myrTags: ""
 		, myrMaxMember: 0
-		// , myrMainImg: ""
+		, myrMainImg: ""
 		, subCategorySeq: 1
 	}
 	let moyeoraInfoDto: moyeoraInfoDto = {
@@ -225,6 +229,7 @@ const CreateMoyeora = () => {
 	const [myrTitle, setMyrTitle] = useState<String>("");
 	const [myrTags, setMyrTags] = useState<String>("");
 	const [myrMaxMember, setMyrMaxMember] = useState<Number>(0);
+	const [myrMainImg, setMyrMainImg] = useState<string>("");
 
 	const changeMyrTitle = (e: any) => {
 		let myrTitle = e.target.value;
@@ -332,28 +337,29 @@ const CreateMoyeora = () => {
 	}
 
 	const clickCreateMoyeora = (e: any) => {
-		moyeoraDto.myrTitle = myrTitle
-		moyeoraDto.myrTags = myrTags
-		moyeoraDto.myrMaxMember = myrMaxMember
+		moyeoraDto.myrTitle = myrTitle;
+		moyeoraDto.myrTags = myrTags;
+		moyeoraDto.myrMaxMember = myrMaxMember;
+		moyeoraDto.myrMainImg = myrMainImg;
 
-		moyeoraInfoDto.myrIntroduce = myrIntroduce
-		moyeoraInfoDto.myrOwnerName = myrOwnerName
-		moyeoraInfoDto.myrOwnerIntroduce = myrOwnerIntroduce
-		moyeoraInfoDto.myrGenderYn = myrGenderYn
-		moyeoraInfoDto.myrApprovalYn = myrApprovalYn
-		moyeoraInfoDto.myrMinAge = myrMinAge
-		moyeoraInfoDto.myrMaxAge = myrMaxAge
-		moyeoraInfoDto.myrQuestion1 = myrQuestion1
-		moyeoraInfoDto.myrQuestion2 = myrQuestion2
-		moyeoraInfoDto.myrQuestion3 = myrQuestion3
+		moyeoraInfoDto.myrIntroduce = myrIntroduce;
+		moyeoraInfoDto.myrOwnerName = myrOwnerName;
+		moyeoraInfoDto.myrOwnerIntroduce = myrOwnerIntroduce;
+		moyeoraInfoDto.myrGenderYn = myrGenderYn;
+		moyeoraInfoDto.myrApprovalYn = myrApprovalYn;
+		moyeoraInfoDto.myrMinAge = myrMinAge;
+		moyeoraInfoDto.myrMaxAge = myrMaxAge;
+		moyeoraInfoDto.myrQuestion1 = myrQuestion1;
+		moyeoraInfoDto.myrQuestion2 = myrQuestion2;
+		moyeoraInfoDto.myrQuestion3 = myrQuestion3;
 
-		moyeoraPlaceDto.myrAddressNumber = myrAddressNumber
-		moyeoraPlaceDto.myrAddressLocation = myrAddressLocation
-		moyeoraPlaceDto.myrPlace = myrPlace
-		moyeoraPlaceDto.myrLongitude = myrLongitude
-		moyeoraPlaceDto.myrLatitude = myrLatitude
-		moyeoraPlaceDto.myrSido = myrSido
-		moyeoraPlaceDto.myrSigungu = myrSigungu
+		moyeoraPlaceDto.myrAddressNumber = myrAddressNumber;
+		moyeoraPlaceDto.myrAddressLocation = myrAddressLocation;
+		moyeoraPlaceDto.myrPlace = myrPlace;
+		moyeoraPlaceDto.myrLongitude = myrLongitude;
+		moyeoraPlaceDto.myrLatitude = myrLatitude;
+		moyeoraPlaceDto.myrSido = myrSido;
+		moyeoraPlaceDto.myrSigungu = myrSigungu;
 
 		let sendData = {
 			moyeoraDto
@@ -361,19 +367,62 @@ const CreateMoyeora = () => {
 			, moyeoraPlaceDto
 		};
 
-		console.log("data ===>", sendData)
-		console.log("data ===>", sendData)
-		console.log("data ===>", sendData)
-		
+		console.log("data ===>", sendData);
+		console.log("data ===>", sendData);
+		console.log("data ===>", sendData);
+			
 		authAxios.post("/api/user/moyeora/create-moyeora", sendData).then((res) => {
 			if (authException(res, [cookies, setCookie, removeCookie])) {
-				console.log("=== 모여봐 생성 완료 ! ===")
+				console.log("=== 모여봐 생성 완료 ! ===");
 				
 				navigate("/");
-				alert("모여봐 생성 완료 !")
+				alert("모여봐 생성 완료 !");
 			}
 		}).catch(()=>alert('로그인후 이용가능합니다.'))
 	}
+
+	//모여라 이미지 관련 코드 (담당자분 보기 편한 곳으로 옮기세요)//
+
+
+		const onImageHandler = async (e:any) => {
+			const file = await e.target.files[0];                                  //사용자가 업로드한 이미지를 비동기적으로 가져온다.
+			console.log("imgae incoding before : ", file);
+			const suppertedFormats = ["image/jpeg", "image/png", "image/svg+xml"]; //허용한 이미지 형식 정의
+			if (!e.target.files[0]) {                                              //만약 업로드한 이미지가 존재하지 않는다면 함수를 종료
+				return;
+			}
+			if (!suppertedFormats.includes(file.type)) {                           //업로드한 이미지가 정의된 형식에 맞지 않는다면 경고창 띄우기
+				alert(
+					"지원되지 않은 이미지 형식입니다. JPEG, PNG형식의 이미지를 업로드해주세요."
+				);
+				return;
+			}
+			try {
+				const compressedFile = await resizeFile(e.target.files[0]);          //"resizeFile"함수를 통해서 업로드한 이미지 리사이징 및 인코딩
+			console.log("imgae incoding after : ", compressedFile);
+				setMyrMainImg(String(compressedFile));                             //인코딩한 이미지를 브라우저에 프리뷰 하기 위해 state 정의
+				console.log(String(compressedFile));   
+			} catch (error) {                                                      //리사이징에 실패했을시 console에 출력하게 한다.
+				console.log("file resizing failed");
+			}
+	};
+	
+	const myElementRef= useRef(null);
+  const clickImagePriview = useCallback(
+    (e: any) => {
+      const abc:any=myElementRef.current
+      abc!.click();
+    }
+
+    , [myElementRef]);
+
+
+	//--------------------//
+
+
+
+
+
 
 	return (
 		<div className='createMoyeora_full'>
@@ -451,7 +500,17 @@ const CreateMoyeora = () => {
 					대표 이미지
 				</div>
 				<div className='createMoyeora_mainImage'>
-					<Button variant="outline-dark" size="lg">
+					<img src={myrMainImg}></img>
+					<input 
+					name='profileImage'  
+					ref={myElementRef}
+          type="file"
+          id="profileImage"
+          accept="image/*"
+					onChange={onImageHandler}
+					hidden
+					/>
+					<Button variant="outline-dark" size="lg" onClick={clickImagePriview}>
 						이미지 업로드
 					</Button>
 				</div>
@@ -590,3 +649,24 @@ const CreateMoyeora = () => {
 };
 
 export default CreateMoyeora;
+
+
+
+
+//모여라 메인이미지 blob 이미지 세팅
+	const resizeFile = (file:any) =>
+    new Promise((resolve) => {                     //비동기 작업을 위해서 "Promise"를 통한 비동기 작업 정의
+      Resizer.imageFileResizer(                   //Resizer의 "imageFileResize"메서드를 통해서 이미지 리사이징 및 인코딩 옵션 정의
+        file,               
+        200,                                        //이미지 너비
+        200,                                        //이미지 높이
+        "SVG",                                      //파일 형식
+        100,                                        //이미지 퀄리티(100으로 해도 이미지 리사이징시 상당히 깨지긴 한다)
+        0 /* rotation */,
+        (uri) => {
+          /* resize new image with url*/
+          resolve(uri);
+        },
+        "base64" /* output Type */                 //"blob"으로 정의할 수 있다.
+      );
+    });
